@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:tech_blog/colors.dart';
-import 'package:tech_blog/main_screen.dart';
-import 'gen/assets.gen.dart';
+import 'package:tech_blog/constant/my_colors.dart';
+import 'package:tech_blog/view/main_screen.dart';
+import 'package:tech_blog/view/register_intro.dart';
+import '../gen/assets.gen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,12 +14,23 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool loginStatus = true;
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2)).then((value) => {
-          Navigator.pushReplacement(context,
-              CupertinoPageRoute(builder: (context) => const MainScreen()))
+          if (loginStatus == true)
+            {
+              Navigator.pushReplacement(
+                  context,
+                  CupertinoPageRoute(
+                      builder: (context) => const RegisterIntro()))
+            }
+          else
+            {
+              Navigator.pushReplacement(context,
+                  CupertinoPageRoute(builder: (context) => const MainScreen()))
+            }
         });
   }
 

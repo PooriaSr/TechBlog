@@ -8,6 +8,72 @@
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
+
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
+
+  /// File path: assets/icons/audiofile.png
+  AssetGenImage get audiofile =>
+      const AssetGenImage('assets/icons/audiofile.png');
+
+  /// File path: assets/icons/blue_pen.png
+  AssetGenImage get bluePen => const AssetGenImage('assets/icons/blue_pen.png');
+
+  /// File path: assets/icons/down_cat_arrow.png
+  AssetGenImage get downCatArrow =>
+      const AssetGenImage('assets/icons/down_cat_arrow.png');
+
+  /// File path: assets/icons/hashtagicon.png
+  AssetGenImage get hashtagicon =>
+      const AssetGenImage('assets/icons/hashtagicon.png');
+
+  /// File path: assets/icons/home.png
+  AssetGenImage get home => const AssetGenImage('assets/icons/home.png');
+
+  /// File path: assets/icons/microphon.png
+  AssetGenImage get microphon =>
+      const AssetGenImage('assets/icons/microphon.png');
+
+  /// File path: assets/icons/user.png
+  AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
+
+  /// File path: assets/icons/write.png
+  AssetGenImage get write => const AssetGenImage('assets/icons/write.png');
+
+  /// File path: assets/icons/write_article.png
+  AssetGenImage get writeArticle =>
+      const AssetGenImage('assets/icons/write_article.png');
+
+  /// File path: assets/icons/write_article_icon.png
+  AssetGenImage get writeArticleIcon =>
+      const AssetGenImage('assets/icons/write_article_icon.png');
+
+  /// File path: assets/icons/write_microphone.png
+  AssetGenImage get writeMicrophone =>
+      const AssetGenImage('assets/icons/write_microphone.png');
+
+  /// File path: assets/icons/write_podcast_icon.png
+  AssetGenImage get writePodcastIcon =>
+      const AssetGenImage('assets/icons/write_podcast_icon.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        audiofile,
+        bluePen,
+        downCatArrow,
+        hashtagicon,
+        home,
+        microphon,
+        user,
+        write,
+        writeArticle,
+        writeArticleIcon,
+        writeMicrophone,
+        writePodcastIcon
+      ];
+}
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
@@ -32,7 +98,7 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/single_place_holder.jpg');
 
   /// File path: assets/images/tcbot.svg
-  String get tcbot => 'assets/images/tcbot.svg';
+  SvgGenImage get tcbot => const SvgGenImage('assets/images/tcbot.svg');
 
   /// List of all assets
   List<dynamic> get values =>
@@ -42,6 +108,7 @@ class $AssetsImagesGen {
 class Assets {
   Assets._();
 
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
@@ -111,6 +178,59 @@ class AssetGenImage {
       _assetName,
       bundle: bundle,
       package: package,
+    );
+  }
+
+  String get path => _assetName;
+
+  String get keyName => _assetName;
+}
+
+class SvgGenImage {
+  const SvgGenImage(this._assetName);
+
+  final String _assetName;
+
+  SvgPicture svg({
+    Key? key,
+    bool matchTextDirection = false,
+    AssetBundle? bundle,
+    String? package,
+    double? width,
+    double? height,
+    BoxFit fit = BoxFit.contain,
+    AlignmentGeometry alignment = Alignment.center,
+    bool allowDrawingOutsideViewBox = false,
+    WidgetBuilder? placeholderBuilder,
+    String? semanticsLabel,
+    bool excludeFromSemantics = false,
+    SvgTheme theme = const SvgTheme(),
+    ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
+    @deprecated Color? color,
+    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
+    @deprecated bool cacheColorFilter = false,
+  }) {
+    return SvgPicture.asset(
+      _assetName,
+      key: key,
+      matchTextDirection: matchTextDirection,
+      bundle: bundle,
+      package: package,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+      placeholderBuilder: placeholderBuilder,
+      semanticsLabel: semanticsLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      theme: theme,
+      colorFilter: colorFilter,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      clipBehavior: clipBehavior,
+      cacheColorFilter: cacheColorFilter,
     );
   }
 

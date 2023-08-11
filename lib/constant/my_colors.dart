@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 class SolidColors {
   static const Color posterSubTitle = Color.fromARGB(200, 255, 255, 255);
+  static const Color appBarBackGround = Color.fromARGB(255, 255, 255, 255);
+  static const Color backGround = Color.fromARGB(255, 255, 255, 255);
+  static const Color appBarIcons = Color.fromARGB(255, 0, 0, 0);
+  static const Color bottomNavIcons = Color.fromARGB(255, 255, 255, 255);
   static const Color posterTitle = Color.fromARGB(255, 255, 255, 255);
   static const Color primaryColor = Color.fromARGB(255, 68, 4, 87);
   static const Color colorTitle = Color.fromARGB(255, 40, 107, 184);
@@ -27,6 +31,7 @@ class SolidColors {
   static const Color erorColor = Color.fromARGB(255, 227, 10, 10);
   static const Color lightBackColor = Color.fromARGB(255, 255, 255, 255);
   static const Color minutesColorColor = Color.fromARGB(255, 203, 202, 202);
+  static const Color modalBottomSheet = Color.fromARGB(255, 255, 255, 255);
 }
 
 class GradientColors {
@@ -48,7 +53,7 @@ class GradientColors {
   ];
   static const List<Color> homePosterCoverGradiant = [
     Color.fromARGB(0, 0, 0, 0),
-    Color.fromARGB(140, 72, 20, 88),
+    Color.fromARGB(179, 72, 20, 88),
     Color.fromARGB(255, 280, 20, 81)
   ];
 
