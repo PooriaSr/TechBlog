@@ -59,7 +59,11 @@ class MyApp extends StatelessWidget {
                 labelSmall: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: SolidColors.hintText))),
+                    color: SolidColors.hintText),
+                headlineSmall: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: SolidColors.primaryColor))),
         debugShowCheckedModeBanner: false,
         home: const SplashScreen());
   }

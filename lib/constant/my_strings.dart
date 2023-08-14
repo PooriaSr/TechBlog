@@ -16,5 +16,15 @@ class MyStrings {
   static const String enterYourEmail = "لطفا ایمیلت رو وارد کن";
   static const String engEnterYourEmail = "Enter Your Email";
   static const String emailTextFieldHint = "techblog@gmail.com";
+  static const String nameTextFieldHint = "نام و نام خانوادگی";
   static const String continueButton = "ادامه";
+  static const String enterVerficationCode = "کد فعال سازی رو وارد کن";
+  static const String successfullRegistertion =
+      """تبریک میگم، ایمیل با موفقیت تایید شد
+لطفا اطلاعات ثبت نام رو کامل کن""";
+  static const String yourFavCats = "دسته بندی هایی که دوست داری رو انتخاب کن";
+  static const String drawerUserProfile = "پروفایل کاربری";
+  static const String drawerAboutTech = "درباره تک بلاگ";
+  static const String drawerShareTech = "اشتراک گذاری تک بلاگ";
+  static const String drawerTechInGithub = "تک بلاگ در گیت هاب";
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tech_blog/constant/my_colors.dart';
+import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/view/profile_screen.dart';
 import '../gen/assets.gen.dart';
 import 'package:tech_blog/view/home_screen.dart';
@@ -12,6 +13,8 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+final GlobalKey<ScaffoldState> _key = GlobalKey();
+
 class _MainScreenState extends State<MainScreen> {
   int seletedPageIndex = 0;
   @override
@@ -21,8 +24,10 @@ class _MainScreenState extends State<MainScreen> {
     double bodyMargin = phoneSize.width / 14;
 
     return Scaffold(
+      key: _key,
       backgroundColor: SolidColors.backGround,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         toolbarHeight: phoneSize.height / 13,
         backgroundColor: SolidColors.appBarBackGround,
         iconTheme: const IconThemeData(color: SolidColors.appBarIcons),
@@ -33,9 +38,14 @@ class _MainScreenState extends State<MainScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(
-                CupertinoIcons.bars,
-                size: 36,
+              InkWell(
+                onTap: () {
+                  _key.currentState!.openDrawer();
+                },
+                child: const Icon(
+                  CupertinoIcons.bars,
+                  size: 36,
+                ),
               ),
               Image(
                 image: Assets.images.logo.provider(),
@@ -45,6 +55,57 @@ class _MainScreenState extends State<MainScreen> {
                 CupertinoIcons.search,
                 size: 28,
               )
+            ],
+          ),
+        ),
+      ),
+      drawer: Drawer(
+        backgroundColor: SolidColors.backGround,
+        child: Padding(
+          padding: EdgeInsets.only(left: bodyMargin, right: bodyMargin),
+          child: ListView(
+            children: [
+              DrawerHeader(
+                  child: Image.asset(
+                Assets.images.logo.path,
+                scale: 3,
+              )),
+              InkWell(
+                onTap: () {},
+                child: const ListTile(
+                  title: Text(MyStrings.drawerUserProfile),
+                ),
+              ),
+              const Divider(
+                color: SolidColors.dividerColor,
+              ),
+              InkWell(
+                onTap: () {},
+                child: const ListTile(
+                  title: Text(MyStrings.drawerAboutTech),
+                ),
+              ),
+              const Divider(
+                color: SolidColors.dividerColor,
+              ),
+              InkWell(
+                onTap: () {},
+                child: const ListTile(
+                  title: Text(MyStrings.drawerShareTech),
+                ),
+              ),
+              const Divider(
+                color: SolidColors.dividerColor,
+              ),
+              InkWell(
+                onTap: () {},
+                child: const ListTile(
+                  title: Text(MyStrings.drawerTechInGithub),
+                ),
+              ),
+              const Divider(
+                color: SolidColors.dividerColor,
+              ),
             ],
           ),
         ),

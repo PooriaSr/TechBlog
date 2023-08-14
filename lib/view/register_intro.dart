@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
+import 'package:tech_blog/view/my_cats.dart';
 
 class RegisterIntro extends StatelessWidget {
   const RegisterIntro({super.key});
@@ -75,10 +76,10 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
                     style: textTheme.bodyLarge,
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 25,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 50, right: 50),
+                    padding: const EdgeInsets.only(left: 45, right: 45),
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: TextField(
@@ -98,13 +99,75 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
                     height: 32,
                   ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                        verificationBottomSheet(context);
+                      },
                       child: const Text(MyStrings.continueButton))
                 ],
               ),
             ),
           );
         });
+  }
+
+  Future<dynamic> verificationBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+            height: phoneSize.height / 2.5,
+            decoration: const BoxDecoration(
+                color: SolidColors.modalBottomSheet,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  MyStrings.enterVerficationCode,
+                  style: textTheme.bodyLarge,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 45, right: 45),
+                    child: TextField(
+                      style: textTheme.bodyLarge,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        hintText: "* * * *",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 32,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => MyCats()));
+                    },
+                    child: const Text(MyStrings.continueButton))
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 

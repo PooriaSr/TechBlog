@@ -18,6 +18,7 @@ List<HashTagModels> hashTagList = [
   HashTagModels(title: "اندروید"),
   HashTagModels(title: "اینترنت اشیا"),
 ];
+List<HashTagModels> selectedTagsList = [];
 
 List<BlogModel> blogList = [
   BlogModel(
