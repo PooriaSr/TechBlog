@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tech_blog/constant/my_colors.dart';
@@ -83,6 +84,7 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: TextField(
+                          onChanged: (value) {},
                           style: textTheme.bodyLarge,
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
@@ -142,6 +144,13 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 45, right: 45),
                     child: TextField(
+                      onChanged: (value) {
+                        if (value.length == 4) {
+                          Navigator.of(context).pushReplacement(
+                              CupertinoPageRoute(
+                                  builder: (context) => const MyCats()));
+                        }
+                      },
                       style: textTheme.bodyLarge,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
@@ -158,8 +167,8 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => MyCats()));
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const MyCats()));
                     },
                     child: const Text(MyStrings.continueButton))
               ],

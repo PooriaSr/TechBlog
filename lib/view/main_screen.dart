@@ -1,27 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/view/profile_screen.dart';
+import 'package:tech_blog/view/register_intro.dart';
 import '../gen/assets.gen.dart';
 import 'package:tech_blog/view/home_screen.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-final GlobalKey<ScaffoldState> _key = GlobalKey();
-
-class _MainScreenState extends State<MainScreen> {
-  int seletedPageIndex = 0;
-  @override
   Widget build(BuildContext context) {
+    RxInt seletedPageIndex = 0.obs;
     var phoneSize = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
     double bodyMargin = phoneSize.width / 14;
+    final GlobalKey<ScaffoldState> _key = GlobalKey();
 
     return Scaffold(
       key: _key,
@@ -113,18 +109,21 @@ class _MainScreenState extends State<MainScreen> {
       body: SafeArea(
         child: Stack(children: [
           Positioned.fill(
-            child: IndexedStack(
-              index: seletedPageIndex,
-              children: [
-                HomeScreen(
-                    phoneSize: phoneSize,
-                    bodyMargin: bodyMargin,
-                    textTheme: textTheme),
-                ProfileScreen(
-                    phoneSize: phoneSize,
-                    textTheme: textTheme,
-                    bodyMargin: bodyMargin),
-              ],
+            child: Obx(
+              () => IndexedStack(
+                index: seletedPageIndex.value,
+                children: [
+                  HomeScreen(
+                      phoneSize: phoneSize,
+                      bodyMargin: bodyMargin,
+                      textTheme: textTheme),
+                  ProfileScreen(
+                      phoneSize: phoneSize,
+                      textTheme: textTheme,
+                      bodyMargin: bodyMargin),
+                  const RegisterIntro()
+                ],
+              ),
             ),
           ),
           Positioned(
@@ -135,9 +134,7 @@ class _MainScreenState extends State<MainScreen> {
                 phoneSize: phoneSize,
                 bodyMargin: bodyMargin,
                 chaneScreen: (value) {
-                  setState(() {
-                    seletedPageIndex = value;
-                  });
+                  seletedPageIndex.value = value;
                 }),
           )
         ]),
@@ -191,7 +188,9 @@ class BottomNavigation extends StatelessWidget {
                       color: SolidColors.bottomNavIcons,
                     )),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      chaneScreen(2);
+                    },
                     icon: ImageIcon(Assets.icons.write.provider(),
                         size: 28, color: SolidColors.bottomNavIcons)),
                 IconButton(
