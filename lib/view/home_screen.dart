@@ -92,14 +92,33 @@ class HomePageMostHitPodcast extends StatelessWidget {
               padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 14),
               child: Column(
                 children: [
-                  Container(
-                    height: phoneSize.height / 6,
-                    width: phoneSize.width / 2.8,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                            image: NetworkImage(podcastList[index].image),
-                            fit: BoxFit.cover)),
+                  FutureBuilder(
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Container(
+                          height: phoneSize.height / 6,
+                          width: phoneSize.width / 2.8,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                  image: NetworkImage(podcastList[index].image),
+                                  fit: BoxFit.cover)),
+                        );
+                      }
+                      return Container(
+                        height: phoneSize.height / 6,
+                        width: phoneSize.width / 2.8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Center(
+                          child: SizedBox(
+                              width: phoneSize.width / 5.6,
+                              height: phoneSize.height / 12,
+                              child: const CircularProgressIndicator()),
+                        ),
+                      );
+                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),

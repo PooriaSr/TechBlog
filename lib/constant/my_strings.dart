@@ -27,4 +27,8 @@ class MyStrings {
   static const String drawerAboutTech = "درباره تک بلاگ";
   static const String drawerShareTech = "اشتراک گذاری تک بلاگ";
   static const String drawerTechInGithub = "تک بلاگ در گیت هاب";
+  static const String shareTechBlog =
+      "سلام من از تک بلاگ استفاده میکنم خیلی باحاله توام بیا\n http://sasansafari.com ";
+  static const String techBlogGitHubUrl =
+      "https://github.com/sasansafari/techblog";
 }

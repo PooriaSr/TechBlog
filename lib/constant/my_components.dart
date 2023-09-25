@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../gen/assets.gen.dart';
 import 'my_colors.dart';
 import 'my_strings.dart';
+import 'dart:developer' as developer;
 
 class BluePenIconTextTitleTechBlog extends StatelessWidget {
   const BluePenIconTextTitleTechBlog({
@@ -47,5 +49,14 @@ class GreyDividerTechBlog extends StatelessWidget {
       indent: phoneSize.width / 6,
       endIndent: phoneSize.width / 6,
     );
+  }
+}
+
+myLaunchUrl(String url) async {
+  var uri = Uri.parse(url);
+  if (await canLaunchUrl(uri)) {
+    launchUrl(uri);
+  } else {
+    developer.log("link could not launch $url");
   }
 }

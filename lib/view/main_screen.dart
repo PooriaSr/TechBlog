@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:tech_blog/constant/api_constant.dart';
 import 'package:tech_blog/constant/my_colors.dart';
+import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/constant/my_strings.dart';
+import 'package:tech_blog/services/dio_service.dart';
 import 'package:tech_blog/view/profile_screen.dart';
 import 'package:tech_blog/view/register_intro.dart';
 import '../gen/assets.gen.dart';
@@ -17,10 +21,10 @@ class MainScreen extends StatelessWidget {
     var phoneSize = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
     double bodyMargin = phoneSize.width / 14;
-    final GlobalKey<ScaffoldState> _key = GlobalKey();
+    final GlobalKey<ScaffoldState> key = GlobalKey();
 
     return Scaffold(
-      key: _key,
+      key: key,
       backgroundColor: SolidColors.backGround,
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -34,9 +38,9 @@ class MainScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
+              GestureDetector(
                 onTap: () {
-                  _key.currentState!.openDrawer();
+                  key.currentState!.openDrawer();
                 },
                 child: const Icon(
                   CupertinoIcons.bars,
@@ -66,38 +70,35 @@ class MainScreen extends StatelessWidget {
                 Assets.images.logo.path,
                 scale: 3,
               )),
-              InkWell(
-                onTap: () {},
-                child: const ListTile(
-                  title: Text(MyStrings.drawerUserProfile),
-                ),
+              ListTile(
+                onTap: () {
+                  seletedPageIndex.value = 2;
+                  key.currentState!.closeDrawer();
+                },
+                title: const Text(MyStrings.drawerUserProfile),
               ),
               const Divider(
                 color: SolidColors.dividerColor,
               ),
-              InkWell(
+              ListTile(
                 onTap: () {},
-                child: const ListTile(
-                  title: Text(MyStrings.drawerAboutTech),
-                ),
+                title: const Text(MyStrings.drawerAboutTech),
               ),
               const Divider(
                 color: SolidColors.dividerColor,
               ),
-              InkWell(
-                onTap: () {},
-                child: const ListTile(
-                  title: Text(MyStrings.drawerShareTech),
-                ),
+              ListTile(
+                onTap: () async {
+                  await Share.share(MyStrings.shareTechBlog);
+                },
+                title: const Text(MyStrings.drawerShareTech),
               ),
               const Divider(
                 color: SolidColors.dividerColor,
               ),
-              InkWell(
-                onTap: () {},
-                child: const ListTile(
-                  title: Text(MyStrings.drawerTechInGithub),
-                ),
+              ListTile(
+                onTap: () => myLaunchUrl(MyStrings.techBlogGitHubUrl),
+                title: const Text(MyStrings.drawerTechInGithub),
               ),
               const Divider(
                 color: SolidColors.dividerColor,
