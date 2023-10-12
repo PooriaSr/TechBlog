@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           homePagePoster(),
           const SizedBox(
-            height: 30,
+            height: 40,
             width: double.infinity,
           ),
           homePageHashtag(),
