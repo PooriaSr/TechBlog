@@ -22,44 +22,32 @@ class HomeScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          HomePagePoster(phoneSize: phoneSize, textTheme: textTheme),
+          homePagePoster(),
           const SizedBox(
             height: 30,
             width: double.infinity,
           ),
-          HomePageHashtag(
-              phoneSize: phoneSize,
-              bodyMargin: bodyMargin,
-              textTheme: textTheme),
+          homePageHashtag(),
           const SizedBox(
             height: 40,
             width: double.infinity,
           ),
-          HomePageMostHitBlogsTitle(
-              bodyMargin: bodyMargin, textTheme: textTheme),
+          homePageMostHitBlogsTitle(),
           const SizedBox(
             height: 20,
             width: double.infinity,
           ),
-          HomePageMostHitBlogs(
-              phoneSize: phoneSize,
-              bodyMargin: bodyMargin,
-              textTheme: textTheme),
+          homePageMostHitBlogs(),
           const SizedBox(
             height: 35,
             width: double.infinity,
           ),
-          HomePageMostHitPodcastTitle(
-              bodyMargin: bodyMargin, textTheme: textTheme),
+          homePageMostHitPodcastTitle(),
           const SizedBox(
             height: 20,
             width: double.infinity,
           ),
-          HomePageMostHitPodcast(
-            phoneSize: phoneSize,
-            bodyMargin: bodyMargin,
-            textTheme: textTheme,
-          ),
+          homePageMostHitPodcast(),
           const SizedBox(
             height: 60,
             width: double.infinity,
@@ -68,20 +56,8 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
 
-class HomePageMostHitPodcast extends StatelessWidget {
-  const HomePageMostHitPodcast(
-      {super.key,
-      required this.phoneSize,
-      required this.bodyMargin,
-      required this.textTheme});
-
-  final Size phoneSize;
-  final double bodyMargin;
-  final TextTheme textTheme;
-  @override
-  Widget build(BuildContext context) {
+  Widget homePageMostHitPodcast() {
     return SizedBox(
       height: phoneSize.height / 4,
       child: ListView.builder(
@@ -133,55 +109,8 @@ class HomePageMostHitPodcast extends StatelessWidget {
           }),
     );
   }
-}
 
-class HomePageMostHitPodcastTitle extends StatelessWidget {
-  const HomePageMostHitPodcastTitle({
-    super.key,
-    required this.bodyMargin,
-    required this.textTheme,
-  });
-
-  final double bodyMargin;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: bodyMargin),
-      child: Row(
-        children: [
-          ImageIcon(
-            Assets.icons.microphon.provider(),
-            color: SolidColors.seeMore,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text(
-            MyStrings.viewMostHitPodcasts,
-            style: textTheme.bodySmall,
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class HomePageMostHitBlogs extends StatelessWidget {
-  const HomePageMostHitBlogs({
-    super.key,
-    required this.phoneSize,
-    required this.bodyMargin,
-    required this.textTheme,
-  });
-
-  final Size phoneSize;
-  final double bodyMargin;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget homePageMostHitBlogs() {
     return SizedBox(
       height: phoneSize.height / 4.2,
       child: ListView.builder(
@@ -260,110 +189,29 @@ class HomePageMostHitBlogs extends StatelessWidget {
       ),
     );
   }
-}
 
-class HomePageMostHitBlogsTitle extends StatelessWidget {
-  const HomePageMostHitBlogsTitle({
-    super.key,
-    required this.bodyMargin,
-    required this.textTheme,
-  });
-
-  final double bodyMargin;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget homePageMostHitPodcastTitle() {
     return Padding(
       padding: EdgeInsets.only(right: bodyMargin),
       child: Row(
         children: [
           ImageIcon(
-            Assets.icons.bluePen.provider(),
+            Assets.icons.microphon.provider(),
             color: SolidColors.seeMore,
           ),
           const SizedBox(
             width: 10,
           ),
           Text(
-            MyStrings.viewMostHitPosts,
+            MyStrings.viewMostHitPodcasts,
             style: textTheme.bodySmall,
           )
         ],
       ),
     );
   }
-}
 
-class HomePageHashtag extends StatelessWidget {
-  const HomePageHashtag({
-    super.key,
-    required this.phoneSize,
-    required this.bodyMargin,
-    required this.textTheme,
-  });
-
-  final Size phoneSize;
-  final double bodyMargin;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: phoneSize.height / 22.8,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: hashTagList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 14),
-            child: Container(
-              height: phoneSize.height / 22.8,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  gradient: const LinearGradient(
-                      colors: GradientColors.tags,
-                      begin: Alignment.centerRight,
-                      end: Alignment.centerLeft)),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(22, 0, 8, 0),
-                child: Row(
-                  children: [
-                    ImageIcon(
-                      Assets.icons.hashtagicon.provider(),
-                      size: 14,
-                      color: SolidColors.hashTag,
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Text(
-                      hashTagList[index].title,
-                      style: textTheme.titleSmall,
-                    )
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class HomePagePoster extends StatelessWidget {
-  const HomePagePoster({
-    super.key,
-    required this.phoneSize,
-    required this.textTheme,
-  });
-
-  final Size phoneSize;
-  final TextTheme textTheme;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget homePagePoster() {
     return Stack(children: [
       //PhotoPosterContainer
       Container(
@@ -424,5 +272,69 @@ class HomePagePoster extends StatelessWidget {
             ),
           )),
     ]);
+  }
+
+  Widget homePageMostHitBlogsTitle() {
+    return Padding(
+      padding: EdgeInsets.only(right: bodyMargin),
+      child: Row(
+        children: [
+          ImageIcon(
+            Assets.icons.bluePen.provider(),
+            color: SolidColors.seeMore,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            MyStrings.viewMostHitPosts,
+            style: textTheme.bodySmall,
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget homePageHashtag() {
+    return SizedBox(
+      height: phoneSize.height / 22.8,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: hashTagList.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 14),
+            child: Container(
+              height: phoneSize.height / 22.8,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  gradient: const LinearGradient(
+                      colors: GradientColors.tags,
+                      begin: Alignment.centerRight,
+                      end: Alignment.centerLeft)),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(22, 0, 8, 0),
+                child: Row(
+                  children: [
+                    ImageIcon(
+                      Assets.icons.hashtagicon.provider(),
+                      size: 14,
+                      color: SolidColors.hashTag,
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Text(
+                      hashTagList[index].title,
+                      style: textTheme.titleSmall,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
