@@ -12,8 +12,22 @@ class HomeScreenController extends GetxController {
   RxList<PodcastModel> topPodcastList = RxList();
   RxList<TagsModel> tagsList = RxList();
 
+  @override
+  onInit() {
+    super.onInit();
+    getHomeItems();
+  }
+
   getHomeItems() async {
     var response = await DioService().getMethod(ApiConstant.getHomeItems);
-    response.data['poster']['title'];
+    if (response.statusCode == 200) {
+      response.data['top_visited'].forEach((element) {
+        topVisitedList.add(ArticleModel.fromJson(element));
+      });
+
+      response.data['top_podcasts'].forEach((element) {
+        topPodcastList.add(PodcastModel.fromJson(element));
+      });
+    }
   }
 }
