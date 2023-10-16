@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/controller/home_screen_controller.dart';
@@ -72,20 +74,33 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 14),
                 child: Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height: phoneSize.height / 6,
                       width: phoneSize.width / 2.8,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                              image: NetworkImage(homeScreenController
-                                  .topPodcastList[4].poster!),
-                              fit: BoxFit.cover)),
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            homeScreenController.topPodcastList[index].poster!,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              image: DecorationImage(
+                                  image: imageProvider, fit: BoxFit.cover)),
+                        ),
+                        placeholder: (context, url) => const SpinKitCircle(
+                          color: SolidColors.primaryColor,
+                          size: 30,
+                        ),
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.image_not_supported_outlined,
+                          size: 50,
+                          color: Colors.grey,
+                        ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Text(
-                        homeScreenController.topPodcastList[4].title!,
+                        homeScreenController.topPodcastList[index].title!,
                         style: textTheme.bodyMedium,
                       ),
                     )
@@ -113,20 +128,30 @@ class HomeScreen extends StatelessWidget {
                     width: phoneSize.width / 2.4,
                     height: phoneSize.height / 5.8,
                     child: Stack(children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                                image: NetworkImage(homeScreenController
-                                    .topVisitedList[index].image!),
-                                fit: BoxFit.cover)),
-                        foregroundDecoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            gradient: const LinearGradient(
-                              colors: GradientColors.blogPost,
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
-                            )),
+                      CachedNetworkImage(
+                        imageUrl:
+                            homeScreenController.topVisitedList[index].image!,
+                        imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover)),
+                            foregroundDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                gradient: const LinearGradient(
+                                  colors: GradientColors.blogPost,
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                ))),
+                        placeholder: (context, url) => const SpinKitCircle(
+                          size: 30,
+                          color: SolidColors.primaryColor,
+                        ),
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.image_not_supported_outlined,
+                          size: 50,
+                          color: Colors.grey,
+                        ),
                       ),
                       Positioned(
                         bottom: 10,
