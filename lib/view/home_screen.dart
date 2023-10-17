@@ -25,39 +25,41 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          homePagePoster(),
-          const SizedBox(
-            height: 40,
-            width: double.infinity,
-          ),
-          homePageHashtag(),
-          const SizedBox(
-            height: 40,
-            width: double.infinity,
-          ),
-          homePageTopVisitedTitle(),
-          const SizedBox(
-            height: 20,
-            width: double.infinity,
-          ),
-          homePageTopVisied(),
-          const SizedBox(
-            height: 35,
-            width: double.infinity,
-          ),
-          homePageTopPodcastTitle(),
-          const SizedBox(
-            height: 20,
-            width: double.infinity,
-          ),
-          homePageTopPodcast(),
-          const SizedBox(
-            height: 60,
-            width: double.infinity,
-          ),
-        ],
+      child: Obx(
+        () => Column(
+          children: [
+            homePagePoster(),
+            const SizedBox(
+              height: 40,
+              width: double.infinity,
+            ),
+            homePageHashtag(),
+            const SizedBox(
+              height: 40,
+              width: double.infinity,
+            ),
+            homePageTopVisitedTitle(),
+            const SizedBox(
+              height: 20,
+              width: double.infinity,
+            ),
+            homePageTopVisied(),
+            const SizedBox(
+              height: 35,
+              width: double.infinity,
+            ),
+            homePageTopPodcastTitle(),
+            const SizedBox(
+              height: 20,
+              width: double.infinity,
+            ),
+            homePageTopPodcast(),
+            const SizedBox(
+              height: 60,
+              width: double.infinity,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -231,24 +233,25 @@ class HomeScreen extends StatelessWidget {
 
   Widget homePagePoster() {
     return Stack(children: [
-      //PhotoPosterContainer
-      Container(
+      SizedBox(
         width: phoneSize.width / 1.19,
         height: phoneSize.height / 4.2,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          image: DecorationImage(
-              image: homePagePosterMap["imageAsset"].provider(),
-              fit: BoxFit.cover),
+        child: CachedNetworkImage(
+          imageUrl: homeScreenController.poster.value.image!,
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                image:
+                    DecorationImage(image: imageProvider, fit: BoxFit.cover)),
+            foregroundDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                gradient: const LinearGradient(
+                    colors: GradientColors.homePosterCoverGradiant,
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter)),
+          ),
         ),
-        foregroundDecoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            gradient: const LinearGradient(
-                colors: GradientColors.homePosterCoverGradiant,
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter)),
       ),
-      //TextsOnHomePoster
       Positioned(
         bottom: 40,
         left: 0,
@@ -257,7 +260,9 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
-              homePagePosterMap['writer'] + " - " + homePagePosterMap['date'],
+              homeScreenController.poster.value.title! +
+                  " - " +
+                  homePagePosterMap['date'],
               style: textTheme.titleSmall,
             ),
             Row(

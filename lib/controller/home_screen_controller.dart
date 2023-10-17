@@ -7,7 +7,7 @@ import 'package:tech_blog/models/tags_model.dart';
 import 'package:tech_blog/services/dio_service.dart';
 
 class HomeScreenController extends GetxController {
-  Rx<PosterModel>? poster;
+  Rx<PosterModel> poster = PosterModel().obs;
   RxList<ArticleModel> topVisitedList = RxList();
   RxList<PodcastModel> topPodcastList = RxList();
   RxList<TagsModel> tagsList = RxList();
@@ -28,6 +28,8 @@ class HomeScreenController extends GetxController {
       response.data['top_podcasts'].forEach((element) {
         topPodcastList.add(PodcastModel.fromJson(element));
       });
+
+      poster.value = PosterModel.fromJson(response.data['poster']);
     }
   }
 }
