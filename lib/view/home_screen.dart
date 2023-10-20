@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
+import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/controller/home_screen_controller.dart';
 import 'package:tech_blog/models/fake_data.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
@@ -26,40 +27,42 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Obx(
-        () => Column(
-          children: [
-            homePagePoster(),
-            const SizedBox(
-              height: 40,
-              width: double.infinity,
-            ),
-            homePageHashtag(),
-            const SizedBox(
-              height: 40,
-              width: double.infinity,
-            ),
-            homePageTopVisitedTitle(),
-            const SizedBox(
-              height: 20,
-              width: double.infinity,
-            ),
-            homePageTopVisied(),
-            const SizedBox(
-              height: 35,
-              width: double.infinity,
-            ),
-            homePageTopPodcastTitle(),
-            const SizedBox(
-              height: 20,
-              width: double.infinity,
-            ),
-            homePageTopPodcast(),
-            const SizedBox(
-              height: 60,
-              width: double.infinity,
-            ),
-          ],
-        ),
+        () => homeScreenController.loading.value == false
+            ? Column(
+                children: [
+                  homePagePoster(),
+                  const SizedBox(
+                    height: 40,
+                    width: double.infinity,
+                  ),
+                  homePageTags(),
+                  const SizedBox(
+                    height: 40,
+                    width: double.infinity,
+                  ),
+                  homePageTopVisitedTitle(),
+                  const SizedBox(
+                    height: 20,
+                    width: double.infinity,
+                  ),
+                  homePageTopVisied(),
+                  const SizedBox(
+                    height: 35,
+                    width: double.infinity,
+                  ),
+                  homePageTopPodcastTitle(),
+                  const SizedBox(
+                    height: 20,
+                    width: double.infinity,
+                  ),
+                  homePageTopPodcast(),
+                  const SizedBox(
+                    height: 60,
+                    width: double.infinity,
+                  ),
+                ],
+              )
+            : const SpinKitLoading(),
       ),
     );
   }
@@ -88,10 +91,7 @@ class HomeScreen extends StatelessWidget {
                               image: DecorationImage(
                                   image: imageProvider, fit: BoxFit.cover)),
                         ),
-                        placeholder: (context, url) => const SpinKitCircle(
-                          color: SolidColors.primaryColor,
-                          size: 30,
-                        ),
+                        placeholder: (context, url) => const SpinKitLoading(),
                         errorWidget: (context, url, error) => const Icon(
                           Icons.image_not_supported_outlined,
                           size: 50,
@@ -145,10 +145,7 @@ class HomeScreen extends StatelessWidget {
                                   begin: Alignment.bottomCenter,
                                   end: Alignment.topCenter,
                                 ))),
-                        placeholder: (context, url) => const SpinKitCircle(
-                          size: 30,
-                          color: SolidColors.primaryColor,
-                        ),
+                        placeholder: (context, url) => const SpinKitLoading(),
                         errorWidget: (context, url, error) => const Icon(
                           Icons.image_not_supported_outlined,
                           size: 50,
@@ -232,12 +229,13 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget homePagePoster() {
-    return Stack(children: [
-      SizedBox(
-        width: phoneSize.width / 1.19,
-        height: phoneSize.height / 4.2,
-        child: CachedNetworkImage(
+    return SizedBox(
+      width: phoneSize.width / 1.19,
+      height: phoneSize.height / 4.2,
+      child: Stack(children: [
+        CachedNetworkImage(
           imageUrl: homeScreenController.poster.value.image!,
+          placeholder: (context, url) => const SpinKitLoading(),
           imageBuilder: (context, imageProvider) => Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
@@ -251,50 +249,28 @@ class HomeScreen extends StatelessWidget {
                     end: Alignment.bottomCenter)),
           ),
         ),
-      ),
-      Positioned(
-        bottom: 40,
-        left: 0,
-        right: 0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              homeScreenController.poster.value.title! +
-                  " - " +
-                  homePagePosterMap['date'],
-              style: textTheme.titleSmall,
-            ),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: Text(
-                    "${homePagePosterMap['view']}  ",
-                    style: textTheme.titleSmall,
-                  ),
-                ),
-                const Icon(
-                  CupertinoIcons.eye_fill,
-                  size: 17,
-                  color: Colors.white,
-                )
-              ],
-            ),
-          ],
-        ),
-      ),
-      Positioned(
+        Positioned(
           bottom: 10,
           left: 0,
           right: 0,
-          child: Center(
-            child: Text(
-              homePagePosterMap['title'],
-              style: textTheme.titleMedium,
-            ),
-          )),
-    ]);
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: phoneSize.width / 1.23,
+                child: Text(
+                  homeScreenController.poster.value.title!,
+                  style: textTheme.titleMedium,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                  maxLines: 2,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ]),
+    );
   }
 
   Widget homePageTopVisitedTitle() {
@@ -318,7 +294,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget homePageHashtag() {
+  Widget homePageTags() {
     return SizedBox(
       height: phoneSize.height / 22.8,
       child: ListView.builder(
@@ -348,7 +324,7 @@ class HomeScreen extends StatelessWidget {
                       width: 16,
                     ),
                     Text(
-                      hashTagList[index].title,
+                      homeScreenController.tagsList[index].title!,
                       style: textTheme.titleSmall,
                     )
                   ],

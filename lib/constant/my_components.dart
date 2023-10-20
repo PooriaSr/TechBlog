@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../gen/assets.gen.dart';
 import 'my_colors.dart';
@@ -58,5 +59,19 @@ myLaunchUrl(String url) async {
     launchUrl(uri);
   } else {
     developer.log("link could not launch $url");
+  }
+}
+
+class SpinKitLoading extends StatelessWidget {
+  const SpinKitLoading({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SpinKitCircle(
+      size: 30,
+      color: SolidColors.primaryColor,
+    );
   }
 }
