@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:tech_blog/constant/api_constant.dart';
 import 'package:tech_blog/models/article_model.dart';
 import 'package:tech_blog/models/podcast_model.dart';
