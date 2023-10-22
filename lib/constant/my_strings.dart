@@ -31,4 +31,6 @@ class MyStrings {
       "سلام من از تک بلاگ استفاده میکنم خیلی باحاله توام بیا\n http://sasansafari.com ";
   static const String techBlogGitHubUrl =
       "https://github.com/sasansafari/techblog";
+
+  static const String articleList = "لیست مقاله ها";
 }

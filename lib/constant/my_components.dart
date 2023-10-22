@@ -6,6 +6,8 @@ import 'my_colors.dart';
 import 'my_strings.dart';
 import 'dart:developer' as developer;
 
+import 'my_text_style.dart';
+
 class BluePenIconTextTitleTechBlog extends StatelessWidget {
   const BluePenIconTextTitleTechBlog({
     super.key,
@@ -74,4 +76,31 @@ class SpinKitLoading extends StatelessWidget {
       color: SolidColors.primaryColor,
     );
   }
+}
+
+PreferredSize appBar(String title, Size phoneSize) {
+  return PreferredSize(
+    preferredSize: const Size.fromHeight(70),
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+      child: AppBar(
+        backgroundColor: SolidColors.appBarBackGround,
+        elevation: 0,
+        actions: [
+          Center(child: Text(title, style: MyTextStyle.appBarTextStyle))
+        ],
+        leading: Container(
+          width: phoneSize.width / 200,
+          height: phoneSize.width / 200,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: SolidColors.primaryColor.withAlpha(120)),
+          child: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.arrow_back),
+              splashColor: Colors.transparent),
+        ),
+      ),
+    ),
+  );
 }
