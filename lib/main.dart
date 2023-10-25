@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
           Locale('fa'), // farsi
         ],
         theme: ThemeData(
+            brightness: Brightness.light,
             elevatedButtonTheme: ElevatedButtonThemeData(
                 style: ButtonStyle(
               minimumSize: MaterialStateProperty.all(

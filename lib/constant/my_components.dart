@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../gen/assets.gen.dart';
@@ -80,18 +81,19 @@ class SpinKitLoading extends StatelessWidget {
 
 PreferredSize appBar(String title, Size phoneSize) {
   return PreferredSize(
-    preferredSize: const Size.fromHeight(70),
+    preferredSize: const Size.fromHeight(45),
     child: Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
       child: AppBar(
-        backgroundColor: SolidColors.appBarBackGround,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         actions: [
           Center(child: Text(title, style: MyTextStyle.appBarTextStyle))
         ],
         leading: Container(
-          width: phoneSize.width / 200,
-          height: phoneSize.width / 200,
+          width: 4,
+          height: 4,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: SolidColors.primaryColor.withAlpha(120)),

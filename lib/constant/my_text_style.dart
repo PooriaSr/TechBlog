@@ -6,5 +6,5 @@ class MyTextStyle {
       fontFamily: 'dana',
       fontSize: 18,
       fontWeight: FontWeight.w700,
-      color: SolidColors.blackColor);
+      color: SolidColors.primaryColor);
 }
