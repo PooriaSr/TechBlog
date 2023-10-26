@@ -81,28 +81,53 @@ class SpinKitLoading extends StatelessWidget {
 
 PreferredSize appBar(String title, Size phoneSize) {
   return PreferredSize(
-    preferredSize: const Size.fromHeight(45),
+    preferredSize: const Size.fromHeight(60),
     child: Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-      child: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          Center(child: Text(title, style: MyTextStyle.appBarTextStyle))
-        ],
-        leading: Container(
-          width: 4,
-          height: 4,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: SolidColors.primaryColor.withAlpha(120)),
-          child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.arrow_back),
-              splashColor: Colors.transparent),
+      padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+      child: SafeArea(
+        child: AppBar(
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(left: 12),
+              child: Center(
+                  child: Text(title, style: MyTextStyle.appBarTextStyle)),
+            )
+          ],
+          leading: Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: SolidColors.primaryColor.withAlpha(120)),
+              child: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.arrow_back),
+                splashColor: Colors.transparent,
+              ),
+            ),
+          ),
         ),
       ),
     ),
   );
+}
+
+class ErrorImage extends StatelessWidget {
+  const ErrorImage({
+    super.key,
+  });
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
+    return const Icon(
+      Icons.image_not_supported_outlined,
+      color: Colors.grey,
+      size: 50,
+    );
+  }
 }

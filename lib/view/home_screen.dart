@@ -82,21 +82,18 @@ class HomeScreen extends StatelessWidget {
                       height: phoneSize.height / 6,
                       width: phoneSize.width / 2.8,
                       child: CachedNetworkImage(
-                        imageUrl:
-                            homeScreenController.topPodcastList[index].poster!,
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              image: DecorationImage(
-                                  image: imageProvider, fit: BoxFit.cover)),
-                        ),
-                        placeholder: (context, url) => const SpinKitLoading(),
-                        errorWidget: (context, url, error) => const Icon(
-                          Icons.image_not_supported_outlined,
-                          size: 50,
-                          color: Colors.grey,
-                        ),
-                      ),
+                          imageUrl: homeScreenController
+                              .topPodcastList[index].poster!,
+                          imageBuilder: (context, imageProvider) => Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover)),
+                              ),
+                          placeholder: (context, url) => const SpinKitLoading(),
+                          errorWidget: (context, url, error) =>
+                              const ErrorImage()),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
@@ -130,27 +127,23 @@ class HomeScreen extends StatelessWidget {
                     height: phoneSize.height / 5.8,
                     child: Stack(children: [
                       CachedNetworkImage(
-                        imageUrl:
-                            homeScreenController.topVisitedList[index].image!,
-                        imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                image: DecorationImage(
-                                    image: imageProvider, fit: BoxFit.cover)),
-                            foregroundDecoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                gradient: const LinearGradient(
-                                  colors: GradientColors.blogPost,
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                ))),
-                        placeholder: (context, url) => const SpinKitLoading(),
-                        errorWidget: (context, url, error) => const Icon(
-                          Icons.image_not_supported_outlined,
-                          size: 50,
-                          color: Colors.grey,
-                        ),
-                      ),
+                          imageUrl:
+                              homeScreenController.topVisitedList[index].image!,
+                          imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  image: DecorationImage(
+                                      image: imageProvider, fit: BoxFit.cover)),
+                              foregroundDecoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  gradient: const LinearGradient(
+                                    colors: GradientColors.blogPost,
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                  ))),
+                          placeholder: (context, url) => const SpinKitLoading(),
+                          errorWidget: (context, url, error) =>
+                              const ErrorImage()),
                       Positioned(
                         bottom: 10,
                         left: 0,
@@ -247,6 +240,7 @@ class HomeScreen extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter)),
           ),
+          errorWidget: (context, url, error) => const ErrorImage(),
         ),
         Positioned(
           bottom: 10,

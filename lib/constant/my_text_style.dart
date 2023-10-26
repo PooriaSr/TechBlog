@@ -7,4 +7,15 @@ class MyTextStyle {
       fontSize: 18,
       fontWeight: FontWeight.w700,
       color: SolidColors.primaryColor);
+
+  static TextStyle articlestitles = const TextStyle(
+      fontFamily: 'dana',
+      fontSize: 15,
+      fontWeight: FontWeight.w700,
+      color: SolidColors.blackColor);
+  static TextStyle articlesCaptions = const TextStyle(
+      fontFamily: 'dana',
+      fontSize: 13,
+      fontWeight: FontWeight.w700,
+      color: SolidColors.greyColor);
 }
