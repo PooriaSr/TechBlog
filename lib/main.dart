@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/view/article_list_screen.dart';
+import 'package:tech_blog/view/single_article_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -66,6 +67,6 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     color: SolidColors.primaryColor))),
         debugShowCheckedModeBanner: false,
-        home: const ArticleListScreen());
+        home: const SingleArticleScreen());
   }
 }

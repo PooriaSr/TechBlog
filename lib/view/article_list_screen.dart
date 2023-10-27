@@ -63,7 +63,7 @@ class ArticleListScreen extends StatelessWidget {
                                     .articleList[index].title!,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 3,
-                                style: MyTextStyle.articlestitles,
+                                style: MyTextStyle.articleListTitles,
                               ),
                             ),
                             const SizedBox(
