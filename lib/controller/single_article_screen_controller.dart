@@ -23,7 +23,9 @@ class SingleArticleScreenController extends GetxController {
         "${ApiConstant.baseUrl}article/get.php?command=info&id=$id&user_id=$userId");
     if (true) {
       articleInfo.value = ArticleInfoModel.fromJson(response.data);
-
+      if (tagsList.isNotEmpty) {
+        tagsList.clear();
+      }
       response.data['tags'].forEach((element) {
         tagsList.add(TagsModel.fromJson(element));
       });
