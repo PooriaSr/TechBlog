@@ -137,12 +137,42 @@ class SingleArticleScreen extends StatelessWidget {
                           textStyle: MyTextStyle.articleText,
                         ),
                       ),
-
-                      SizedBox(child: ListView.builder(
-                        itemCount: 3,
-                        itemBuilder: (context, index) {
-                          return Container()
-                      },),)
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 40,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              singleArticleScreenController.tagsList.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 12),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: SolidColors.tags,
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 16, left: 16),
+                                    child: Text(
+                                      singleArticleScreenController
+                                          .tagsList[index].title!,
+                                      style: MyTextStyle.articleText,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
                     ],
                   )
                 : Padding(

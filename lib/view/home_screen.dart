@@ -311,7 +311,7 @@ class HomeScreen extends StatelessWidget {
                     ImageIcon(
                       Assets.icons.hashtagicon.provider(),
                       size: 14,
-                      color: SolidColors.hashTag,
+                      color: SolidColors.tags,
                     ),
                     const SizedBox(
                       width: 16,
