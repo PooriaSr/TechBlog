@@ -5,9 +5,9 @@ import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/controller/list_article_screen_controller.dart';
-import 'package:tech_blog/controller/single_article_screen_controller.dart';
 import 'package:tech_blog/view/single_article_screen.dart';
 import '../constant/my_components.dart';
+import '../controller/single_article_screen_controller.dart';
 
 class ArticleListScreen extends StatelessWidget {
   const ArticleListScreen({super.key});
@@ -15,7 +15,7 @@ class ArticleListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size phoneSize = MediaQuery.of(context).size;
-    ArticleListScreenController articleScreenController =
+    ArticleListScreenController articleListScreenController =
         Get.put(ArticleListScreenController());
     SingleArticleScreenController singleArticleScreenController =
         Get.put(SingleArticleScreenController());
@@ -26,13 +26,13 @@ class ArticleListScreen extends StatelessWidget {
         child: Obx(
           () => SizedBox(
             child: ListView.builder(
-              itemCount: articleScreenController.articleList.length,
+              itemCount: articleListScreenController.articleList.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    singleArticleScreenController.id.value = int.parse(
-                        articleScreenController.articleList[index].id!);
-                    Get.to(const SingleArticleScreen());
+                    singleArticleScreenController.getSingleArticle(int.parse(
+                        articleListScreenController.articleList[index].id!));
+                    Get.to(() => const SingleArticleScreen());
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(top: 16, right: 16),
@@ -43,7 +43,7 @@ class ArticleListScreen extends StatelessWidget {
                           width: Get.width / 3.7,
                           height: Get.height / 8,
                           child: CachedNetworkImage(
-                            imageUrl: articleScreenController
+                            imageUrl: articleListScreenController
                                 .articleList[index].image!,
                             imageBuilder: (context, imageProvider) => Container(
                               width: Get.width / 3,
@@ -70,7 +70,7 @@ class ArticleListScreen extends StatelessWidget {
                             children: [
                               SizedBox(
                                 child: Text(
-                                  articleScreenController
+                                  articleListScreenController
                                       .articleList[index].title!,
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 3,
@@ -84,7 +84,7 @@ class ArticleListScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Text(
-                                    articleScreenController
+                                    articleListScreenController
                                         .articleList[index].author!,
                                     style: MyTextStyle.articlesCaptions,
                                   ),
@@ -92,7 +92,7 @@ class ArticleListScreen extends StatelessWidget {
                                     width: 16,
                                   ),
                                   Text(
-                                    "${articleScreenController.articleList[index].view!}  بازدید",
+                                    "${articleListScreenController.articleList[index].view!}  بازدید",
                                     style: MyTextStyle.articlesCaptions,
                                   )
                                 ],

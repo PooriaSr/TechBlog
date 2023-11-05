@@ -5,21 +5,21 @@ import 'package:tech_blog/services/dio_service.dart';
 
 class SingleArticleScreenController extends GetxController {
   Rx<ArticleInfoModel> articleInfo = ArticleInfoModel().obs;
-  RxInt id = RxInt(-1);
+  // RxInt id = RxInt(-1);
   RxBool loading = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    getSingleArticle();
-  }
+  // @override
+  // onInit() {
+  //   super.onInit();
+  //   getSingleArticle();
+  // }
 
-  getSingleArticle() async {
+  getSingleArticle(int id) async {
     loading.value = true;
-    var userId = 1;
+    var userId = '';
     var response = await DioService().getMethod(
         "${ApiConstant.baseUrl}article/get.php?command=info&id=$id&user_id=$userId");
-    if (response.statusCode == 200) {
+    if (true) {
       articleInfo.value = ArticleInfoModel.fromJson(response.data);
       loading.value = false;
     }

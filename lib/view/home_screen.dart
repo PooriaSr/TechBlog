@@ -289,7 +289,7 @@ class HomeScreen extends StatelessWidget {
 
   Widget homePageTags() {
     return SizedBox(
-      height: phoneSize.height / 22.8,
+      height: Get.height / 22.8,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: hashTagList.length,
@@ -297,7 +297,7 @@ class HomeScreen extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 14),
             child: Container(
-              height: phoneSize.height / 22.8,
+              height: Get.height / 22.8,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   gradient: const LinearGradient(

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
-import 'package:tech_blog/controller/list_article_screen_controller.dart';
 import 'package:tech_blog/controller/single_article_screen_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 
@@ -17,9 +16,6 @@ class SingleArticleScreen extends StatelessWidget {
     SingleArticleScreenController singleArticleScreenController =
         Get.put(SingleArticleScreenController());
 
-    // ArticleListScreenController articleScreenController =
-    //     Get.put(ArticleListScreenController());
-    int selectedIndex = 0;
     return Scaffold(
       body: SingleChildScrollView(
         child: Obx(
@@ -42,6 +38,10 @@ class SingleArticleScreen extends StatelessWidget {
                                         image: imageProvider,
                                         fit: BoxFit.cover)),
                               ),
+                              errorWidget: (context, url, error) =>
+                                  const ErrorImage(),
+                              placeholder: (context, url) =>
+                                  const SpinKitLoading(),
                             ),
                           ),
                           Container(
@@ -52,19 +52,22 @@ class SingleArticleScreen extends StatelessWidget {
                                     colors: GradientColors.singleAppbarGradiant,
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter)),
-                            child: const Padding(
-                              padding: EdgeInsets.only(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
                                   bottom: 24, left: 8, right: 8),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Icon(
-                                    Icons.arrow_back,
-                                    color: Colors.white,
-                                    size: 30,
+                                  GestureDetector(
+                                    onTap: () => Get.back(),
+                                    child: const Icon(
+                                      Icons.arrow_back,
+                                      color: Colors.white,
+                                      size: 30,
+                                    ),
                                   ),
-                                  Row(
+                                  const Row(
                                     children: [
                                       Icon(
                                         Icons.bookmark_outline,
@@ -125,11 +128,21 @@ class SingleArticleScreen extends StatelessWidget {
                           )
                         ],
                       ),
-//                       HtmlWidget('''
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(right: 16, left: 36, top: 8),
+                        child: HtmlWidget(
+                          singleArticleScreenController
+                              .articleInfo.value.content!,
+                          textStyle: MyTextStyle.articleText,
+                        ),
+                      ),
 
-// <h6>${singleArticleScreenController.articleInfo.value.content} </h6>
-
-// ''')
+                      SizedBox(child: ListView.builder(
+                        itemCount: 3,
+                        itemBuilder: (context, index) {
+                          return Container()
+                      },),)
                     ],
                   )
                 : Padding(

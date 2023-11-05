@@ -25,4 +25,9 @@ class MyTextStyle {
       fontSize: 13,
       fontWeight: FontWeight.w700,
       color: SolidColors.greyColor);
+  static TextStyle articleText = const TextStyle(
+      fontFamily: 'dana',
+      fontSize: 15,
+      fontWeight: FontWeight.w300,
+      color: SolidColors.blackColor);
 }
