@@ -8,6 +8,8 @@ import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/controller/single_article_screen_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 
+import '../constant/my_strings.dart';
+
 class SingleArticleScreen extends StatelessWidget {
   const SingleArticleScreen({super.key});
 
@@ -17,10 +19,10 @@ class SingleArticleScreen extends StatelessWidget {
         Get.put(SingleArticleScreenController());
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Obx(
-          () => SafeArea(
-            child: singleArticleScreenController.loading.value == false
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Obx(
+            () => singleArticleScreenController.loading.value == false
                 ? Column(
                     children: [
                       Stack(
@@ -171,8 +173,59 @@ class SingleArticleScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: 16,
+                        height: 20,
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: Row(
+                          children: [
+                            ImageIcon(
+                              Assets.icons.bluePen.provider(),
+                              color: SolidColors.seeMore,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(MyStrings.viewMostHitPosts,
+                                style: MyTextStyle.bluePenTitles)
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: Get.height / 6,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              singleArticleScreenController.relatedList.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: CachedNetworkImage(
+                                imageUrl: singleArticleScreenController
+                                    .relatedList[index].image!,
+                                imageBuilder: (context, imageProvider) =>
+                                    Container(
+                                        width: Get.width / 2.6,
+                                        height: Get.height / 6,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            image: DecorationImage(
+                                                image: imageProvider,
+                                                fit: BoxFit.cover))),
+                                placeholder: (context, url) =>
+                                    const SpinKitLoading(),
+                                errorWidget: (context, url, error) =>
+                                    const ErrorImage(),
+                              ),
+                            );
+                          },
+                        ),
+                      )
                     ],
                   )
                 : Padding(

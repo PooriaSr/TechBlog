@@ -30,4 +30,10 @@ class MyTextStyle {
       fontSize: 15,
       fontWeight: FontWeight.w300,
       color: SolidColors.blackColor);
+
+  static TextStyle bluePenTitles = const TextStyle(
+      fontFamily: 'dana',
+      fontSize: 15,
+      fontWeight: FontWeight.w700,
+      color: SolidColors.seeMore);
 }
