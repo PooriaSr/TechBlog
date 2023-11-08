@@ -18,7 +18,7 @@ class SingleArticleScreenController extends GetxController {
   //   getSingleArticle();
   // }
 
-  getSingleArticle(int id) async {
+  getSingleArticle(String id) async {
     loading.value = true;
     var userId = '';
     var response = await DioService().getMethod(

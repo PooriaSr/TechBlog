@@ -5,8 +5,10 @@ import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
+import 'package:tech_blog/controller/list_article_screen_controller.dart';
 import 'package:tech_blog/controller/single_article_screen_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
+import 'package:tech_blog/view/article_list_screen.dart';
 
 import '../constant/my_strings.dart';
 
@@ -150,20 +152,34 @@ class SingleArticleScreen extends StatelessWidget {
                           itemCount:
                               singleArticleScreenController.tagsList.length,
                           itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: SolidColors.tags,
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 16, left: 16),
-                                    child: Text(
-                                      singleArticleScreenController
-                                          .tagsList[index].title!,
-                                      style: MyTextStyle.articleText,
+                            return GestureDetector(
+                              onTap: () async {
+                                await Get.find<ArticleListScreenController>()
+                                    .getArticleListWithTagId(
+                                        singleArticleScreenController
+                                            .tagsList[index].id!);
+                                Get.find<ArticleListScreenController>()
+                                        .appBarTitle
+                                        .value =
+                                    singleArticleScreenController
+                                        .tagsList[index].title!;
+                                Get.to(() => const ArticleListScreen());
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 12),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: SolidColors.tags,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 16, left: 16),
+                                      child: Text(
+                                        singleArticleScreenController
+                                            .tagsList[index].title!,
+                                        style: MyTextStyle.articleText,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -202,25 +218,34 @@ class SingleArticleScreen extends StatelessWidget {
                           itemCount:
                               singleArticleScreenController.relatedList.length,
                           itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: CachedNetworkImage(
-                                imageUrl: singleArticleScreenController
-                                    .relatedList[index].image!,
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                        width: Get.width / 2.6,
-                                        height: Get.height / 6,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            image: DecorationImage(
-                                                image: imageProvider,
-                                                fit: BoxFit.cover))),
-                                placeholder: (context, url) =>
-                                    const SpinKitLoading(),
-                                errorWidget: (context, url, error) =>
-                                    const ErrorImage(),
+                            return GestureDetector(
+                              onTap: () async {
+                                await singleArticleScreenController
+                                    .getSingleArticle(
+                                        singleArticleScreenController
+                                            .relatedList[index].id!);
+                                Get.to(const SingleArticleScreen());
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: CachedNetworkImage(
+                                  imageUrl: singleArticleScreenController
+                                      .relatedList[index].image!,
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                          width: Get.width / 2.6,
+                                          height: Get.height / 6,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              image: DecorationImage(
+                                                  image: imageProvider,
+                                                  fit: BoxFit.cover))),
+                                  placeholder: (context, url) =>
+                                      const SpinKitLoading(),
+                                  errorWidget: (context, url, error) =>
+                                      const ErrorImage(),
+                                ),
                               ),
                             );
                           },

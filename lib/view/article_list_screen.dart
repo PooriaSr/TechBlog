@@ -19,19 +19,21 @@ class ArticleListScreen extends StatelessWidget {
         Get.put(ArticleListScreenController());
     SingleArticleScreenController singleArticleScreenController =
         Get.put(SingleArticleScreenController());
-    return Scaffold(
-      backgroundColor: SolidColors.backGround,
-      appBar: appBar(MyStrings.articleList, phoneSize),
-      body: SafeArea(
-        child: Obx(
-          () => SizedBox(
+
+    return Obx(
+      () => Scaffold(
+        backgroundColor: SolidColors.backGround,
+        appBar:
+            appBar(articleListScreenController.appBarTitle.value, phoneSize),
+        body: SafeArea(
+          child: SizedBox(
             child: ListView.builder(
               itemCount: articleListScreenController.articleList.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    singleArticleScreenController.getSingleArticle(int.parse(
-                        articleListScreenController.articleList[index].id!));
+                    singleArticleScreenController.getSingleArticle(
+                        articleListScreenController.articleList[index].id!);
                     Get.to(() => const SingleArticleScreen());
                   },
                   child: Padding(
