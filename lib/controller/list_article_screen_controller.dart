@@ -17,6 +17,7 @@ class ArticleListScreenController extends GetxController {
   }
 
   getArticleListItems() async {
+    articleList.clear();
     loading.value = true;
     var response = await DioService().getMethod(ApiConstant.getNewArticle);
     if (response.statusCode == 200) {

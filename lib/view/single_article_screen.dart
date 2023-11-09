@@ -144,50 +144,7 @@ class SingleArticleScreen extends StatelessWidget {
                       const SizedBox(
                         height: 16,
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 40,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount:
-                              singleArticleScreenController.tagsList.length,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () async {
-                                await Get.find<ArticleListScreenController>()
-                                    .getArticleListWithTagId(
-                                        singleArticleScreenController
-                                            .tagsList[index].id!);
-                                Get.find<ArticleListScreenController>()
-                                        .appBarTitle
-                                        .value =
-                                    singleArticleScreenController
-                                        .tagsList[index].title!;
-                                Get.to(() => const ArticleListScreen());
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 12),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: SolidColors.tags,
-                                      borderRadius: BorderRadius.circular(20)),
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          right: 16, left: 16),
-                                      child: Text(
-                                        singleArticleScreenController
-                                            .tagsList[index].title!,
-                                        style: MyTextStyle.articleText,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+                      singleScreenTags(singleArticleScreenController),
                       const SizedBox(
                         height: 20,
                       ),
@@ -210,47 +167,7 @@ class SingleArticleScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: Get.height / 6,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount:
-                              singleArticleScreenController.relatedList.length,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () async {
-                                await singleArticleScreenController
-                                    .getSingleArticle(
-                                        singleArticleScreenController
-                                            .relatedList[index].id!);
-                                Get.to(const SingleArticleScreen());
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 10),
-                                child: CachedNetworkImage(
-                                  imageUrl: singleArticleScreenController
-                                      .relatedList[index].image!,
-                                  imageBuilder: (context, imageProvider) =>
-                                      Container(
-                                          width: Get.width / 2.6,
-                                          height: Get.height / 6,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              image: DecorationImage(
-                                                  image: imageProvider,
-                                                  fit: BoxFit.cover))),
-                                  placeholder: (context, url) =>
-                                      const SpinKitLoading(),
-                                  errorWidget: (context, url, error) =>
-                                      const ErrorImage(),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      )
+                      singleScreenRelated(singleArticleScreenController)
                     ],
                   )
                 : Padding(
@@ -259,6 +176,84 @@ class SingleArticleScreen extends StatelessWidget {
                   ),
           ),
         ),
+      ),
+    );
+  }
+
+  SizedBox singleScreenTags(
+      SingleArticleScreenController singleArticleScreenController) {
+    return SizedBox(
+      width: double.infinity,
+      height: 40,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: singleArticleScreenController.tagsList.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () async {
+              await Get.find<ArticleListScreenController>()
+                  .getArticleListWithTagId(
+                      singleArticleScreenController.tagsList[index].id!);
+              Get.find<ArticleListScreenController>().appBarTitle.value =
+                  singleArticleScreenController.tagsList[index].title!;
+              Get.to(() => const ArticleListScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: SolidColors.tags,
+                    borderRadius: BorderRadius.circular(20)),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 16, left: 16),
+                    child: Text(
+                      singleArticleScreenController.tagsList[index].title!,
+                      style: MyTextStyle.articleText,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  SizedBox singleScreenRelated(
+      SingleArticleScreenController singleArticleScreenController) {
+    return SizedBox(
+      width: double.infinity,
+      height: Get.height / 6,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: singleArticleScreenController.relatedList.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () async {
+              await singleArticleScreenController.getSingleArticle(
+                  singleArticleScreenController.relatedList[index].id!);
+              Get.to(const SingleArticleScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: CachedNetworkImage(
+                imageUrl:
+                    singleArticleScreenController.relatedList[index].image!,
+                imageBuilder: (context, imageProvider) => Container(
+                    width: Get.width / 2.6,
+                    height: Get.height / 6,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                            image: imageProvider, fit: BoxFit.cover))),
+                placeholder: (context, url) => const SpinKitLoading(),
+                errorWidget: (context, url, error) => const ErrorImage(),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

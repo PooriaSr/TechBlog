@@ -296,6 +296,8 @@ class HomeScreen extends StatelessWidget {
       padding: EdgeInsets.only(right: bodyMargin),
       child: GestureDetector(
         onTap: () {
+          articleListScreenController.getArticleListItems();
+          articleListScreenController.appBarTitle.value = MyStrings.articleList;
           Get.to(const ArticleListScreen());
         },
         child: Row(
