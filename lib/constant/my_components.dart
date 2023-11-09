@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../gen/assets.gen.dart';
 import 'my_colors.dart';
@@ -103,7 +104,9 @@ PreferredSize appBar(String title, Size phoneSize) {
                   shape: BoxShape.circle,
                   color: SolidColors.primaryColor.withAlpha(120)),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.back();
+                },
                 icon: const Icon(Icons.arrow_back),
                 splashColor: Colors.transparent,
               ),

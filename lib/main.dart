@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
-import 'package:tech_blog/view/article_list_screen.dart';
+import 'package:tech_blog/view/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,6 +59,6 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     color: SolidColors.primaryColor))),
         debugShowCheckedModeBanner: false,
-        home: const ArticleListScreen());
+        home: const SplashScreen());
   }
 }
