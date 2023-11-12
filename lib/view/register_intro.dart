@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
+import 'package:tech_blog/controller/register_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/view/my_cats.dart';
 
 class RegisterIntro extends StatelessWidget {
-  const RegisterIntro({super.key});
+  RegisterIntro({super.key});
+  final RegisterController registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {

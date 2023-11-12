@@ -21,10 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 2)).then((value) => {
           if (loginStatus == false)
             {
-              Navigator.pushReplacement(
-                  context,
-                  CupertinoPageRoute(
-                      builder: (context) => const RegisterIntro()))
+              Navigator.pushReplacement(context,
+                  CupertinoPageRoute(builder: (context) => RegisterIntro()))
             }
           else
             {
