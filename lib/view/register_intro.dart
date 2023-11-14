@@ -9,8 +9,7 @@ import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/view/my_cats.dart';
 
 class RegisterIntro extends StatelessWidget {
-  RegisterIntro({super.key});
-  final RegisterController registerController = Get.put(RegisterController());
+  const RegisterIntro({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class RegisterIntro extends StatelessWidget {
 }
 
 class RegisterIntroLetsGoButton extends StatelessWidget {
-  const RegisterIntroLetsGoButton({
+  RegisterIntroLetsGoButton({
     super.key,
     required this.phoneSize,
     required this.textTheme,
@@ -45,6 +44,7 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
 
   final Size phoneSize;
   final TextTheme textTheme;
+  final RegisterController registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +87,8 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: TextField(
+                          controller:
+                              registerController.emailTextEditingController,
                           onChanged: (value) {},
                           style: textTheme.bodyLarge,
                           textAlign: TextAlign.center,
@@ -104,7 +106,8 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
                     height: 32,
                   ),
                   ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        registerController.register();
                         Navigator.pop(context);
                         verificationBottomSheet(context);
                       },
@@ -147,13 +150,15 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 45, right: 45),
                     child: TextField(
-                      onChanged: (value) {
-                        if (value.length == 4) {
-                          Navigator.of(context).pushReplacement(
-                              CupertinoPageRoute(
-                                  builder: (context) => const MyCats()));
-                        }
-                      },
+                      controller:
+                          registerController.activateTextEditingController,
+                      // onChanged: (value) {
+                      //   if (value.length == 4) {
+                      //     Navigator.of(context).pushReplacement(
+                      //         CupertinoPageRoute(
+                      //             builder: (context) => const MyCats()));
+                      //   }
+                      // },
                       style: textTheme.bodyLarge,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
@@ -170,6 +175,7 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
                 ),
                 ElevatedButton(
                     onPressed: () {
+                      registerController.verfiy();
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => const MyCats()));
                     },

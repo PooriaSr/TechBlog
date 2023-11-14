@@ -154,7 +154,7 @@ class _MyCatsState extends State<MyCats> {
                             borderRadius: BorderRadius.circular(16),
                             color: SolidColors.surface),
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 22, right: 12),
+                          padding: const EdgeInsets.only(left: 12, right: 12),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
