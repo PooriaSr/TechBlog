@@ -39,10 +39,10 @@ class RegisterController extends GetxController {
       var box = GetStorage();
       box.write(StorageConstant.token, response.data['token']);
       box.write(StorageConstant.userId, response.data['user_id']);
-
+      box.write(StorageConstant.email, email);
       debugPrint(box.read(StorageConstant.userId));
       debugPrint(box.read(StorageConstant.token));
-      Get.to(MyCats());
+      Get.to(() => MyCats());
     }
   }
 }

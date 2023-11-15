@@ -13,6 +13,7 @@ class MyStrings {
   برای ارسال مطالب و پادکست باید حتما
    ثبت نام کنی""";
   static const String letsGo = "بزن بریم";
+  static const String gustUser = "کاربر مهمان";
   static const String enterYourEmail = "لطفا ایمیلت رو وارد کن";
   static const String engEnterYourEmail = "Enter Your Email";
   static const String emailTextFieldHint = "techblog@gmail.com";

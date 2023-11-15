@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
+import 'package:tech_blog/constant/storage_constant.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 
@@ -152,10 +154,15 @@ class ProfileScreenUserEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'ایمیل وارد نشده',
-      style: textTheme.bodyMedium,
-    );
+    return GetStorage().read(StorageConstant.token) != 'token'
+        ? Text(
+            GetStorage().read(StorageConstant.email),
+            style: textTheme.bodyMedium,
+          )
+        : Text(
+            '',
+            style: textTheme.bodyMedium,
+          );
   }
 }
 
@@ -169,10 +176,15 @@ class ProfileScreenUserName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "صبا آجرلو",
-      style: textTheme.bodyMedium,
-    );
+    return GetStorage().read(StorageConstant.token) != 'token'
+        ? Text(
+            GetStorage().read(StorageConstant.name),
+            style: textTheme.bodyMedium,
+          )
+        : Text(
+            MyStrings.gustUser,
+            style: textTheme.bodyMedium,
+          );
   }
 }
 

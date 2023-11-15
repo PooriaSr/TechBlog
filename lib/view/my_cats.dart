@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/controller/my_cats_controller.dart';
+import 'package:tech_blog/view/main_screen.dart';
 import '../gen/assets.gen.dart';
 
 class MyCats extends StatelessWidget {
@@ -38,6 +39,7 @@ class MyCats extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
               child: TextField(
+                controller: myCatsController.nameTextEditingController,
                 textAlign: TextAlign.center,
                 style: textTheme.bodyLarge,
                 decoration: InputDecoration(
@@ -187,7 +189,13 @@ class MyCats extends StatelessWidget {
               height: 22,
             ),
             ElevatedButton(
-                onPressed: () {}, child: const Text(MyStrings.continueButton))
+                onPressed: () {
+                  if (myCatsController.nameTextEditingController.text != '') {
+                    myCatsController.setName();
+                    Get.to(() => const MainScreen());
+                  }
+                },
+                child: const Text(MyStrings.continueButton))
           ]),
         ),
       ),

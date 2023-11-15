@@ -175,8 +175,6 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () {
                       registerController.verfiy();
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => MyCats()));
                     },
                     child: const Text(MyStrings.continueButton))
               ],
