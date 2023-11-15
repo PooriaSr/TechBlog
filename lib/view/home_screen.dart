@@ -7,7 +7,6 @@ import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/controller/home_screen_controller.dart';
 import 'package:tech_blog/controller/list_article_screen_controller.dart';
 import 'package:tech_blog/controller/single_article_screen_controller.dart';
-import 'package:tech_blog/models/fake_data.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/view/article_list_screen.dart';
@@ -324,7 +323,7 @@ class HomeScreen extends StatelessWidget {
       height: Get.height / 22.8,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: hashTagList.length,
+        itemCount: homeScreenController.tagsList.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 14),

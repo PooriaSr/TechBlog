@@ -120,7 +120,7 @@ class MainScreen extends StatelessWidget {
                       phoneSize: phoneSize,
                       textTheme: textTheme,
                       bodyMargin: bodyMargin),
-                  RegisterIntro()
+                  const RegisterIntro()
                 ],
               ),
             ),

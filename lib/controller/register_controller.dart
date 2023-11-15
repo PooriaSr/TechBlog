@@ -42,7 +42,7 @@ class RegisterController extends GetxController {
 
       debugPrint(box.read(StorageConstant.userId));
       debugPrint(box.read(StorageConstant.token));
-      Get.to(const MyCats());
+      Get.to(MyCats());
     }
   }
 }

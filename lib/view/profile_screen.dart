@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
-import 'package:tech_blog/models/fake_data.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 
@@ -154,7 +153,7 @@ class ProfileScreenUserEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      userData['email'],
+      'ایمیل وارد نشده',
       style: textTheme.bodyMedium,
     );
   }
@@ -171,7 +170,7 @@ class ProfileScreenUserName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      userData['firstName'] + " " + userData['lastName'],
+      "صبا آجرلو",
       style: textTheme.bodyMedium,
     );
   }

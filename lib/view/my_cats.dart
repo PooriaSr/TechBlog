@@ -1,78 +1,74 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
-import 'package:tech_blog/models/fake_data.dart';
+import 'package:tech_blog/controller/my_cats_controller.dart';
 import '../gen/assets.gen.dart';
 
-class MyCats extends StatefulWidget {
-  const MyCats({super.key});
+class MyCats extends StatelessWidget {
+  MyCats({super.key});
+  final MyCatsController myCatsController = Get.put(MyCatsController());
 
-  @override
-  State<MyCats> createState() => _MyCatsState();
-}
-
-class _MyCatsState extends State<MyCats> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     Size phoneSize = MediaQuery.of(context).size;
     double bodyMargin = phoneSize.width / 10;
     return Scaffold(
-      backgroundColor: SolidColors.appBarBackGround,
-      body: SingleChildScrollView(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: phoneSize.height / 10,
-              ),
-              SvgPicture.asset(
-                Assets.images.tcbot.path,
-                height: phoneSize.height / 7,
-              ),
-              const SizedBox(height: 20),
-              Text(
-                MyStrings.successfullRegistertion,
-                style: textTheme.headlineSmall,
+      backgroundColor: SolidColors.backGround,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const SizedBox(
+              height: 10,
+            ),
+            SvgPicture.asset(
+              Assets.images.tcbot.path,
+              height: phoneSize.height / 7,
+            ),
+            const SizedBox(height: 20),
+            Text(
+              MyStrings.successfullRegistertion,
+              style: textTheme.headlineSmall,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 30),
+            Padding(
+              padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
+              child: TextField(
                 textAlign: TextAlign.center,
+                style: textTheme.bodyLarge,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                    hintText: MyStrings.nameTextFieldHint,
+                    hintStyle: textTheme.labelSmall),
               ),
-              const SizedBox(height: 30),
-              Padding(
-                padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  style: textTheme.bodyLarge,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      hintText: MyStrings.nameTextFieldHint,
-                      hintStyle: textTheme.labelSmall),
-                ),
-              ),
-              const SizedBox(height: 40),
-              Text(
-                MyStrings.yourFavCats,
-                style: textTheme.headlineSmall,
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              //TagsGridView
-              SizedBox(
+            ),
+            const SizedBox(height: 40),
+            Text(
+              MyStrings.yourFavCats,
+              style: textTheme.headlineSmall,
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            //TagsGridView
+            Obx(
+              () => SizedBox(
                 width: double.infinity,
                 height: 100,
                 child: GridView.builder(
                   physics: const BouncingScrollPhysics(),
-                  itemCount: hashTagList.length,
+                  itemCount: myCatsController.tagsList.length,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 10,
-                    childAspectRatio: 0.2,
+                    childAspectRatio: 0.19,
                     mainAxisSpacing: 10,
                     crossAxisCount: 2,
                   ),
@@ -82,10 +78,12 @@ class _MyCatsState extends State<MyCats> {
                           right: index == 0 || index == 1 ? bodyMargin : 0),
                       child: InkWell(
                         onTap: () {
-                          setState(() {
-                            selectedTagsList.add(hashTagList[index]);
-                            hashTagList.removeAt(index);
-                          });
+                          if (myCatsController.selectedTagsList
+                              .contains(myCatsController.tagsList[index])) {
+                          } else {
+                            myCatsController.selectedTagsList
+                                .add(myCatsController.tagsList[index]);
+                          }
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -107,7 +105,7 @@ class _MyCatsState extends State<MyCats> {
                                   width: 16,
                                 ),
                                 Text(
-                                  hashTagList[index].title,
+                                  myCatsController.tagsList[index].title!,
                                   style: textTheme.titleSmall,
                                 )
                               ],
@@ -119,29 +117,31 @@ class _MyCatsState extends State<MyCats> {
                   },
                 ),
               ),
+            ),
 
-              const SizedBox(
-                height: 22,
-              ),
-              Image(
-                image: Assets.icons.downCatArrow.provider(),
-                height: phoneSize.height / 15,
-              ),
-              const SizedBox(
-                height: 22,
-              ),
-              //SelectedTagGridView
-              SizedBox(
+            const SizedBox(
+              height: 22,
+            ),
+            Image(
+              image: Assets.icons.downCatArrow.provider(),
+              height: phoneSize.height / 15,
+            ),
+            const SizedBox(
+              height: 22,
+            ),
+            //SelectedTagGridView
+            Obx(
+              () => SizedBox(
                 width: double.infinity,
                 height: 100,
                 child: GridView.builder(
                   physics: const BouncingScrollPhysics(),
-                  itemCount: selectedTagsList.length,
+                  itemCount: myCatsController.selectedTagsList.length,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 10,
-                    childAspectRatio: 0.2,
+                    childAspectRatio: 0.17,
                     mainAxisSpacing: 10,
                     crossAxisCount: 2,
                   ),
@@ -162,7 +162,7 @@ class _MyCatsState extends State<MyCats> {
                                 width: 16,
                               ),
                               Text(
-                                selectedTagsList[index].title,
+                                myCatsController.selectedTagsList[index].title!,
                                 style: textTheme.bodyMedium,
                               ),
                               IconButton(
@@ -170,10 +170,8 @@ class _MyCatsState extends State<MyCats> {
                                   splashColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onPressed: () {
-                                    setState(() {
-                                      hashTagList.add(selectedTagsList[index]);
-                                      selectedTagsList.removeAt(index);
-                                    });
+                                    myCatsController.selectedTagsList
+                                        .removeAt(index);
                                   },
                                   icon: const Icon(CupertinoIcons.delete)),
                             ],
@@ -184,12 +182,14 @@ class _MyCatsState extends State<MyCats> {
                   },
                 ),
               ),
-              const SizedBox(
-                height: 22,
-              ),
-              ElevatedButton(
-                  onPressed: () {}, child: const Text(MyStrings.continueButton))
-            ]),
+            ),
+            const SizedBox(
+              height: 22,
+            ),
+            ElevatedButton(
+                onPressed: () {}, child: const Text(MyStrings.continueButton))
+          ]),
+        ),
       ),
     );
   }

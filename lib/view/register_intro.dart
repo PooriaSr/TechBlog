@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -176,8 +175,8 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () {
                       registerController.verfiy();
-                      // Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      //     builder: (context) => const MyCats()));
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => MyCats()));
                     },
                     child: const Text(MyStrings.continueButton))
               ],
