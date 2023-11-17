@@ -1,41 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
+import 'package:tech_blog/controller/register_controller.dart';
 import 'package:tech_blog/view/main_screen.dart';
-import 'package:tech_blog/view/register_intro.dart';
 import '../gen/assets.gen.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashScreen extends StatelessWidget {
+  SplashScreen({super.key});
 
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  bool loginStatus = true;
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 2)).then((value) => {
-          if (loginStatus == false)
-            {
-              Navigator.pushReplacement(
-                  context,
-                  CupertinoPageRoute(
-                      builder: (context) => const RegisterIntro()))
-            }
-          else
-            {
-              Navigator.pushReplacement(context,
-                  CupertinoPageRoute(builder: (context) => const MainScreen()))
-            }
-        });
-  }
+  final RegisterController registerController =
+      Get.put(RegisterController(), permanent: true);
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(const Duration(seconds: 2)).then((value) => {
+          registerController.toggleLogin(),
+          Navigator.pushReplacement(context,
+              CupertinoPageRoute(builder: (context) => const MainScreen()))
+        });
+
     return Scaffold(
       body: SafeArea(
         child: Column(

@@ -154,7 +154,7 @@ class ProfileScreenUserEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetStorage().read(StorageConstant.token) != 'token'
+    return GetStorage().read(StorageConstant.loginStatus) == 'true'
         ? Text(
             GetStorage().read(StorageConstant.email),
             style: textTheme.bodyMedium,
@@ -176,7 +176,7 @@ class ProfileScreenUserName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetStorage().read(StorageConstant.token) != 'token'
+    return GetStorage().read(StorageConstant.loginStatus) == 'true'
         ? Text(
             GetStorage().read(StorageConstant.name),
             style: textTheme.bodyMedium,

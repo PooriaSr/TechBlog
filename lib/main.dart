@@ -61,6 +61,6 @@ class MyApp extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     color: SolidColors.primaryColor))),
         debugShowCheckedModeBanner: false,
-        home: const SplashScreen());
+        home: SplashScreen());
   }
 }
