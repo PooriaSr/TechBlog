@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog/constant/api_constant.dart';
 import 'package:tech_blog/constant/my_colors.dart';
+import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/storage_constant.dart';
 import 'package:tech_blog/services/dio_service.dart';
-import 'package:tech_blog/view/my_cats.dart';
-import 'package:tech_blog/view/post_article_screen.dart';
-import 'package:tech_blog/view/register_intro.dart';
 
 class RegisterController extends GetxController {
   TextEditingController emailTextEditingController = TextEditingController();
@@ -46,9 +43,10 @@ class RegisterController extends GetxController {
         box.write(StorageConstant.token, response.data['token']);
         box.write(StorageConstant.userId, response.data['user_id']);
         box.write(StorageConstant.email, email);
+        box.write(StorageConstant.loginStatus, 'true');
         debugPrint(box.read(StorageConstant.userId));
         debugPrint(box.read(StorageConstant.token));
-        Get.offAll(() => MyCats());
+        Get.offAllNamed(MyStrings.routeMyCatsScreen);
         break;
       case 'incorrect_code':
         Get.snackbar('خطا', 'کد وارد شده اشتباه است',
@@ -65,11 +63,13 @@ class RegisterController extends GetxController {
     }
   }
 
-  toggleLogin() {
+  bool toggleLogin() {
     if (GetStorage().read(StorageConstant.token) == null) {
       GetStorage().write(StorageConstant.loginStatus, 'false');
+      return false;
     } else {
       GetStorage().write(StorageConstant.loginStatus, 'true');
+      return true;
     }
   }
 }

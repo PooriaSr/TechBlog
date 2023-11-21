@@ -5,12 +5,11 @@ import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/controller/my_cats_controller.dart';
-import 'package:tech_blog/view/main_screen.dart';
 import '../gen/assets.gen.dart';
 
-class MyCats extends StatelessWidget {
-  MyCats({super.key});
-  final MyCatsController myCatsController = Get.put(MyCatsController());
+class MyCatsScreen extends StatelessWidget {
+  MyCatsScreen({super.key});
+  final myCatsController = Get.find<MyCatsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +191,6 @@ class MyCats extends StatelessWidget {
                 onPressed: () {
                   if (myCatsController.nameTextEditingController.text != '') {
                     myCatsController.setName();
-                    Get.to(() => const MainScreen());
                   }
                 },
                 child: const Text(MyStrings.continueButton))

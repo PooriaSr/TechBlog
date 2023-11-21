@@ -8,18 +8,15 @@ import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/controller/list_article_screen_controller.dart';
 import 'package:tech_blog/controller/single_article_screen_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
-import 'package:tech_blog/view/article_list_screen.dart';
 
 import '../constant/my_strings.dart';
 
 class SingleArticleScreen extends StatelessWidget {
-  const SingleArticleScreen({super.key});
-
+  SingleArticleScreen({super.key});
+  final singleArticleScreenController =
+      Get.find<SingleArticleScreenController>();
   @override
   Widget build(BuildContext context) {
-    SingleArticleScreenController singleArticleScreenController =
-        Get.put(SingleArticleScreenController());
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -196,7 +193,7 @@ class SingleArticleScreen extends StatelessWidget {
                       singleArticleScreenController.tagsList[index].id!);
               Get.find<ArticleListScreenController>().appBarTitle.value =
                   singleArticleScreenController.tagsList[index].title!;
-              Get.to(() => const ArticleListScreen());
+              Get.toNamed(MyStrings.routeArticleScreen);
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 12),
@@ -234,7 +231,7 @@ class SingleArticleScreen extends StatelessWidget {
             onTap: () async {
               await singleArticleScreenController.getSingleArticle(
                   singleArticleScreenController.relatedList[index].id!);
-              Get.to(const SingleArticleScreen());
+              Get.toNamed(MyStrings.routeSingleArticleScreen);
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 10),

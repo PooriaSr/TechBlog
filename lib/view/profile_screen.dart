@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/constant/storage_constant.dart';
+import 'package:tech_blog/controller/register_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 
@@ -154,7 +156,7 @@ class ProfileScreenUserEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetStorage().read(StorageConstant.loginStatus) == 'true'
+    return Get.find<RegisterController>().toggleLogin() == true
         ? Text(
             GetStorage().read(StorageConstant.email),
             style: textTheme.bodyMedium,
@@ -176,7 +178,7 @@ class ProfileScreenUserName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetStorage().read(StorageConstant.loginStatus) == 'true'
+    return Get.find<RegisterController>().toggleLogin() == true
         ? Text(
             GetStorage().read(StorageConstant.name),
             style: textTheme.bodyMedium,

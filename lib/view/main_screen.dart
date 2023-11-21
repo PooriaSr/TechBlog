@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/constant/my_strings.dart';
+import 'package:tech_blog/constant/storage_constant.dart';
+import 'package:tech_blog/controller/register_controller.dart';
+import 'package:tech_blog/view/post_article_screen.dart';
 import 'package:tech_blog/view/profile_screen.dart';
 import 'package:tech_blog/view/register_intro.dart';
 import '../gen/assets.gen.dart';
@@ -70,7 +75,7 @@ class MainScreen extends StatelessWidget {
               )),
               ListTile(
                 onTap: () {
-                  seletedPageIndex.value = 2;
+                  seletedPageIndex.value = 1;
                   key.currentState!.closeDrawer();
                 },
                 title: const Text(MyStrings.drawerUserProfile),
@@ -120,7 +125,8 @@ class MainScreen extends StatelessWidget {
                       phoneSize: phoneSize,
                       textTheme: textTheme,
                       bodyMargin: bodyMargin),
-                  const RegisterIntro()
+                  const RegisterIntro(),
+                  const PostArticleScreen()
                 ],
               ),
             ),
@@ -188,7 +194,12 @@ class BottomNavigation extends StatelessWidget {
                     )),
                 IconButton(
                     onPressed: () {
-                      chaneScreen(2);
+                      if (Get.find<RegisterController>().toggleLogin() ==
+                          false) {
+                        chaneScreen(2);
+                      } else {
+                        chaneScreen(3);
+                      }
                     },
                     icon: ImageIcon(Assets.icons.write.provider(),
                         size: 28, color: SolidColors.bottomNavIcons)),

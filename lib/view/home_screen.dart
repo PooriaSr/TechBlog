@@ -9,8 +9,6 @@ import 'package:tech_blog/controller/list_article_screen_controller.dart';
 import 'package:tech_blog/controller/single_article_screen_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/constant/my_strings.dart';
-import 'package:tech_blog/view/article_list_screen.dart';
-import 'package:tech_blog/view/single_article_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -23,13 +21,11 @@ class HomeScreen extends StatelessWidget {
   final Size phoneSize;
   final TextTheme textTheme;
   final double bodyMargin;
-  final HomeScreenController homeScreenController =
-      Get.put(HomeScreenController());
-  final ArticleListScreenController articleListScreenController =
-      Get.put(ArticleListScreenController());
+  final homeScreenController = Get.find<HomeScreenController>();
+  final articleListScreenController = Get.find<ArticleListScreenController>();
+  final singleArticleScreenController =
+      Get.find<SingleArticleScreenController>();
 
-  final SingleArticleScreenController singleArticleScreenController =
-      Get.put(SingleArticleScreenController());
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -130,7 +126,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 singleArticleScreenController.getSingleArticle(
                     homeScreenController.topVisitedList[index].id!);
-                Get.to(const SingleArticleScreen());
+                Get.toNamed(MyStrings.routeSingleArticleScreen);
               },
               child: Padding(
                 padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 14),
@@ -245,7 +241,7 @@ class HomeScreen extends StatelessWidget {
         onTap: () {
           singleArticleScreenController
               .getSingleArticle(homeScreenController.poster.value.id!);
-          Get.to(const SingleArticleScreen());
+          Get.toNamed(MyStrings.routeSingleArticleScreen);
         },
         child: Stack(children: [
           CachedNetworkImage(
@@ -297,7 +293,7 @@ class HomeScreen extends StatelessWidget {
         onTap: () {
           articleListScreenController.getArticleListItems();
           articleListScreenController.appBarTitle.value = MyStrings.articleList;
-          Get.to(const ArticleListScreen());
+          Get.toNamed(MyStrings.routeArticleScreen);
         },
         child: Row(
           children: [
@@ -331,7 +327,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 articleListScreenController.getArticleListWithTagId(
                     homeScreenController.tagsList[index].id!);
-                Get.to(const ArticleListScreen());
+                Get.toNamed(MyStrings.routeArticleScreen);
               },
               child: Container(
                 height: Get.height / 22.8,

@@ -80,7 +80,7 @@ class SpinKitLoading extends StatelessWidget {
   }
 }
 
-PreferredSize appBar(String title, Size phoneSize) {
+PreferredSize appBar(String title) {
   return PreferredSize(
     preferredSize: const Size.fromHeight(60),
     child: Padding(

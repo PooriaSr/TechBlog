@@ -34,4 +34,10 @@ class MyStrings {
       "https://github.com/sasansafari/techblog";
 
   static const String articleList = "لیست مقاله ها";
+
+// Route Managment
+  static const String routeMainScreen = "/MainScreen";
+  static const String routeArticleScreen = "/ArticleScreen";
+  static const String routeSingleArticleScreen = "/SingleArticleScreen";
+  static const String routeMyCatsScreen = "/MyCatsScreen";
 }
