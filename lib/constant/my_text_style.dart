@@ -36,4 +36,14 @@ class MyTextStyle {
       fontSize: 15,
       fontWeight: FontWeight.w700,
       color: SolidColors.seeMore);
+  static TextStyle routeToPostBottomSheetTitle = const TextStyle(
+      fontFamily: 'dana',
+      fontSize: 14,
+      fontWeight: FontWeight.w700,
+      color: SolidColors.blackColor);
+  static TextStyle routeToPostBottomSheetText = const TextStyle(
+      fontFamily: 'dana',
+      fontSize: 13,
+      fontWeight: FontWeight.w700,
+      color: SolidColors.blackColor);
 }

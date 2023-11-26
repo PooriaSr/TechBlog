@@ -34,6 +34,13 @@ class MyStrings {
       "https://github.com/sasansafari/techblog";
 
   static const String articleList = "لیست مقاله ها";
+  static const String manageArticles = "مدیریت مقاله ها";
+  static const String managePodcasts = "مدیریت پادکست ها";
+  static const String routeToPostBottomSheetTitle =
+      "دونسته هات رو با بقیه به اشتراک بذار ...";
+  static const String routeToPostBottomSheetText =
+      '''فکر کن !! اینجا بودنت به این معناست که یک گیگ تکنولوژی هستی 
+دونسته هات رو با جامعه ی گیک های فارسی زبان به اشتراک بذار''';
 
 // Route Managment
   static const String routeMainScreen = "/MainScreen";

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:get_storage/get_storage.dart';
@@ -7,6 +8,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/constant/my_strings.dart';
+import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/constant/storage_constant.dart';
 import 'package:tech_blog/controller/register_controller.dart';
 import 'package:tech_blog/view/post_article_screen.dart';
@@ -198,7 +200,7 @@ class BottomNavigation extends StatelessWidget {
                           false) {
                         chaneScreen(2);
                       } else {
-                        chaneScreen(3);
+                        routeToWriteBottomSheet();
                       }
                     },
                     icon: ImageIcon(Assets.icons.write.provider(),
@@ -214,4 +216,99 @@ class BottomNavigation extends StatelessWidget {
           ),
         ));
   }
+}
+
+routeToWriteBottomSheet() {
+  Get.bottomSheet(
+      backgroundColor: Colors.transparent,
+      Container(
+        height: Get.height / 3,
+        width: Get.width,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25),
+            topRight: Radius.circular(25),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    Assets.images.tcbot.path,
+                    height: 50,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, right: 16),
+                    child: Text(
+                      MyStrings.routeToPostBottomSheetTitle,
+                      style: MyTextStyle.routeToPostBottomSheetTitle,
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                MyStrings.routeToPostBottomSheetText,
+                style: MyTextStyle.routeToPostBottomSheetText,
+              ),
+              const SizedBox(
+                height: 48,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () => debugPrint('ssss'),
+                    child: Container(
+                      color: Colors.transparent,
+                      child: Row(
+                        children: [
+                          Image(
+                            image: Assets.icons.writeArticleIcon.provider(),
+                            height: 30,
+                          ),
+                          const SizedBox(
+                            width: 12,
+                          ),
+                          Text(
+                            MyStrings.manageArticles,
+                            style: MyTextStyle.articleText,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => debugPrint('sasasas'),
+                    child: Container(
+                      color: Colors.transparent,
+                      child: Row(
+                        children: [
+                          Image(
+                            image: Assets.icons.writePodcastIcon.provider(),
+                            height: 30,
+                          ),
+                          const SizedBox(
+                            width: 12,
+                          ),
+                          Text(
+                            MyStrings.managePodcasts,
+                            style: MyTextStyle.articleText,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ));
 }
