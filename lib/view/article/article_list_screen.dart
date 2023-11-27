@@ -5,8 +5,8 @@ import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/controller/list_article_screen_controller.dart';
-import '../constant/my_components.dart';
-import '../controller/single_article_screen_controller.dart';
+import '../../constant/my_components.dart';
+import '../../controller/single_article_screen_controller.dart';
 
 class ArticleListScreen extends StatelessWidget {
   ArticleListScreen({super.key});

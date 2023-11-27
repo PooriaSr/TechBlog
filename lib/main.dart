@@ -4,10 +4,10 @@ import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog/binding.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
-import 'package:tech_blog/view/article_list_screen.dart';
-import 'package:tech_blog/view/main_screen.dart';
-import 'package:tech_blog/view/my_cats_screen.dart';
-import 'package:tech_blog/view/single_article_screen.dart';
+import 'package:tech_blog/view/article/article_list_screen.dart';
+import 'package:tech_blog/view/main/main_screen.dart';
+import 'package:tech_blog/view/register/my_cats_screen.dart';
+import 'package:tech_blog/view/article/single_article_screen.dart';
 import 'package:tech_blog/view/splash_screen.dart';
 
 void main() async {

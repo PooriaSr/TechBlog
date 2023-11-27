@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/controller/my_cats_controller.dart';
-import '../gen/assets.gen.dart';
+import '../../gen/assets.gen.dart';
 
 class MyCatsScreen extends StatelessWidget {
   MyCatsScreen({super.key});

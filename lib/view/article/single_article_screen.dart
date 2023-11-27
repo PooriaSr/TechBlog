@@ -8,8 +8,7 @@ import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/controller/list_article_screen_controller.dart';
 import 'package:tech_blog/controller/single_article_screen_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
-
-import '../constant/my_strings.dart';
+import '../../constant/my_strings.dart';
 
 class SingleArticleScreen extends StatelessWidget {
   SingleArticleScreen({super.key});
