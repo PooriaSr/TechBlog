@@ -28,6 +28,10 @@ class DioService {
       log(value.data.toString());
       log(value.statusCode.toString());
       return value;
+    }).catchError((err) {
+      if (err is DioException) {
+        return err.response!;
+      }
     });
   }
 }
