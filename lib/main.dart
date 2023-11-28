@@ -5,6 +5,7 @@ import 'package:tech_blog/binding.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/view/article/article_list_screen.dart';
+import 'package:tech_blog/view/article/manage_article_screen.dart';
 import 'package:tech_blog/view/main/main_screen.dart';
 import 'package:tech_blog/view/register/my_cats_screen.dart';
 import 'package:tech_blog/view/article/single_article_screen.dart';
@@ -40,7 +41,11 @@ class MyApp extends StatelessWidget {
           GetPage(
               name: MyStrings.routeMyCatsScreen,
               page: () => MyCatsScreen(),
-              binding: CatsBinding())
+              binding: CatsBinding()),
+          GetPage(
+            name: MyStrings.routeManageArticleScreen,
+            page: () => const ManageArticleScreen(),
+          )
         ],
         home: SplashScreen());
   }

@@ -259,7 +259,8 @@ routeToWriteBottomSheet() {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
-                    onTap: () => debugPrint('ssss'),
+                    onTap: () =>
+                        Get.toNamed(MyStrings.routeManageArticleScreen),
                     child: Container(
                       color: Colors.transparent,
                       child: Row(

@@ -46,4 +46,9 @@ class MyTextStyle {
       fontSize: 13,
       fontWeight: FontWeight.w700,
       color: SolidColors.blackColor);
+  static TextStyle manageArticleScreenBtn = const TextStyle(
+      fontFamily: 'dana',
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: Colors.white);
 }

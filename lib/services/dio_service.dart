@@ -8,7 +8,7 @@ class DioService {
     return await dio
         .get(url,
             options: Options(
-                headers: {"content-Type": "application/json"},
+                headers: {'content-type': "application/json"},
                 responseType: ResponseType.json,
                 method: 'GET'))
         .then((response) {
@@ -18,7 +18,7 @@ class DioService {
   }
 
   Future<dynamic> postMethod(Map<String, dynamic> map, String url) async {
-    dio.options.headers['content-Type'] = "application/json";
+    dio.options.headers['content-type'] = "application/json";
     return await dio
         .post(url,
             data: dio_service.FormData.fromMap(map),

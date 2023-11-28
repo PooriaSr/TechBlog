@@ -35,16 +35,20 @@ class MyStrings {
 
   static const String articleList = "لیست مقاله ها";
   static const String manageArticles = "مدیریت مقاله ها";
+  static const String letsGoWriteAnArticle = "بریم برای نوشتن یه مقاله باحال";
   static const String managePodcasts = "مدیریت پادکست ها";
   static const String routeToPostBottomSheetTitle =
       "دونسته هات رو با بقیه به اشتراک بذار ...";
   static const String routeToPostBottomSheetText =
       '''فکر کن !! اینجا بودنت به این معناست که یک گیگ تکنولوژی هستی 
 دونسته هات رو با جامعه ی گیک های فارسی زبان به اشتراک بذار''';
+  static const String manageArticleScreenText =
+      "هنوز هیچ مقاله ای به جامعه گیک های فارسی اضافه نکردی !!!";
 
 // Route Managment
   static const String routeMainScreen = "/MainScreen";
   static const String routeArticleScreen = "/ArticleScreen";
   static const String routeSingleArticleScreen = "/SingleArticleScreen";
   static const String routeMyCatsScreen = "/MyCatsScreen";
+  static const String routeManageArticleScreen = "/ManageArticleScreen";
 }
