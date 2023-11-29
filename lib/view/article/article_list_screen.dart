@@ -51,8 +51,10 @@ class ArticleListScreen extends StatelessWidget {
                             ),
                             placeholder: (context, url) =>
                                 const SpinKitLoading(),
-                            errorWidget: (context, url, error) =>
-                                const ErrorImage(),
+                            errorWidget: (context, url, error) => ErrorImage(
+                              width: Get.width / 3,
+                              height: Get.height / 8,
+                            ),
                           ),
                         ),
                         SizedBox(

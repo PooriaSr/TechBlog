@@ -121,16 +121,26 @@ PreferredSize appBar(String title) {
 class ErrorImage extends StatelessWidget {
   const ErrorImage({
     super.key,
+    required this.width,
+    required this.height,
   });
+
+  final double width;
+  final double height;
 
   @override
   Widget build(
     BuildContext context,
   ) {
-    return const Icon(
-      Icons.image_not_supported_outlined,
-      color: Colors.grey,
-      size: 50,
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+      child: const Icon(
+        Icons.image_not_supported_outlined,
+        color: Colors.grey,
+        size: 50,
+      ),
     );
   }
 }

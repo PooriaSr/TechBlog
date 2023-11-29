@@ -96,8 +96,10 @@ class HomeScreen extends StatelessWidget {
                                         fit: BoxFit.cover)),
                               ),
                           placeholder: (context, url) => const SpinKitLoading(),
-                          errorWidget: (context, url, error) =>
-                              const ErrorImage()),
+                          errorWidget: (context, url, error) => ErrorImage(
+                                height: phoneSize.height / 6,
+                                width: phoneSize.width / 2.8,
+                              )),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
@@ -154,8 +156,10 @@ class HomeScreen extends StatelessWidget {
                                     ))),
                             placeholder: (context, url) =>
                                 const SpinKitLoading(),
-                            errorWidget: (context, url, error) =>
-                                const ErrorImage()),
+                            errorWidget: (context, url, error) => ErrorImage(
+                                  width: phoneSize.width / 2.4,
+                                  height: phoneSize.height / 5.8,
+                                )),
                         Positioned(
                           bottom: 10,
                           left: 0,
@@ -259,7 +263,10 @@ class HomeScreen extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter)),
             ),
-            errorWidget: (context, url, error) => const ErrorImage(),
+            errorWidget: (context, url, error) => ErrorImage(
+              width: phoneSize.width / 1.19,
+              height: phoneSize.height / 4.2,
+            ),
           ),
           Positioned(
             bottom: 10,

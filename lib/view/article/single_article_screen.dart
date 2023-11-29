@@ -38,8 +38,10 @@ class SingleArticleScreen extends StatelessWidget {
                                         image: imageProvider,
                                         fit: BoxFit.cover)),
                               ),
-                              errorWidget: (context, url, error) =>
-                                  const ErrorImage(),
+                              errorWidget: (context, url, error) => ErrorImage(
+                                width: Get.width,
+                                height: Get.height / 3.5,
+                              ),
                               placeholder: (context, url) =>
                                   const SpinKitLoading(),
                             ),
@@ -245,7 +247,10 @@ class SingleArticleScreen extends StatelessWidget {
                         image: DecorationImage(
                             image: imageProvider, fit: BoxFit.cover))),
                 placeholder: (context, url) => const SpinKitLoading(),
-                errorWidget: (context, url, error) => const ErrorImage(),
+                errorWidget: (context, url, error) => ErrorImage(
+                  width: Get.width / 2.6,
+                  height: Get.height / 6,
+                ),
               ),
             ),
           );

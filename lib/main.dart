@@ -43,9 +43,9 @@ class MyApp extends StatelessWidget {
               page: () => MyCatsScreen(),
               binding: CatsBinding()),
           GetPage(
-            name: MyStrings.routeManageArticleScreen,
-            page: () => const ManageArticleScreen(),
-          )
+              name: MyStrings.routeManageArticleScreen,
+              page: () => ManageArticleScreen(),
+              binding: ManageArticleBinding()),
         ],
         home: SplashScreen());
   }

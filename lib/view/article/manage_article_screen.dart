@@ -1,55 +1,117 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
+import 'package:tech_blog/controller/manage_article_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 
 class ManageArticleScreen extends StatelessWidget {
-  const ManageArticleScreen({super.key});
+  ManageArticleScreen({super.key});
+  final manageArticleController = Get.find<ManageArticleController>();
   @override
   Widget build(BuildContext context) {
-    bool test = false;
     return Scaffold(
       appBar: appBar(MyStrings.manageArticles),
       body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-                height: Get.height / 1.4,
-                child: test == true ? state1() : state2()),
-            const SizedBox(
-              height: 16,
-            ),
-            TextButton(
-                onPressed: () {},
-                child: Container(
-                    height: 60,
-                    width: Get.width / 1.4,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: SolidColors.primaryColor),
-                    child: Center(
-                      child: Text(
-                        MyStrings.letsGoWriteAnArticle,
-                        style: MyTextStyle.manageArticleScreenBtn,
-                      ),
-                    ))),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(right: 8, left: 8),
+          child: Column(
+            children: [
+              Obx(
+                () => SizedBox(
+                    height: Get.height / 1.4,
+                    child: manageArticleController.loading.value == true
+                        ? const SpinKitLoading()
+                        : manageArticleController.articleList.isEmpty
+                            ? emptyState()
+                            : publishedState()),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              TextButton(
+                  onPressed: () {},
+                  child: Container(
+                      height: 60,
+                      width: Get.width / 1.4,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: SolidColors.primaryColor),
+                      child: Center(
+                        child: Text(
+                          MyStrings.letsGoWriteAnArticle,
+                          style: MyTextStyle.manageArticleScreenBtn,
+                        ),
+                      ))),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Column state1() {
+  SizedBox publishedState() {
+    return SizedBox(
+      child: ListView.builder(
+        itemCount: manageArticleController.articleList.length,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Row(children: [
+            CachedNetworkImage(
+              imageUrl: manageArticleController.articleList[index].image!,
+              imageBuilder: (context, imageProvider) => Container(
+                width: Get.width / 4,
+                height: Get.height / 10,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                        image: imageProvider, fit: BoxFit.cover)),
+              ),
+              placeholder: (context, url) => const SpinKitLoading(),
+              errorWidget: (context, url, error) => ErrorImage(
+                height: Get.height / 10,
+                width: Get.width / 4,
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            SizedBox(
+              width: Get.width / 1.5,
+              child: Column(
+                children: [
+                  Text(
+                    manageArticleController.articleList[index].title!,
+                    maxLines: 3,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Row(
+                    children: [
+                      Text(manageArticleController.articleList[index].author!),
+                      Text(manageArticleController
+                          .articleList[index].createdAt!),
+                      Text(manageArticleController.articleList[index].status!)
+                    ],
+                  )
+                ],
+              ),
+            )
+          ]),
+        ),
+      ),
+    );
+  }
+
+  Column emptyState() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset(
-          Assets.images.tcbot.path,
+        Image.asset(
+          Assets.images.emptyState.path,
           height: Get.height / 7,
         ),
         Padding(
@@ -60,50 +122,4 @@ class ManageArticleScreen extends StatelessWidget {
       ],
     );
   }
-}
-
-SizedBox state2() {
-  return SizedBox(
-    child: ListView.builder(
-      itemCount: 3,
-      itemBuilder: (context, index) => Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: Row(children: [
-          CachedNetworkImage(
-            imageUrl: "",
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(image: imageProvider)),
-            ),
-            placeholder: (context, url) => const SpinKitLoading(),
-            errorWidget: (context, url, error) => const ErrorImage(),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          SizedBox(
-            width: Get.width / 1.5,
-            child: const Column(
-              children: [
-                Text(
-                  "راز های اساسنیز کرید والهالا از هری پاتر و ارباب حلقه ها تا دارک سولز",
-                  maxLines: 3,
-                  softWrap: true,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Row(
-                  children: [
-                    Text("ملیکا عزیزی"),
-                    Text("بازدید ۲۳۵"),
-                    Text('تایید شده')
-                  ],
-                )
-              ],
-            ),
-          )
-        ]),
-      ),
-    ),
-  );
 }
