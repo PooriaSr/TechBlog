@@ -99,16 +99,13 @@ PreferredSize appBar(String title) {
           ],
           leading: Padding(
             padding: const EdgeInsets.only(right: 12),
-            child: Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: SolidColors.primaryColor.withAlpha(120)),
-              child: IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: const Icon(Icons.arrow_back),
-                splashColor: Colors.transparent,
+            child: GestureDetector(
+              onTap: () => Get.back(),
+              child: Container(
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: SolidColors.primaryColor.withAlpha(120)),
+                child: const Icon((Icons.arrow_back)),
               ),
             ),
           ),

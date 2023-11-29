@@ -211,100 +211,100 @@ class BottomNavigation extends StatelessWidget {
           ),
         ));
   }
-}
 
-routeToWriteBottomSheet() {
-  Get.bottomSheet(
-      backgroundColor: Colors.transparent,
-      Container(
-        height: Get.height / 3,
-        width: Get.width,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25),
-            topRight: Radius.circular(25),
+  routeToWriteBottomSheet() {
+    Get.bottomSheet(
+        backgroundColor: Colors.transparent,
+        Container(
+          height: Get.height / 3,
+          width: Get.width,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
+            ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  SvgPicture.asset(
-                    Assets.images.tcbot.path,
-                    height: 50,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, right: 16),
-                    child: Text(
-                      MyStrings.routeToPostBottomSheetTitle,
-                      style: MyTextStyle.routeToPostBottomSheetTitle,
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      Assets.images.tcbot.path,
+                      height: 50,
                     ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Text(
-                MyStrings.routeToPostBottomSheetText,
-                style: MyTextStyle.routeToPostBottomSheetText,
-              ),
-              const SizedBox(
-                height: 48,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () =>
-                        Get.toNamed(MyStrings.routeManageArticleScreen),
-                    child: Container(
-                      color: Colors.transparent,
-                      child: Row(
-                        children: [
-                          Image(
-                            image: Assets.icons.writeArticleIcon.provider(),
-                            height: 30,
-                          ),
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          Text(
-                            MyStrings.manageArticles,
-                            style: MyTextStyle.articleText,
-                          )
-                        ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20, right: 16),
+                      child: Text(
+                        MyStrings.routeToPostBottomSheetTitle,
+                        style: MyTextStyle.routeToPostBottomSheetTitle,
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  MyStrings.routeToPostBottomSheetText,
+                  style: MyTextStyle.routeToPostBottomSheetText,
+                ),
+                const SizedBox(
+                  height: 48,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () =>
+                          Get.toNamed(MyStrings.routeManageArticleScreen),
+                      child: Container(
+                        color: Colors.transparent,
+                        child: Row(
+                          children: [
+                            Image(
+                              image: Assets.icons.writeArticleIcon.provider(),
+                              height: 30,
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Text(
+                              MyStrings.manageArticles,
+                              style: MyTextStyle.articleText,
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap: () => debugPrint('sasasas'),
-                    child: Container(
-                      color: Colors.transparent,
-                      child: Row(
-                        children: [
-                          Image(
-                            image: Assets.icons.writePodcastIcon.provider(),
-                            height: 30,
-                          ),
-                          const SizedBox(
-                            width: 12,
-                          ),
-                          Text(
-                            MyStrings.managePodcasts,
-                            style: MyTextStyle.articleText,
-                          )
-                        ],
+                    GestureDetector(
+                      onTap: () => debugPrint('sasasas'),
+                      child: Container(
+                        color: Colors.transparent,
+                        child: Row(
+                          children: [
+                            Image(
+                              image: Assets.icons.writePodcastIcon.provider(),
+                              height: 30,
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Text(
+                              MyStrings.managePodcasts,
+                              style: MyTextStyle.articleText,
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              )
-            ],
+                  ],
+                )
+              ],
+            ),
           ),
-        ),
-      ));
+        ));
+  }
 }

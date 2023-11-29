@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
@@ -29,26 +28,21 @@ class ManageArticleScreen extends StatelessWidget {
                             ? emptyState()
                             : publishedState()),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              TextButton(
-                  onPressed: () {},
-                  child: Container(
-                      height: 60,
-                      width: Get.width / 1.4,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: SolidColors.primaryColor),
-                      child: Center(
-                        child: Text(
-                          MyStrings.letsGoWriteAnArticle,
-                          style: MyTextStyle.manageArticleScreenBtn,
-                        ),
-                      ))),
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: ElevatedButton(
+            style: ButtonStyle(
+                fixedSize:
+                    MaterialStateProperty.all(Size(Get.width / 1.2, 60))),
+            onPressed: () {},
+            child: Text(
+              MyStrings.letsGoWriteAnArticle,
+              style: MyTextStyle.manageArticleScreenBtn,
+            )),
       ),
     );
   }
