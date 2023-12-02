@@ -38,7 +38,9 @@ class ManageArticleScreen extends StatelessWidget {
             style: ButtonStyle(
                 fixedSize:
                     MaterialStateProperty.all(Size(Get.width / 1.2, 60))),
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(NamedRoute.writeArticleScreen);
+            },
             child: Text(
               MyStrings.letsGoWriteAnArticle,
               style: MyTextStyle.manageArticleScreenBtn,

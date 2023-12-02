@@ -46,7 +46,7 @@ class RegisterController extends GetxController {
         box.write(StorageConstant.loginStatus, 'true');
         debugPrint(box.read(StorageConstant.userId));
         debugPrint(box.read(StorageConstant.token));
-        Get.offAllNamed(MyStrings.routeMyCatsScreen);
+        Get.offAllNamed(NamedRoute.myCatsScreen);
         break;
       case 'incorrect_code':
         Get.snackbar('خطا', 'کد وارد شده اشتباه است',

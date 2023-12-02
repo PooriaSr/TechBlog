@@ -51,4 +51,9 @@ class MyTextStyle {
       fontSize: 16,
       fontWeight: FontWeight.w700,
       color: Colors.white);
+  static TextStyle bottun = const TextStyle(
+      fontFamily: 'dana',
+      fontSize: 14,
+      fontWeight: FontWeight.w700,
+      color: Colors.white);
 }

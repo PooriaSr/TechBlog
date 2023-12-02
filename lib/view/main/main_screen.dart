@@ -258,8 +258,7 @@ class BottomNavigation extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: () =>
-                          Get.toNamed(MyStrings.routeManageArticleScreen),
+                      onTap: () => Get.toNamed(NamedRoute.manageArticleScreen),
                       child: Container(
                         color: Colors.transparent,
                         child: Row(

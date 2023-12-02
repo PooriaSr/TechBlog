@@ -6,6 +6,7 @@ import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/view/article/article_list_screen.dart';
 import 'package:tech_blog/view/article/manage_article_screen.dart';
+import 'package:tech_blog/view/article/write_article_screen.dart';
 import 'package:tech_blog/view/main/main_screen.dart';
 import 'package:tech_blog/view/register/my_cats_screen.dart';
 import 'package:tech_blog/view/article/single_article_screen.dart';
@@ -28,23 +29,27 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         getPages: [
           GetPage(
-              name: MyStrings.routeMainScreen,
+              name: NamedRoute.mainScreen,
               page: () => const MainScreen(),
               bindings: [MainBinding(), RegisterBinding()]),
           GetPage(
-              name: MyStrings.routeArticleScreen,
+              name: NamedRoute.articleScreen,
               page: () => ArticleListScreen(),
               binding: ArticleBinding()),
           GetPage(
-              name: MyStrings.routeSingleArticleScreen,
+              name: NamedRoute.routeSingleArticleScreen,
               page: () => SingleArticleScreen()),
           GetPage(
-              name: MyStrings.routeMyCatsScreen,
+              name: NamedRoute.myCatsScreen,
               page: () => MyCatsScreen(),
               binding: CatsBinding()),
           GetPage(
-              name: MyStrings.routeManageArticleScreen,
+              name: NamedRoute.manageArticleScreen,
               page: () => ManageArticleScreen(),
+              binding: ManageArticleBinding()),
+          GetPage(
+              name: NamedRoute.writeArticleScreen,
+              page: () => WriteArticleScreen(),
               binding: ManageArticleBinding()),
         ],
         home: SplashScreen());

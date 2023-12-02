@@ -128,7 +128,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 singleArticleScreenController.getSingleArticle(
                     homeScreenController.topVisitedList[index].id!);
-                Get.toNamed(MyStrings.routeSingleArticleScreen);
+                Get.toNamed(NamedRoute.routeSingleArticleScreen);
               },
               child: Padding(
                 padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 14),
@@ -245,7 +245,7 @@ class HomeScreen extends StatelessWidget {
         onTap: () {
           singleArticleScreenController
               .getSingleArticle(homeScreenController.poster.value.id!);
-          Get.toNamed(MyStrings.routeSingleArticleScreen);
+          Get.toNamed(NamedRoute.routeSingleArticleScreen);
         },
         child: Stack(children: [
           CachedNetworkImage(
@@ -300,7 +300,7 @@ class HomeScreen extends StatelessWidget {
         onTap: () {
           articleListScreenController.getArticleListItems();
           articleListScreenController.appBarTitle.value = MyStrings.articleList;
-          Get.toNamed(MyStrings.routeArticleScreen);
+          Get.toNamed(NamedRoute.articleScreen);
         },
         child: Row(
           children: [
@@ -334,7 +334,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 articleListScreenController.getArticleListWithTagId(
                     homeScreenController.tagsList[index].id!);
-                Get.toNamed(MyStrings.routeArticleScreen);
+                Get.toNamed(NamedRoute.articleScreen);
               },
               child: Container(
                 height: Get.height / 22.8,

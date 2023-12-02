@@ -28,7 +28,7 @@ class ArticleListScreen extends StatelessWidget {
                   onTap: () {
                     singleArticleScreenController.getSingleArticle(
                         articleListScreenController.articleList[index].id!);
-                    Get.toNamed(MyStrings.routeSingleArticleScreen);
+                    Get.toNamed(NamedRoute.routeSingleArticleScreen);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(top: 16, right: 16),

@@ -7,6 +7,7 @@ import 'package:tech_blog/services/dio_service.dart';
 
 class ManageArticleController extends GetxController {
   RxList<ArticleModel> articleList = RxList();
+  Rx<ArticleModel> newArticle = ArticleModel().obs;
   RxBool loading = false.obs;
 
   @override

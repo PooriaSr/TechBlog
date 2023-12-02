@@ -27,6 +27,6 @@ class MyCatsController extends GetxController {
 
   setName() {
     GetStorage().write(StorageConstant.name, nameTextEditingController.text);
-    Get.offNamed(MyStrings.routeMainScreen);
+    Get.offNamed(NamedRoute.mainScreen);
   }
 }

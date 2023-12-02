@@ -40,6 +40,6 @@ class MainBinding implements Bindings {
 class ManageArticleBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put(ManageArticleController());
+    Get.lazyPut(() => ManageArticleController());
   }
 }

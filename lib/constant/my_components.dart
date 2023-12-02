@@ -5,19 +5,13 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../gen/assets.gen.dart';
 import 'my_colors.dart';
-import 'my_strings.dart';
 import 'dart:developer' as developer;
 
 import 'my_text_style.dart';
 
 class BluePenIconTextTitleTechBlog extends StatelessWidget {
-  const BluePenIconTextTitleTechBlog({
-    super.key,
-    required this.textTheme,
-  });
-
-  final TextTheme textTheme;
-
+  const BluePenIconTextTitleTechBlog({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,10 +23,7 @@ class BluePenIconTextTitleTechBlog extends StatelessWidget {
         const SizedBox(
           width: 10,
         ),
-        Text(
-          MyStrings.viewMostHitPosts,
-          style: textTheme.bodySmall,
-        )
+        Text(title, style: MyTextStyle.bluePenTitles)
       ],
     );
   }

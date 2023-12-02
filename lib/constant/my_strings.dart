@@ -8,6 +8,7 @@ class MyStrings {
   static const String myFavoriteBlogs = "مقالات مورد علاقه من";
   static const String myFavoritePodcasts = "پادکست های مورد علاقه من";
   static const String logOut = "خروج از حساب کاربری";
+  static const String chooseImage = "انتخاب تصویر";
   static const String welcomeText = """به تک بلاگ خوش اومدی
   
   برای ارسال مطالب و پادکست باید حتما
@@ -34,6 +35,11 @@ class MyStrings {
       "https://github.com/sasansafari/techblog";
 
   static const String articleList = "لیست مقاله ها";
+  static const String bluePenWriteNewArticleTitle = "ویرایش عنوان مقاله";
+  static const String bluePenWriteNewArticleBody = "ویرایش متن اصلی مقاله";
+  static const String bluePenWriteNewArticleTags = "انتخاب دسته بندی";
+  static const String defaultArticleTitle =
+      "اینجا عنوان مقاله قرار میگیره یه عنوان جذاب انتخاب کن";
   static const String manageArticles = "مدیریت مقاله ها";
   static const String letsGoWriteAnArticle = "بریم برای نوشتن یه مقاله باحال";
   static const String managePodcasts = "مدیریت پادکست ها";
@@ -44,11 +50,14 @@ class MyStrings {
 دونسته هات رو با جامعه ی گیک های فارسی زبان به اشتراک بذار''';
   static const String manageArticleScreenText =
       "هنوز هیچ مقاله ای به جامعه گیک های فارسی اضافه نکردی !!!";
+}
 
 // Route Managment
-  static const String routeMainScreen = "/MainScreen";
-  static const String routeArticleScreen = "/ArticleScreen";
+class NamedRoute {
+  static const String mainScreen = "/MainScreen";
+  static const String articleScreen = "/ArticleScreen";
   static const String routeSingleArticleScreen = "/SingleArticleScreen";
-  static const String routeMyCatsScreen = "/MyCatsScreen";
-  static const String routeManageArticleScreen = "/ManageArticleScreen";
+  static const String myCatsScreen = "/MyCatsScreen";
+  static const String manageArticleScreen = "/ManageArticleScreen";
+  static const String writeArticleScreen = "/WriteArticleScreen";
 }

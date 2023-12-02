@@ -194,7 +194,7 @@ class SingleArticleScreen extends StatelessWidget {
                       singleArticleScreenController.tagsList[index].id!);
               Get.find<ArticleListScreenController>().appBarTitle.value =
                   singleArticleScreenController.tagsList[index].title!;
-              Get.toNamed(MyStrings.routeArticleScreen);
+              Get.toNamed(NamedRoute.articleScreen);
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 12),
@@ -232,7 +232,7 @@ class SingleArticleScreen extends StatelessWidget {
             onTap: () async {
               await singleArticleScreenController.getSingleArticle(
                   singleArticleScreenController.relatedList[index].id!);
-              Get.toNamed(MyStrings.routeSingleArticleScreen);
+              Get.toNamed(NamedRoute.routeSingleArticleScreen);
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 10),

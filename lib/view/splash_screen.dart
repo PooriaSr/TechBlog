@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 2))
-        .then((value) => {Get.offNamed(MyStrings.routeMainScreen)});
+        .then((value) => {Get.offNamed(NamedRoute.mainScreen)});
 
     return Scaffold(
       body: SafeArea(
