@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:tech_blog/controller/file_controller.dart';
 import 'package:tech_blog/controller/home_screen_controller.dart';
 import 'package:tech_blog/controller/list_article_screen_controller.dart';
 import 'package:tech_blog/controller/manage_article_controller.dart';
@@ -41,5 +42,6 @@ class ManageArticleBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => ManageArticleController());
+    Get.lazyPut(() => FilePickerController());
   }
 }
