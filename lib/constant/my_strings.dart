@@ -38,6 +38,8 @@ class MyStrings {
   static const String bluePenWriteNewArticleTitle = "ویرایش عنوان مقاله";
   static const String bluePenWriteNewArticleBody = "ویرایش متن اصلی مقاله";
   static const String bluePenWriteNewArticleTags = "انتخاب دسته بندی";
+  static const String dialogGetTitle = "عنوان مقاله";
+  static const String confirm = "تایید";
   static const String defaultArticleTitle =
       "اینجا عنوان مقاله قرار میگیره یه عنوان جذاب انتخاب کن";
   static const String manageArticles = "مدیریت مقاله ها";

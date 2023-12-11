@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog/binding.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
+import 'package:tech_blog/view/article/article_content_editor.dart';
 import 'package:tech_blog/view/article/article_list_screen.dart';
 import 'package:tech_blog/view/article/manage_article_screen.dart';
 import 'package:tech_blog/view/article/write_article_screen.dart';
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
               page: () => WriteArticleScreen(),
               binding: ManageArticleBinding()),
         ],
-        home: SplashScreen());
+        home: ArticleContentEditor());
   }
 
   ThemeData lightTheme(Size phoneSize) {

@@ -24,7 +24,7 @@ class ManageArticleScreen extends StatelessWidget {
                     height: Get.height / 1.4,
                     child: manageArticleController.loading.value == true
                         ? const SpinKitLoading()
-                        : manageArticleController.articleList.isEmpty
+                        : manageArticleController.userArticleList.isEmpty
                             ? emptyState()
                             : publishedState()),
               ),
@@ -52,12 +52,12 @@ class ManageArticleScreen extends StatelessWidget {
   SizedBox publishedState() {
     return SizedBox(
       child: ListView.builder(
-        itemCount: manageArticleController.articleList.length,
+        itemCount: manageArticleController.userArticleList.length,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.only(top: 20),
           child: Row(children: [
             CachedNetworkImage(
-              imageUrl: manageArticleController.articleList[index].image!,
+              imageUrl: manageArticleController.userArticleList[index].image!,
               imageBuilder: (context, imageProvider) => Container(
                 width: Get.width / 4,
                 height: Get.height / 10,
@@ -80,17 +80,19 @@ class ManageArticleScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    manageArticleController.articleList[index].title!,
+                    manageArticleController.userArticleList[index].title!,
                     maxLines: 3,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Row(
                     children: [
-                      Text(manageArticleController.articleList[index].author!),
                       Text(manageArticleController
-                          .articleList[index].createdAt!),
-                      Text(manageArticleController.articleList[index].status!)
+                          .userArticleList[index].author!),
+                      Text(manageArticleController
+                          .userArticleList[index].createdAt!),
+                      Text(manageArticleController
+                          .userArticleList[index].status!)
                     ],
                   )
                 ],

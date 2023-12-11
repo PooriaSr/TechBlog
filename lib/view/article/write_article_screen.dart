@@ -107,8 +107,13 @@ class WriteArticleScreen extends StatelessWidget {
                     const SizedBox(
                       height: 25,
                     ),
-                    const BluePenIconTextTitleTechBlog(
-                      title: MyStrings.bluePenWriteNewArticleTitle,
+                    GestureDetector(
+                      onTap: () {
+                        getTitle();
+                      },
+                      child: const BluePenIconTextTitleTechBlog(
+                        title: MyStrings.bluePenWriteNewArticleTitle,
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -133,5 +138,30 @@ class WriteArticleScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  getTitle() {
+    Get.defaultDialog(
+        contentPadding: const EdgeInsets.only(left: 15, right: 15),
+        titlePadding: const EdgeInsets.only(top: 20, bottom: 20),
+        radius: 15,
+        title: MyStrings.dialogGetTitle,
+        content: TextField(
+          controller: manageArticleController.titleTextEditingController,
+          keyboardType: TextInputType.text,
+          decoration: InputDecoration(
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
+        ),
+        confirm: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: ElevatedButton(
+            onPressed: () {
+              manageArticleController.updateTitle();
+              Get.back();
+            },
+            child: Text(MyStrings.confirm, style: MyTextStyle.bottun),
+          ),
+        ));
   }
 }

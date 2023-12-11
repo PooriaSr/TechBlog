@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog/constant/api_constant.dart';
@@ -6,8 +7,9 @@ import 'package:tech_blog/models/article_model.dart';
 import 'package:tech_blog/services/dio_service.dart';
 
 class ManageArticleController extends GetxController {
-  RxList<ArticleModel> articleList = RxList();
+  RxList<ArticleModel> userArticleList = RxList();
   Rx<ArticleModel> newArticle = ArticleModel().obs;
+  TextEditingController titleTextEditingController = TextEditingController();
   RxBool loading = false.obs;
 
   @override
@@ -22,9 +24,15 @@ class ManageArticleController extends GetxController {
         ApiConstant.publishedByMe + GetStorage().read(StorageConstant.userId));
     if (response.statusCode == 200) {
       response.data.forEach((element) {
-        articleList.add(ArticleModel.fromJson(element));
+        userArticleList.add(ArticleModel.fromJson(element));
       });
       loading.value = false;
     }
+  }
+
+  updateTitle() {
+    newArticle.update((val) {
+      val!.title = titleTextEditingController.text;
+    });
   }
 }
