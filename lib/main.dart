@@ -11,7 +11,6 @@ import 'package:tech_blog/view/article/write_article_screen.dart';
 import 'package:tech_blog/view/main/main_screen.dart';
 import 'package:tech_blog/view/register/my_cats_screen.dart';
 import 'package:tech_blog/view/article/single_article_screen.dart';
-import 'package:tech_blog/view/splash_screen.dart';
 
 void main() async {
   await GetStorage.init();
@@ -53,7 +52,7 @@ class MyApp extends StatelessWidget {
               page: () => WriteArticleScreen(),
               binding: ManageArticleBinding()),
         ],
-        home: ArticleContentEditor());
+        home: const ArticleContentEditor());
   }
 
   ThemeData lightTheme(Size phoneSize) {
