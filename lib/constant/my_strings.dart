@@ -40,8 +40,13 @@ class MyStrings {
   static const String bluePenWriteNewArticleTags = "انتخاب دسته بندی";
   static const String dialogGetTitle = "عنوان مقاله";
   static const String confirm = "تایید";
+  static const String cancel = "لغو";
+  static const String ok = "باشه";
+  static const String preview = "پیش نمایش";
   static const String defaultArticleTitle =
       "اینجا عنوان مقاله قرار میگیره یه عنوان جذاب انتخاب کن";
+  static const String defaultArticleContent =
+      '''من متن و بدنه اصلی مقاله هستم،اگر میخوای من رو ویرایش کنی و یه مقاله جذاب بنویسی، نوشته آبی رنگ بالا که نوشته  " ویرایش متن اصلی مقاله "  رو لمس کن تا وارد ویرایشگر بشی''';
   static const String manageArticles = "مدیریت مقاله ها";
   static const String letsGoWriteAnArticle = "بریم برای نوشتن یه مقاله باحال";
   static const String managePodcasts = "مدیریت پادکست ها";
@@ -62,4 +67,5 @@ class NamedRoute {
   static const String myCatsScreen = "/MyCatsScreen";
   static const String manageArticleScreen = "/ManageArticleScreen";
   static const String writeArticleScreen = "/WriteArticleScreen";
+  static const String articleContentEditor = "/ArticleContentEditor";
 }

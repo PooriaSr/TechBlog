@@ -78,7 +78,6 @@ PreferredSize appBar(String title) {
       padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
       child: SafeArea(
         child: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle.dark,
           backgroundColor: Colors.transparent,
           elevation: 0,
           actions: [

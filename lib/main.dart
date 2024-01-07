@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog/binding.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
+import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/view/article/article_content_editor.dart';
 import 'package:tech_blog/view/article/article_list_screen.dart';
 import 'package:tech_blog/view/article/manage_article_screen.dart';
@@ -11,6 +12,7 @@ import 'package:tech_blog/view/article/write_article_screen.dart';
 import 'package:tech_blog/view/main/main_screen.dart';
 import 'package:tech_blog/view/register/my_cats_screen.dart';
 import 'package:tech_blog/view/article/single_article_screen.dart';
+import 'package:tech_blog/view/splash_screen.dart';
 
 void main() async {
   await GetStorage.init();
@@ -27,32 +29,39 @@ class MyApp extends StatelessWidget {
         locale: const Locale('fa'),
         theme: lightTheme(phoneSize),
         debugShowCheckedModeBanner: false,
-        getPages: [
-          GetPage(
-              name: NamedRoute.mainScreen,
-              page: () => const MainScreen(),
-              bindings: [MainBinding(), RegisterBinding()]),
-          GetPage(
-              name: NamedRoute.articleScreen,
-              page: () => ArticleListScreen(),
-              binding: ArticleBinding()),
-          GetPage(
-              name: NamedRoute.routeSingleArticleScreen,
-              page: () => SingleArticleScreen()),
-          GetPage(
-              name: NamedRoute.myCatsScreen,
-              page: () => MyCatsScreen(),
-              binding: CatsBinding()),
-          GetPage(
-              name: NamedRoute.manageArticleScreen,
-              page: () => ManageArticleScreen(),
-              binding: ManageArticleBinding()),
-          GetPage(
-              name: NamedRoute.writeArticleScreen,
-              page: () => WriteArticleScreen(),
-              binding: ManageArticleBinding()),
-        ],
-        home: const ArticleContentEditor());
+        getPages: pageRoute,
+        home: SplashScreen());
+  }
+
+  List<GetPage<dynamic>> get pageRoute {
+    return [
+      GetPage(
+          name: NamedRoute.mainScreen,
+          page: () => const MainScreen(),
+          bindings: [MainBinding(), RegisterBinding()]),
+      GetPage(
+          name: NamedRoute.articleScreen,
+          page: () => ArticleListScreen(),
+          binding: ArticleBinding()),
+      GetPage(
+          name: NamedRoute.routeSingleArticleScreen,
+          page: () => SingleArticleScreen()),
+      GetPage(
+          name: NamedRoute.myCatsScreen,
+          page: () => MyCatsScreen(),
+          binding: CatsBinding()),
+      GetPage(
+          name: NamedRoute.manageArticleScreen,
+          page: () => ManageArticleScreen(),
+          binding: ManageArticleBinding()),
+      GetPage(
+          name: NamedRoute.writeArticleScreen,
+          page: () => WriteArticleScreen(),
+          binding: ManageArticleBinding()),
+      GetPage(
+          name: NamedRoute.articleContentEditor,
+          page: () => const ArticleContentEditor())
+    ];
   }
 
   ThemeData lightTheme(Size phoneSize) {
@@ -60,7 +69,8 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all(
+          textStyle: MaterialStatePropertyAll(MyTextStyle.bottun),
+          fixedSize: MaterialStateProperty.all(
               Size(phoneSize.width / 2.5, phoneSize.height / 15.4)),
           backgroundColor:
               const MaterialStatePropertyAll(SolidColors.primaryColor),

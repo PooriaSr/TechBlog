@@ -56,4 +56,15 @@ class MyTextStyle {
       fontSize: 14,
       fontWeight: FontWeight.w700,
       color: Colors.white);
+  static TextStyle quillPlaceholder = const TextStyle(
+    fontFamily: 'dana',
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: Colors.grey,
+  );
+  static TextStyle errorDialogTitle = const TextStyle(
+      fontFamily: 'dana',
+      fontSize: 17,
+      fontWeight: FontWeight.w600,
+      color: SolidColors.primaryColor);
 }

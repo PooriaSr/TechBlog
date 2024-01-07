@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/constant/dims.dart';
 import 'package:tech_blog/constant/my_colors.dart';
@@ -8,18 +9,23 @@ import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/controller/file_controller.dart';
-import 'package:tech_blog/controller/manage_article_controller.dart';
+import 'package:tech_blog/controller/new_article_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/services/my_file_picker.dart';
 
 class WriteArticleScreen extends StatelessWidget {
   WriteArticleScreen({super.key});
 
-  final manageArticleController = Get.find<ManageArticleController>();
+  final newArticleController = Get.find<NewArticleController>();
   final filePickerController = Get.find<FilePickerController>();
+  late final Rx<QuillController> _quillController = QuillController(
+          document: newArticleController.document.value,
+          selection: const TextSelection.collapsed(offset: 0))
+      .obs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Obx(
           () => Column(
@@ -100,13 +106,15 @@ class WriteArticleScreen extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(right: Dims.halfBodyMargin),
+                padding: EdgeInsets.only(
+                    right: Dims.halfBodyMargin, left: Dims.halfBodyMargin),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
                       height: 25,
                     ),
+                    //getTitle
                     GestureDetector(
                       onTap: () {
                         getTitle();
@@ -118,18 +126,36 @@ class WriteArticleScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    manageArticleController.newArticle.value.title == null
+                    //title
+                    newArticleController.newArticle.value.title == null
                         ? const Text(MyStrings.defaultArticleTitle)
-                        : Text(manageArticleController.newArticle.value.title!),
+                        : Text(newArticleController.newArticle.value.title!),
                     const SizedBox(
                       height: 30,
                     ),
-                    const BluePenIconTextTitleTechBlog(
-                      title: MyStrings.bluePenWriteNewArticleBody,
+                    //getContent
+                    GestureDetector(
+                      onTap: () => Get.toNamed(NamedRoute.articleContentEditor),
+                      child: const BluePenIconTextTitleTechBlog(
+                        title: MyStrings.bluePenWriteNewArticleBody,
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
+                    //content
+                    newArticleController.newArticle.value.content == null
+                        ? const Text(
+                            MyStrings.defaultArticleContent,
+                            textAlign: TextAlign.justify,
+                          )
+                        : QuillEditor.basic(
+                            configurations: QuillEditorConfigurations(
+                              readOnly: true,
+                              showCursor: false,
+                              controller: _quillController.value,
+                            ),
+                          )
                   ],
                 ),
               ),
@@ -147,7 +173,7 @@ class WriteArticleScreen extends StatelessWidget {
         radius: 15,
         title: MyStrings.dialogGetTitle,
         content: TextField(
-          controller: manageArticleController.titleTextEditingController,
+          controller: newArticleController.titleTextEditingController,
           keyboardType: TextInputType.text,
           decoration: InputDecoration(
               border:
@@ -157,7 +183,7 @@ class WriteArticleScreen extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: ElevatedButton(
             onPressed: () {
-              manageArticleController.updateTitle();
+              newArticleController.updateTitle();
               Get.back();
             },
             child: Text(MyStrings.confirm, style: MyTextStyle.bottun),

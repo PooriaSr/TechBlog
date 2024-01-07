@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog/constant/api_constant.dart';
@@ -8,8 +7,7 @@ import 'package:tech_blog/services/dio_service.dart';
 
 class ManageArticleController extends GetxController {
   RxList<ArticleModel> userArticleList = RxList();
-  Rx<ArticleModel> newArticle = ArticleModel().obs;
-  TextEditingController titleTextEditingController = TextEditingController();
+
   RxBool loading = false.obs;
 
   @override
@@ -28,11 +26,5 @@ class ManageArticleController extends GetxController {
       });
       loading.value = false;
     }
-  }
-
-  updateTitle() {
-    newArticle.update((val) {
-      val!.title = titleTextEditingController.text;
-    });
   }
 }
