@@ -155,7 +155,58 @@ class WriteArticleScreen extends StatelessWidget {
                               showCursor: false,
                               controller: _quillController.value,
                             ),
-                          )
+                          ),
+
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    //tagsSelection
+                    GestureDetector(
+                      onTap: () => selectTags(),
+                      child: const BluePenIconTextTitleTechBlog(
+                          title: MyStrings.bluePenWriteNewArticleTags),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    //selectedTags
+                    SizedBox(
+                        height: 40,
+                        width: Get.width,
+                        child: ListView.builder(
+                          itemCount:
+                              newArticleController.selectedTagList.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: SolidColors.tags),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 8, left: 8),
+                                child: Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () => newArticleController
+                                          .removeSelectionTags(index),
+                                      child: const Icon(
+                                        Icons.delete,
+                                        color: SolidColors.greyColor,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(newArticleController
+                                        .selectedTagList[index].title!),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ))
                   ],
                 ),
               ),
@@ -189,5 +240,55 @@ class WriteArticleScreen extends StatelessWidget {
             child: Text(MyStrings.confirm, style: MyTextStyle.bottun),
           ),
         ));
+  }
+
+  selectTags() {
+    Get.bottomSheet(
+        isScrollControlled: true,
+        backgroundColor: Colors.white,
+        SizedBox(
+            height: Get.height / 2,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(25, 25, 25, 25),
+              child: SizedBox(
+                child: GridView.builder(
+                  itemCount: newArticleController.tagList.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 2,
+                      crossAxisSpacing: 10),
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () => newArticleController.selectionTags(index),
+                    child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            gradient: const LinearGradient(
+                                colors: GradientColors.tags,
+                                begin: Alignment.centerRight,
+                                end: Alignment.centerLeft)),
+                        child: Row(
+                          children: [
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Image.asset(
+                              Assets.icons.hashtagicon.path,
+                              height: 12,
+                              color: SolidColors.tags,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              newArticleController.tagList[index].title!,
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                          ],
+                        )),
+                  ),
+                ),
+              ),
+            )));
   }
 }
