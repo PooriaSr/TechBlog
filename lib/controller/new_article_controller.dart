@@ -53,13 +53,26 @@ class NewArticleController extends GetxController {
           colorText: Colors.white);
     } else {
       selectedTagList.add(tagList[index]);
-      Get.snackbar('', '${tagList[index].title} با موفقیت اضافه گردید.',
-          backgroundColor: SolidColors.primaryColor.withAlpha(180),
-          colorText: Colors.white);
     }
   }
 
-  removeSelectionTags(int index) {
-    selectedTagList.removeAt(index);
+  selectionTag(int index) {
+    newArticle.update((val) {
+      val!.catId = tagList[index].id;
+      val.catName = tagList[index].title;
+      Get.back();
+    });
+    Get.closeAllSnackbars();
+    Get.rawSnackbar(
+        message: 'انتخاب دسته بندی انجام گردید',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: SolidColors.primaryColor,
+        snackStyle: SnackStyle.GROUNDED);
+  }
+
+  clearTagSelected() {
+    newArticle.update((val) {
+      val!.catName = null;
+    });
   }
 }

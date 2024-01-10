@@ -160,53 +160,24 @@ class WriteArticleScreen extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    //tagsSelection
+                    //tagSelection
                     GestureDetector(
-                      onTap: () => selectTags(),
+                      onTap: () => selectTag(),
                       child: const BluePenIconTextTitleTechBlog(
                           title: MyStrings.bluePenWriteNewArticleTags),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    //selectedTags
-                    SizedBox(
-                        height: 40,
-                        width: Get.width,
-                        child: ListView.builder(
-                          itemCount:
-                              newArticleController.selectedTagList.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) => Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: SolidColors.tags),
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(right: 8, left: 8),
-                                child: Row(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () => newArticleController
-                                          .removeSelectionTags(index),
-                                      child: const Icon(
-                                        Icons.delete,
-                                        color: SolidColors.greyColor,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    Text(newArticleController
-                                        .selectedTagList[index].title!),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ))
+                    //selectedTag
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: SolidColors.tags),
+                      child: Text(
+                          newArticleController.newArticle.value.catName ?? ''),
+                    )
                   ],
                 ),
               ),
@@ -242,7 +213,7 @@ class WriteArticleScreen extends StatelessWidget {
         ));
   }
 
-  selectTags() {
+  selectTag() {
     Get.bottomSheet(
         isScrollControlled: true,
         backgroundColor: Colors.white,
@@ -259,7 +230,7 @@ class WriteArticleScreen extends StatelessWidget {
                       childAspectRatio: 2,
                       crossAxisSpacing: 10),
                   itemBuilder: (context, index) => GestureDetector(
-                    onTap: () => newArticleController.selectionTags(index),
+                    onTap: () => newArticleController.selectionTag(index),
                     child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
