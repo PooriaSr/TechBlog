@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog/constant/api_constant.dart';
+import 'package:tech_blog/constant/commands.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/storage_constant.dart';
@@ -16,11 +17,11 @@ class RegisterController extends GetxController {
   register() async {
     Map<String, dynamic> map = {
       'email': emailTextEditingController.text,
-      'command': 'register',
+      'command': Commands.register,
     };
 
     var response =
-        await DioService().postMethod(map, ApiConstant.postRegisterUrl);
+        await DioService().postMethod(map, ApiUrlConstant.postRegisterUrl);
     debugPrint(response.toString());
     email = emailTextEditingController.text;
     userId = response.data['user_id'];
@@ -34,7 +35,7 @@ class RegisterController extends GetxController {
       'command': 'verify'
     };
     var response =
-        await DioService().postMethod(map, ApiConstant.postRegisterUrl);
+        await DioService().postMethod(map, ApiUrlConstant.postRegisterUrl);
     debugPrint(response.toString());
 
     switch (response.data['response']) {

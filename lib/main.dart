@@ -69,6 +69,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
+          foregroundColor: const MaterialStatePropertyAll(Colors.white),
           textStyle: MaterialStatePropertyAll(MyTextStyle.bottun),
           fixedSize: MaterialStateProperty.all(
               Size(phoneSize.width / 2.5, phoneSize.height / 15.4)),

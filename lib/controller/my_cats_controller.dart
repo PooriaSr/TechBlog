@@ -19,7 +19,7 @@ class MyCatsController extends GetxController {
   }
 
   getTagsMethod() async {
-    var response = await DioService().getMethod(ApiConstant.getTagsList);
+    var response = await DioService().getMethod(ApiUrlConstant.getTagsList);
     response.data.forEach((element) {
       tagsList.add(TagsModel.fromJson(element));
     });

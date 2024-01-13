@@ -22,7 +22,7 @@ class SingleArticleScreenController extends GetxController {
     loading.value = true;
     var userId = '';
     var response = await DioService().getMethod(
-        "${ApiConstant.baseUrl}article/get.php?command=info&id=$id&user_id=$userId");
+        "${ApiUrlConstant.baseUrl}article/get.php?command=info&id=$id&user_id=$userId");
     if (true) {
       articleInfo.value = ArticleInfoModel.fromJson(response.data);
       if (tagsList.isNotEmpty) {

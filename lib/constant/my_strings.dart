@@ -43,6 +43,7 @@ class MyStrings {
   static const String cancel = "لغو";
   static const String ok = "باشه";
   static const String preview = "پیش نمایش";
+  static const String postArticle = "ارسال پست";
   static const String defaultArticleTitle =
       "اینجا عنوان مقاله قرار میگیره یه عنوان جذاب انتخاب کن";
   static const String defaultArticleContent =

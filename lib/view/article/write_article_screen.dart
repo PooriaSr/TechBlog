@@ -35,13 +35,13 @@ class WriteArticleScreen extends StatelessWidget {
                   SizedBox(
                     width: Get.width,
                     height: Get.height / 3,
-                    child: filePickerController.file.value.size == 0
+                    child: newArticleController.file.value.size == 0
                         ? Image(
                             image: Assets.images.singlePlaceHolder.provider(),
                             fit: BoxFit.cover,
                           )
                         : Image.file(
-                            File(filePickerController.file.value.path!),
+                            File(newArticleController.file.value.path!),
                             fit: BoxFit.cover,
                           ),
                   ),
@@ -149,11 +149,14 @@ class WriteArticleScreen extends StatelessWidget {
                             MyStrings.defaultArticleContent,
                             textAlign: TextAlign.justify,
                           )
-                        : QuillEditor.basic(
-                            configurations: QuillEditorConfigurations(
-                              readOnly: true,
-                              showCursor: false,
-                              controller: _quillController.value,
+                        : SizedBox(
+                            height: Get.height / 7,
+                            child: QuillEditor.basic(
+                              configurations: QuillEditorConfigurations(
+                                readOnly: true,
+                                showCursor: false,
+                                controller: _quillController.value,
+                              ),
                             ),
                           ),
 
@@ -167,16 +170,27 @@ class WriteArticleScreen extends StatelessWidget {
                           title: MyStrings.bluePenWriteNewArticleTags),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 16,
                     ),
                     //selectedTag
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: SolidColors.tags),
-                      child: Text(
-                          newArticleController.newArticle.value.catName ?? ''),
+                    newArticleController.newArticle.value.catName != null
+                        ? Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: SolidColors.tags),
+                            child: Text(
+                                newArticleController.newArticle.value.catName!),
+                          )
+                        : const SizedBox(),
+                    SizedBox(
+                      height: Get.height / 30,
+                    ),
+                    Center(
+                      child: ElevatedButton(
+                          onPressed: () async =>
+                              await newArticleController.storeArticle(),
+                          child: const Text(MyStrings.postArticle)),
                     )
                   ],
                 ),

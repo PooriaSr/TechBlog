@@ -18,8 +18,8 @@ class ManageArticleController extends GetxController {
 
   getManagedArticles() async {
     loading.value = true;
-    var response = await DioService().getMethod(
-        ApiConstant.publishedByMe + GetStorage().read(StorageConstant.userId));
+    var response = await DioService().getMethod(ApiUrlConstant.publishedByMe +
+        GetStorage().read(StorageConstant.userId));
     if (response.statusCode == 200) {
       response.data.forEach((element) {
         userArticleList.add(ArticleModel.fromJson(element));

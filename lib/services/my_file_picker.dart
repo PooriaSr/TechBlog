@@ -1,12 +1,13 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
-import 'package:tech_blog/controller/file_controller.dart';
+import 'package:tech_blog/controller/new_article_controller.dart';
 
 class MyFilePicker {
-  FilePickerController filePickerController = Get.put(FilePickerController());
+  final NewArticleController _newArticleController =
+      Get.put(NewArticleController());
   Future pickFile() async {
     FilePickerResult? result =
         await FilePicker.platform.pickFiles(type: FileType.image);
-    filePickerController.file.value = result!.files.first;
+    _newArticleController.file.value = result!.files.first;
   }
 }

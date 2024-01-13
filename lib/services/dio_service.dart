@@ -1,9 +1,13 @@
 import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as dio_service;
+import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:tech_blog/constant/storage_constant.dart';
 
 class DioService {
   Dio dio = Dio();
+
   Future<dynamic> getMethod(String url) async {
     return await dio
         .get(url,
@@ -18,7 +22,11 @@ class DioService {
   }
 
   Future<dynamic> postMethod(Map<String, dynamic> map, String url) async {
-    dio.options.headers['content-type'] = "application/json";
+    dio.options.headers['Content-Type'] = "application/json";
+    var token = GetStorage().read(StorageConstant.token);
+    if (token != null) {
+      dio.options.headers['authorization'] = token;
+    }
     return await dio
         .post(url,
             data: dio_service.FormData.fromMap(map),
