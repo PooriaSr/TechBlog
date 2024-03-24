@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:tech_blog/constant/dims.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
@@ -26,7 +24,8 @@ class SinglePodcastScreen extends StatelessWidget {
             children: [
               //podcast poster
               SizedBox(
-                height: Get.height / 3,
+                height: Get.height / 3.5,
+                width: Get.width,
                 child: Stack(children: [
                   CachedNetworkImage(
                     //TODO: fix index bug
