@@ -5,6 +5,7 @@ import 'package:tech_blog/controller/list_article_screen_controller.dart';
 import 'package:tech_blog/controller/manage_article_controller.dart';
 import 'package:tech_blog/controller/my_cats_controller.dart';
 import 'package:tech_blog/controller/new_article_controller.dart';
+import 'package:tech_blog/controller/podcast_controller.dart';
 import 'package:tech_blog/controller/register_controller.dart';
 import 'package:tech_blog/controller/single_article_screen_controller.dart';
 
@@ -45,5 +46,12 @@ class ManageArticleBinding implements Bindings {
     Get.lazyPut(() => ManageArticleController());
     Get.lazyPut(() => FilePickerController());
     Get.lazyPut(() => NewArticleController());
+  }
+}
+
+class ManagePodcastBinding implements Bindings {
+  @override
+  void dependencies() {
+    Get.lazyPut(() => PodcastController());
   }
 }

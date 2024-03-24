@@ -9,6 +9,7 @@ import 'package:tech_blog/constant/api_constant.dart';
 import 'package:tech_blog/constant/commands.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/storage_constant.dart';
+import 'package:tech_blog/controller/manage_article_controller.dart';
 import 'package:tech_blog/models/tags_model.dart';
 import 'package:tech_blog/services/dio_service.dart';
 import 'package:dio/dio.dart' as dio;
@@ -18,10 +19,12 @@ import '../models/article_info_model.dart';
 class NewArticleController extends GetxController {
   Rx<ArticleInfoModel> newArticle = ArticleInfoModel().obs;
   TextEditingController titleTextEditingController = TextEditingController();
+  var manageArticleController = Get.find<ManageArticleController>();
   final Rx<QuillController> _quillController = QuillController.basic().obs;
   Rx<Document> document = Document().obs;
   RxList<TagsModel> tagList = RxList();
   Rx<PlatformFile> file = PlatformFile(name: 'nothing', size: 0).obs;
+  RxBool loading = false.obs;
 
   @override
   onInit() {
@@ -73,6 +76,7 @@ class NewArticleController extends GetxController {
   }
 
   storeArticle() async {
+    loading.value = true;
     Map<String, dynamic> map = {
       ApiKeyConstant.title: newArticle.value.title,
       ApiKeyConstant.content: newArticle.value.content,
@@ -83,16 +87,11 @@ class NewArticleController extends GetxController {
       ApiKeyConstant.command: Commands.store
     };
 
-    // debugPrint(newArticle.value.title);
-    // debugPrint(newArticle.value.content);
-    // debugPrint(newArticle.value.catId);
-    // debugPrint(GetStorage().read(StorageConstant.userId));
-    // debugPrint(GetStorage().read(StorageConstant.token));
-    // debugPrint(file.value.path!);
-    // debugPrint(Commands.store);
-
     var response =
         await DioService().postMethod(map, ApiUrlConstant.postArticleUrl);
-    debugPrint(response.data.toString());
+
+    Get.toNamed(NamedRoute.manageArticleScreen);
+    loading.value = false;
+    log(response.data.toString());
   }
 }

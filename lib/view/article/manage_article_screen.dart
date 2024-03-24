@@ -5,11 +5,14 @@ import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/controller/manage_article_controller.dart';
+import 'package:tech_blog/controller/single_article_screen_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 
 class ManageArticleScreen extends StatelessWidget {
   ManageArticleScreen({super.key});
   final manageArticleController = Get.find<ManageArticleController>();
+  final singleArticleScreenController =
+      Get.find<SingleArticleScreenController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,20 +59,27 @@ class ManageArticleScreen extends StatelessWidget {
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.only(top: 20),
           child: Row(children: [
-            CachedNetworkImage(
-              imageUrl: manageArticleController.userArticleList[index].image!,
-              imageBuilder: (context, imageProvider) => Container(
-                width: Get.width / 4,
-                height: Get.height / 10,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                        image: imageProvider, fit: BoxFit.cover)),
-              ),
-              placeholder: (context, url) => const SpinKitLoading(),
-              errorWidget: (context, url, error) => ErrorImage(
-                height: Get.height / 10,
-                width: Get.width / 4,
+            GestureDetector(
+              onTap: () {
+                singleArticleScreenController.getSingleArticle(
+                    manageArticleController.userArticleList[index].id!);
+                Get.toNamed(NamedRoute.singleArticleScreen);
+              },
+              child: CachedNetworkImage(
+                imageUrl: manageArticleController.userArticleList[index].image!,
+                imageBuilder: (context, imageProvider) => Container(
+                  width: Get.width / 4,
+                  height: Get.height / 10,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: imageProvider, fit: BoxFit.cover)),
+                ),
+                placeholder: (context, url) => const SpinKitLoading(),
+                errorWidget: (context, url, error) => ErrorImage(
+                  height: Get.height / 10,
+                  width: Get.width / 4,
+                ),
               ),
             ),
             const SizedBox(

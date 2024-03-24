@@ -79,7 +79,7 @@ class _ArticleContentEditorState extends State<ArticleContentEditor> {
                 ),
                 QuillToolbar.simple(
                     configurations: QuillSimpleToolbarConfigurations(
-                        buttonOptions: const QuillToolbarButtonOptions(
+                        buttonOptions: const QuillSimpleToolbarButtonOptions(
                             fontSize: QuillToolbarFontSizeButtonOptions(
                                 iconSize: 19)),
                         toolbarSize: Get.height / 13,

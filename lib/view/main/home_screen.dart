@@ -128,7 +128,7 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 singleArticleScreenController.getSingleArticle(
                     homeScreenController.topVisitedList[index].id!);
-                Get.toNamed(NamedRoute.routeSingleArticleScreen);
+                Get.toNamed(NamedRoute.singleArticleScreen);
               },
               child: Padding(
                 padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 14),
@@ -245,7 +245,7 @@ class HomeScreen extends StatelessWidget {
         onTap: () {
           singleArticleScreenController
               .getSingleArticle(homeScreenController.poster.value.id!);
-          Get.toNamed(NamedRoute.routeSingleArticleScreen);
+          Get.toNamed(NamedRoute.singleArticleScreen);
         },
         child: Stack(children: [
           CachedNetworkImage(

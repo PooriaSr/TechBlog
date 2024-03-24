@@ -186,11 +186,14 @@ class WriteArticleScreen extends StatelessWidget {
                     SizedBox(
                       height: Get.height / 30,
                     ),
+                    //postBtn
                     Center(
                       child: ElevatedButton(
                           onPressed: () async =>
                               await newArticleController.storeArticle(),
-                          child: const Text(MyStrings.postArticle)),
+                          child: newArticleController.loading.value == false
+                              ? const Text(MyStrings.postArticle)
+                              : const Text('در حال ارسال')),
                     )
                   ],
                 ),

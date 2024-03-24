@@ -10,6 +10,8 @@ import 'package:tech_blog/view/article/article_list_screen.dart';
 import 'package:tech_blog/view/article/manage_article_screen.dart';
 import 'package:tech_blog/view/article/write_article_screen.dart';
 import 'package:tech_blog/view/main/main_screen.dart';
+import 'package:tech_blog/view/podcast/podcast_list_screen.dart';
+import 'package:tech_blog/view/podcast/single_podcast_screen.dart';
 import 'package:tech_blog/view/register/my_cats_screen.dart';
 import 'package:tech_blog/view/article/single_article_screen.dart';
 import 'package:tech_blog/view/splash_screen.dart';
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         theme: lightTheme(phoneSize),
         debugShowCheckedModeBanner: false,
         getPages: pageRoute,
-        home: SplashScreen());
+        home: PodcastListScreen());
   }
 
   List<GetPage<dynamic>> get pageRoute {
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
           page: () => ArticleListScreen(),
           binding: ArticleBinding()),
       GetPage(
-          name: NamedRoute.routeSingleArticleScreen,
+          name: NamedRoute.singleArticleScreen,
           page: () => SingleArticleScreen()),
       GetPage(
           name: NamedRoute.myCatsScreen,
@@ -60,7 +62,12 @@ class MyApp extends StatelessWidget {
           binding: ManageArticleBinding()),
       GetPage(
           name: NamedRoute.articleContentEditor,
-          page: () => const ArticleContentEditor())
+          page: () => const ArticleContentEditor()),
+      GetPage(
+          name: NamedRoute.podcastListScreen, page: () => PodcastListScreen()),
+      GetPage(
+          name: NamedRoute.singlePodcastScreen,
+          page: () => SinglePodcastScreen())
     ];
   }
 

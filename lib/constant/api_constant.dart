@@ -1,5 +1,3 @@
-import 'package:tech_blog/constant/commands.dart';
-
 class ApiUrlConstant {
   static const baseUrl = "https://techblog.sasansafari.com/Techblog/api/";
   static const hostDlUrl = "https://techblog.sasansafari.com";
@@ -10,8 +8,12 @@ class ApiUrlConstant {
   static const postRegisterUrl = "${baseUrl}register/action.php";
   static const postArticleUrl = "${baseUrl}article/post.php";
 
-  static const publishedByMe =
+  static const articlePublishedByMe =
       "${baseUrl}article/get.php?command=published_by_me&user_id=";
+  static const getNewPodcastsList =
+      "${baseUrl}podcast/get.php?command=new&user_id=";
+  static const getPodcastFile =
+      "${baseUrl}podcast/get.php?command=get_files&podcats_id=";
 }
 
 class ApiKeyConstant {

@@ -121,7 +121,10 @@ class ErrorImage extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          border:
+              Border.all(color: Color.fromARGB(255, 235, 233, 233), width: 4)),
       child: const Icon(
         Icons.image_not_supported_outlined,
         color: Colors.grey,

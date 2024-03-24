@@ -9,17 +9,9 @@ class PodcastModel {
   String? view;
   String? status;
   String? createdAt;
+  bool? isFavorite;
 
-  PodcastModel({
-    required this.id,
-    required this.title,
-    required this.poster,
-    required this.catName,
-    required this.author,
-    required this.view,
-    required this.status,
-    required this.createdAt,
-  });
+  PodcastModel();
 
   PodcastModel.fromJson(Map<String, dynamic> element) {
     id = element['id'];
@@ -30,5 +22,17 @@ class PodcastModel {
     view = element['view'];
     status = element['status'];
     createdAt = element['created_at'];
+  }
+
+  PodcastModel.fromJson2(Map<String, dynamic> element) {
+    id = element['id'];
+    title = element['title'];
+    poster = ApiUrlConstant.hostDlUrl + element['poster'];
+    // catName = element['cat_name'];
+    author = element['publisher'];
+    view = element['view'];
+    status = element['status'];
+    createdAt = element['created_at'];
+    isFavorite = element['isFavorite'];
   }
 }

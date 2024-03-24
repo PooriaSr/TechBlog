@@ -232,7 +232,7 @@ class SingleArticleScreen extends StatelessWidget {
             onTap: () async {
               await singleArticleScreenController.getSingleArticle(
                   singleArticleScreenController.relatedList[index].id!);
-              Get.toNamed(NamedRoute.routeSingleArticleScreen);
+              Get.toNamed(NamedRoute.singleArticleScreen);
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 10),
