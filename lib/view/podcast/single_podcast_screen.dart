@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tech_blog/constant/dims.dart';
 import 'package:tech_blog/constant/my_colors.dart';
@@ -134,21 +136,38 @@ class SinglePodcastScreen extends StatelessWidget {
                                 width: Get.width,
                                 child: Row(
                                   children: [
-                                    Image(
-                                      image: Assets.icons.microphon.provider(),
-                                      height: 28,
+                                    SizedBox(
+                                      width: Get.width / 15,
+                                      child: Image(
+                                        image:
+                                            Assets.icons.microphon.provider(),
+                                        height: 28,
+                                      ),
                                     ),
                                     const SizedBox(
-                                      width: 8,
+                                      width: 10,
                                     ),
                                     SizedBox(
-                                      width: Get.width / 1.25,
+                                      width: Get.width / 1.6,
                                       child: Text(
                                         podcastController
                                             .podcastFiles[index].title!,
                                         style: MyTextStyle.bluePenTitles,
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 2,
+                                        textScaler:
+                                            const TextScaler.linear(0.9),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    //TODO: fix minutes section :00
+                                    SizedBox(
+                                      width: Get.width / 9,
+                                      child: Text(
+                                        "00 : ${podcastController.podcastFiles[index].length!}",
+                                        style: MyTextStyle.bluePenTitles,
                                         textScaler:
                                             const TextScaler.linear(0.9),
                                       ),
