@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
+import 'package:tech_blog/constant/my_decoration.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/controller/register_controller.dart';
@@ -160,11 +161,7 @@ class BottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: phoneSize.height / 7,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: GradientColors.bottomNavBackground,
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter)),
+        decoration: MyDecoration.mainGradient,
         child: Padding(
           padding: EdgeInsets.fromLTRB(
               bodyMargin, phoneSize.height / 18, bodyMargin, 0),

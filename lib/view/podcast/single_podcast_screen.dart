@@ -178,6 +178,11 @@ class SinglePodcastScreen extends StatelessWidget {
                             ),
                           ),
                         ),
+                      ),
+                      Container(
+                        width: Get.width,
+                        height: Get.height / 8,
+                        color: Colors.amber,
                       )
                     ]),
               ),
