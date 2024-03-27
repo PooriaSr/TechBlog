@@ -161,19 +161,18 @@ class BottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         height: phoneSize.height / 7,
-        decoration: MyDecoration.mainGradient,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: GradientColors.bottomNavBackground,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
         child: Padding(
           padding: EdgeInsets.fromLTRB(
               bodyMargin, phoneSize.height / 18, bodyMargin, 0),
           child: Container(
             width: phoneSize.width / 5,
             height: phoneSize.height / 12.35,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(26),
-                gradient: const LinearGradient(
-                    colors: GradientColors.bottomNav,
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight)),
+            decoration: MyDecoration.mainGradient,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

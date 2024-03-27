@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 
 class MyDecoration {
-  static BoxDecoration mainGradient = const BoxDecoration(
-      gradient: LinearGradient(
-          colors: GradientColors.bottomNavBackground,
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter));
+  MyDecoration._();
+
+  static BoxDecoration mainGradient = BoxDecoration(
+      borderRadius: BorderRadius.circular(26),
+      gradient: const LinearGradient(
+          colors: GradientColors.bottomNav,
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight));
 }

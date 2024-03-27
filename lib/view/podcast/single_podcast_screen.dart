@@ -3,9 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:tech_blog/constant/dims.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
+import 'package:tech_blog/constant/my_decoration.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/controller/podcast_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
@@ -123,66 +125,122 @@ class SinglePodcastScreen extends StatelessWidget {
 
                       //podcast files
                       SizedBox(
-                        height: Get.height / 3.5,
-                        child: ListView.builder(
-                          itemCount: podcastController.podcastFiles.length,
-                          itemBuilder: (context, index) => Padding(
-                            padding: const EdgeInsets.only(top: 15),
-                            child: GestureDetector(
-                              onTap: () => debugPrint('Podcast played'),
-                              child: Container(
-                                color: Colors.transparent,
-                                height: Get.height / 25,
-                                width: Get.width,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: Get.width / 15,
-                                      child: Image(
-                                        image:
-                                            Assets.icons.microphon.provider(),
-                                        height: 28,
+                        height: Get.height / 3,
+                        width: Get.width,
+                        child: podcastController.podcastFiles.isEmpty
+                            ? const Center(
+                                child: SizedBox(
+                                    width: 30,
+                                    height: 30,
+                                    child: CircularProgressIndicator()))
+                            : ListView.builder(
+                                itemCount:
+                                    podcastController.podcastFiles.length,
+                                itemBuilder: (context, index) => Padding(
+                                  padding: const EdgeInsets.only(top: 15),
+                                  child: GestureDetector(
+                                    onTap: () => debugPrint('Podcast played'),
+                                    child: Container(
+                                      color: Colors.transparent,
+                                      height: Get.height / 25,
+                                      width: Get.width,
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                            width: Get.width / 15,
+                                            child: Image(
+                                              image: Assets.icons.microphon
+                                                  .provider(),
+                                              height: 28,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          SizedBox(
+                                            width: Get.width / 1.6,
+                                            child: Text(
+                                              podcastController
+                                                  .podcastFiles[index].title!,
+                                              style: MyTextStyle.bluePenTitles,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
+                                              textScaler:
+                                                  const TextScaler.linear(0.9),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 20,
+                                          ),
+                                          //TODO: fix minutes section :00
+                                          SizedBox(
+                                            width: Get.width / 9,
+                                            child: Text(
+                                              "00 : ${podcastController.podcastFiles[index].length!}",
+                                              style: MyTextStyle.bluePenTitles,
+                                              textScaler:
+                                                  const TextScaler.linear(0.9),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    SizedBox(
-                                      width: Get.width / 1.6,
-                                      child: Text(
-                                        podcastController
-                                            .podcastFiles[index].title!,
-                                        style: MyTextStyle.bluePenTitles,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2,
-                                        textScaler:
-                                            const TextScaler.linear(0.9),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 20,
-                                    ),
-                                    //TODO: fix minutes section :00
-                                    SizedBox(
-                                      width: Get.width / 9,
-                                      child: Text(
-                                        "00 : ${podcastController.podcastFiles[index].length!}",
-                                        style: MyTextStyle.bluePenTitles,
-                                        textScaler:
-                                            const TextScaler.linear(0.9),
-                                      ),
-                                    )
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                        ),
                       ),
+                      SizedBox(height: Get.width / 15),
+                      //podcast player
                       Container(
                         width: Get.width,
                         height: Get.height / 8,
-                        color: Colors.amber,
+                        decoration: MyDecoration.mainGradient,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox.shrink(),
+                            LinearPercentIndicator(
+                              backgroundColor: Colors.white,
+                              progressColor: Colors.orange,
+                              barRadius: const Radius.circular(3),
+                              percent: 0.0,
+                              lineHeight: 6,
+                              padding: EdgeInsets.only(
+                                  left: Dims.halfBodyMargin,
+                                  right: Dims.halfBodyMargin),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                right: Dims.halfBodyMargin,
+                                left: Dims.halfBodyMargin,
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Icon(
+                                    Icons.skip_next,
+                                    color: Colors.white,
+                                    size: Get.width / 10,
+                                  ),
+                                  Icon(Icons.play_circle_fill,
+                                      color: Colors.white, size: Get.width / 8),
+                                  Icon(Icons.skip_previous,
+                                      color: Colors.white,
+                                      size: Get.width / 10),
+                                  const SizedBox(
+                                    width: 30,
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Icon(CupertinoIcons.repeat,
+                                          color: Colors.white,
+                                          size: Get.width / 10))
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       )
                     ]),
               ),

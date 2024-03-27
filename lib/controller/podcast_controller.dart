@@ -35,6 +35,7 @@ class PodcastController extends GetxController {
   }
 
   getPodcastFile(String podcastId) async {
+    podcastFiles.clear();
     loading.value = true;
     var response =
         await DioService().getMethod(ApiUrlConstant.getPodcastFile + podcastId);
