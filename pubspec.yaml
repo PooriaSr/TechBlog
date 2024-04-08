@@ -51,6 +51,7 @@ dependencies:
   file_picker: ^6.1.1
   flutter_quill: ^9.0.1
   percent_indicator: ^4.2.3
+  just_audio: ^0.9.37
 
 dev_dependencies:
   flutter_test:

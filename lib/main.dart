@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         theme: lightTheme(phoneSize),
         debugShowCheckedModeBanner: false,
         getPages: pageRoute,
-        home: PodcastListScreen());
+        home: SplashScreen());
   }
 
   List<GetPage<dynamic>> get pageRoute {
@@ -67,7 +67,8 @@ class MyApp extends StatelessWidget {
           name: NamedRoute.podcastListScreen, page: () => PodcastListScreen()),
       GetPage(
           name: NamedRoute.singlePodcastScreen,
-          page: () => SinglePodcastScreen())
+          page: () => SinglePodcastScreen(),
+          binding: ManagePodcastBinding())
     ];
   }
 

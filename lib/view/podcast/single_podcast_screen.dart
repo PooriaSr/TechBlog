@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:tech_blog/constant/dims.dart';
 import 'package:tech_blog/constant/my_colors.dart';
@@ -14,7 +15,7 @@ import 'package:tech_blog/gen/assets.gen.dart';
 
 class SinglePodcastScreen extends StatelessWidget {
   //TODO add to binding
-  final PodcastController podcastController = Get.put(PodcastController());
+  final podcastController = Get.find<PodcastController>();
   //final podcastController = Get.find<PodcastController>();
 
   SinglePodcastScreen({super.key});
@@ -32,7 +33,6 @@ class SinglePodcastScreen extends StatelessWidget {
                 width: Get.width,
                 child: Stack(children: [
                   CachedNetworkImage(
-                    //TODO: fix index bug
                     imageUrl: podcastController.podcastInfo.value.poster!,
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
@@ -127,7 +127,7 @@ class SinglePodcastScreen extends StatelessWidget {
                       SizedBox(
                         height: Get.height / 3,
                         width: Get.width,
-                        child: podcastController.podcastFiles.isEmpty
+                        child: podcastController.loading.value == true
                             ? const Center(
                                 child: SizedBox(
                                     width: 30,
@@ -139,7 +139,7 @@ class SinglePodcastScreen extends StatelessWidget {
                                 itemBuilder: (context, index) => Padding(
                                   padding: const EdgeInsets.only(top: 15),
                                   child: GestureDetector(
-                                    onTap: () => debugPrint('Podcast played'),
+                                    onTap: () {},
                                     child: Container(
                                       color: Colors.transparent,
                                       height: Get.height / 25,
@@ -198,7 +198,7 @@ class SinglePodcastScreen extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            SizedBox.shrink(),
+                            const SizedBox.shrink(),
                             LinearPercentIndicator(
                               backgroundColor: Colors.white,
                               progressColor: Colors.orange,
@@ -209,35 +209,37 @@ class SinglePodcastScreen extends StatelessWidget {
                                   left: Dims.halfBodyMargin,
                                   right: Dims.halfBodyMargin),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                right: Dims.halfBodyMargin,
-                                left: Dims.halfBodyMargin,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Icon(
-                                    Icons.skip_next,
-                                    color: Colors.white,
-                                    size: Get.width / 10,
-                                  ),
-                                  Icon(Icons.play_circle_fill,
-                                      color: Colors.white, size: Get.width / 8),
-                                  Icon(Icons.skip_previous,
-                                      color: Colors.white,
-                                      size: Get.width / 10),
-                                  const SizedBox(
-                                    width: 30,
-                                  ),
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(CupertinoIcons.repeat,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                const SizedBox.shrink(),
+                                Icon(
+                                  Icons.skip_next,
+                                  color: Colors.white,
+                                  size: Get.width / 10,
+                                ),
+                                GestureDetector(
+                                  onTap: () => podcastController.playButton(),
+                                  child: podcastController.playState.isTrue
+                                      ? Icon(Icons.pause_circle_filled,
                                           color: Colors.white,
-                                          size: Get.width / 10))
-                                ],
-                              ),
+                                          size: Get.width / 8)
+                                      : Icon(Icons.play_circle_fill,
+                                          color: Colors.white,
+                                          size: Get.width / 8),
+                                ),
+                                Icon(Icons.skip_previous,
+                                    color: Colors.white, size: Get.width / 10),
+                                const SizedBox(
+                                  width: 30,
+                                ),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(CupertinoIcons.repeat,
+                                        color: Colors.white,
+                                        size: Get.width / 13)),
+                                const SizedBox.shrink(),
+                              ],
                             )
                           ],
                         ),

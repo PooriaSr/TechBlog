@@ -37,6 +37,7 @@ class MainBinding implements Bindings {
     Get.put(HomeScreenController());
     Get.put(ArticleListScreenController());
     Get.lazyPut(() => SingleArticleScreenController());
+    Get.lazyPut(() => PodcastController());
   }
 }
 

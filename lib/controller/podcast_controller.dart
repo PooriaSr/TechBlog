@@ -1,9 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:tech_blog/constant/api_constant.dart';
 import 'package:tech_blog/constant/my_strings.dart';
-import 'package:tech_blog/models/podcast_info_model.dart';
+import 'package:tech_blog/models/podcast_file_model.dart';
 import 'package:tech_blog/models/podcast_model.dart';
 import 'package:tech_blog/services/dio_service.dart';
 
@@ -12,13 +12,18 @@ class PodcastController extends GetxController {
   RxList<PodcastFileModel> podcastFiles = RxList();
   RxBool loading = false.obs;
   Rx<PodcastModel> podcastInfo = PodcastModel().obs;
+  final player = AudioPlayer();
+  late ConcatenatingAudioSource playList;
+  RxBool playState = F.obs;
 
   @override
   onInit() {
     super.onInit();
     getNewPodcastsList();
-    //TODO: call this method in PodcastListScreen
-    //getPodcastFile('2');
+    playList = ConcatenatingAudioSource(
+        children: [],
+        shuffleOrder: DefaultShuffleOrder(),
+        useLazyPreparation: T);
   }
 
   getNewPodcastsList() async {
@@ -42,7 +47,11 @@ class PodcastController extends GetxController {
     if (response.statusCode == 200) {
       response.data['files'].forEach((element) {
         podcastFiles.add(PodcastFileModel.fromJson(element));
+        playList.add(AudioSource.uri(
+            Uri.parse(PodcastFileModel.fromJson(element).file!)));
       });
+      await player.setAudioSource(playList,
+          initialIndex: 0, initialPosition: Duration.zero);
 
       loading.value = false;
     }
@@ -53,5 +62,11 @@ class PodcastController extends GetxController {
     getPodcastFile(id);
 
     podcastInfo.value = podcastList[index];
+  }
+
+  playButton() {
+    playState.value == true ? player.pause() : player.play();
+
+    playState.value = player.playing;
   }
 }

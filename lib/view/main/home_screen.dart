@@ -6,9 +6,11 @@ import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
 import 'package:tech_blog/controller/home_screen_controller.dart';
 import 'package:tech_blog/controller/list_article_screen_controller.dart';
+import 'package:tech_blog/controller/podcast_controller.dart';
 import 'package:tech_blog/controller/single_article_screen_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/constant/my_strings.dart';
+import 'package:tech_blog/view/podcast/single_podcast_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
@@ -25,6 +27,7 @@ class HomeScreen extends StatelessWidget {
   final articleListScreenController = Get.find<ArticleListScreenController>();
   final singleArticleScreenController =
       Get.find<SingleArticleScreenController>();
+  final podcastController = Get.find<PodcastController>();
 
   @override
   Widget build(BuildContext context) {
@@ -78,37 +81,42 @@ class HomeScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: homeScreenController.topPodcastList.length,
             itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 14),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: phoneSize.height / 6,
-                      width: phoneSize.width / 2.8,
-                      child: CachedNetworkImage(
-                          imageUrl: homeScreenController
-                              .topPodcastList[index].poster!,
-                          imageBuilder: (context, imageProvider) => Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
-                                    image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover)),
-                              ),
-                          placeholder: (context, url) => const SpinKitLoading(),
-                          errorWidget: (context, url, error) => ErrorImage(
-                                height: phoneSize.height / 6,
-                                width: phoneSize.width / 2.8,
-                              )),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Text(
-                        homeScreenController.topPodcastList[index].title!,
-                        style: textTheme.bodyMedium,
+              return GestureDetector(
+                onTap: () => podcastController.goToSinglePodcast(
+                    homeScreenController.topPodcastList[index].id!, index),
+                child: Padding(
+                  padding: EdgeInsets.only(right: index == 0 ? bodyMargin : 14),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: phoneSize.height / 6,
+                        width: phoneSize.width / 2.8,
+                        child: CachedNetworkImage(
+                            imageUrl: homeScreenController
+                                .topPodcastList[index].poster!,
+                            imageBuilder: (context, imageProvider) => Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      image: DecorationImage(
+                                          image: imageProvider,
+                                          fit: BoxFit.cover)),
+                                ),
+                            placeholder: (context, url) =>
+                                const SpinKitLoading(),
+                            errorWidget: (context, url, error) => ErrorImage(
+                                  height: phoneSize.height / 6,
+                                  width: phoneSize.width / 2.8,
+                                )),
                       ),
-                    )
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Text(
+                          homeScreenController.topPodcastList[index].title!,
+                          style: textTheme.bodyMedium,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               );
             }),
