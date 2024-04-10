@@ -69,4 +69,18 @@ class PodcastController extends GetxController {
 
     playState.value = player.playing;
   }
+
+  playOnTitle(int index) async {
+    await player.seek(Duration.zero, index: index);
+    player.play();
+    playState.value = player.playing;
+  }
+
+  skipNextButton() async {
+    await player.seekToNext();
+  }
+
+  skipPreviousButton() async {
+    await player.seekToPrevious();
+  }
 }

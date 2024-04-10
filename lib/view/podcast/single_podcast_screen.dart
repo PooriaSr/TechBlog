@@ -139,7 +139,8 @@ class SinglePodcastScreen extends StatelessWidget {
                                 itemBuilder: (context, index) => Padding(
                                   padding: const EdgeInsets.only(top: 15),
                                   child: GestureDetector(
-                                    onTap: () {},
+                                    onTap: () =>
+                                        podcastController.playOnTitle(index),
                                     child: Container(
                                       color: Colors.transparent,
                                       height: Get.height / 25,
@@ -213,10 +214,14 @@ class SinglePodcastScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 const SizedBox.shrink(),
-                                Icon(
-                                  Icons.skip_next,
-                                  color: Colors.white,
-                                  size: Get.width / 10,
+                                GestureDetector(
+                                  onTap: () =>
+                                      podcastController.skipNextButton(),
+                                  child: Icon(
+                                    Icons.skip_next,
+                                    color: Colors.white,
+                                    size: Get.width / 10,
+                                  ),
                                 ),
                                 GestureDetector(
                                   onTap: () => podcastController.playButton(),
@@ -228,8 +233,13 @@ class SinglePodcastScreen extends StatelessWidget {
                                           color: Colors.white,
                                           size: Get.width / 8),
                                 ),
-                                Icon(Icons.skip_previous,
-                                    color: Colors.white, size: Get.width / 10),
+                                GestureDetector(
+                                  onTap: () =>
+                                      podcastController.skipPreviousButton(),
+                                  child: Icon(Icons.skip_previous,
+                                      color: Colors.white,
+                                      size: Get.width / 10),
+                                ),
                                 const SizedBox(
                                   width: 30,
                                 ),
