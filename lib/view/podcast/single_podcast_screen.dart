@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:tech_blog/constant/dims.dart';
 import 'package:tech_blog/constant/my_colors.dart';
@@ -244,10 +245,22 @@ class SinglePodcastScreen extends StatelessWidget {
                                   width: 30,
                                 ),
                                 IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(CupertinoIcons.repeat,
-                                        color: Colors.white,
-                                        size: Get.width / 13)),
+                                    onPressed: () {
+                                      podcastController.loopBotton();
+                                    },
+                                    icon: podcastController.loopState.value ==
+                                            LoopMode.off
+                                        ? Icon(CupertinoIcons.repeat,
+                                            color: Colors.white,
+                                            size: Get.width / 13)
+                                        : podcastController.loopState.value ==
+                                                LoopMode.one
+                                            ? Icon(CupertinoIcons.repeat,
+                                                color: Colors.red,
+                                                size: Get.width / 13)
+                                            : Icon(CupertinoIcons.repeat,
+                                                color: Colors.yellow,
+                                                size: Get.width / 13)),
                                 const SizedBox.shrink(),
                               ],
                             )

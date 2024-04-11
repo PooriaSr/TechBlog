@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:just_audio/just_audio.dart';
@@ -15,6 +16,7 @@ class PodcastController extends GetxController {
   final player = AudioPlayer();
   late ConcatenatingAudioSource playList;
   RxBool playState = F.obs;
+  Rx<LoopMode> loopState = LoopMode.off.obs;
 
   @override
   onInit() {
@@ -24,6 +26,7 @@ class PodcastController extends GetxController {
         children: [],
         shuffleOrder: DefaultShuffleOrder(),
         useLazyPreparation: T);
+    //player.setLoopMode(LoopMode.all);
   }
 
   getNewPodcastsList() async {
@@ -82,5 +85,20 @@ class PodcastController extends GetxController {
 
   skipPreviousButton() async {
     await player.seekToPrevious();
+  }
+
+  loopBotton() async {
+    // LoopMode loopMode;
+    if (player.loopMode == LoopMode.off) {
+      loopState.value = LoopMode.all;
+    }
+    if (player.loopMode == LoopMode.all) {
+      loopState.value = LoopMode.one;
+    }
+    if (player.loopMode == LoopMode.one) {
+      loopState.value = LoopMode.off;
+    }
+    await player.setLoopMode(loopState.value);
+    debugPrint(player.loopMode.toString());
   }
 }
