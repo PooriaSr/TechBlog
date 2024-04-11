@@ -87,7 +87,7 @@ class PodcastController extends GetxController {
     await player.seekToPrevious();
   }
 
-  loopBotton() async {
+  loopButton() async {
     // LoopMode loopMode;
     if (player.loopMode == LoopMode.off) {
       loopState.value = LoopMode.all;

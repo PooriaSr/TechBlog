@@ -246,7 +246,7 @@ class SinglePodcastScreen extends StatelessWidget {
                                 ),
                                 IconButton(
                                     onPressed: () {
-                                      podcastController.loopBotton();
+                                      podcastController.loopButton();
                                     },
                                     icon: podcastController.loopState.value ==
                                             LoopMode.off
