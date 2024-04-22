@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
@@ -17,6 +18,8 @@ class PodcastController extends GetxController {
   late ConcatenatingAudioSource playList;
   RxBool playState = F.obs;
   Rx<LoopMode> loopState = LoopMode.off.obs;
+  late Timer timer;
+  Rx<Duration>? position = const Duration(seconds: 0).obs;
 
   @override
   onInit() {
@@ -26,7 +29,6 @@ class PodcastController extends GetxController {
         children: [],
         shuffleOrder: DefaultShuffleOrder(),
         useLazyPreparation: T);
-    //player.setLoopMode(LoopMode.all);
   }
 
   getNewPodcastsList() async {
@@ -71,12 +73,14 @@ class PodcastController extends GetxController {
     playState.value == true ? player.pause() : player.play();
 
     playState.value = player.playing;
+    progressBarSync();
   }
 
   playOnTitle(int index) async {
     await player.seek(Duration.zero, index: index);
     player.play();
     playState.value = player.playing;
+    progressBarSync();
   }
 
   skipNextButton() async {
@@ -88,7 +92,6 @@ class PodcastController extends GetxController {
   }
 
   loopButton() async {
-    // LoopMode loopMode;
     if (player.loopMode == LoopMode.off) {
       loopState.value = LoopMode.all;
     }
@@ -100,5 +103,22 @@ class PodcastController extends GetxController {
     }
     await player.setLoopMode(loopState.value);
     debugPrint(player.loopMode.toString());
+  }
+
+  progressBarSync() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (playState.value == T) {
+        int remain =
+            (player.duration!.inMilliseconds - player.position.inMilliseconds);
+        debugPrint('timer on');
+        if (remain == 0 && player.hasNext == false) {
+          playState.value = F;
+        }
+        position!.value = player.position;
+      } else {
+        debugPrint('timer off');
+        timer.cancel();
+      }
+    });
   }
 }

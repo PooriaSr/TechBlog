@@ -1,11 +1,10 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:tech_blog/constant/dims.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_components.dart';
@@ -15,9 +14,7 @@ import 'package:tech_blog/controller/podcast_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 
 class SinglePodcastScreen extends StatelessWidget {
-  //TODO add to binding
   final podcastController = Get.find<PodcastController>();
-  //final podcastController = Get.find<PodcastController>();
 
   SinglePodcastScreen({super.key});
   @override
@@ -195,21 +192,29 @@ class SinglePodcastScreen extends StatelessWidget {
                       //podcast player
                       Container(
                         width: Get.width,
-                        height: Get.height / 8,
+                        height: Get.height / 7.5,
                         decoration: MyDecoration.mainGradient,
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            const SizedBox.shrink(),
-                            LinearPercentIndicator(
-                              backgroundColor: Colors.white,
-                              progressColor: Colors.orange,
-                              barRadius: const Radius.circular(3),
-                              percent: 0.0,
-                              lineHeight: 6,
+                            Padding(
                               padding: EdgeInsets.only(
+                                  top: Get.height / 70,
                                   left: Dims.halfBodyMargin,
                                   right: Dims.halfBodyMargin),
+                              child: ProgressBar(
+                                progress: podcastController.position!.value,
+                                total: podcastController.player.duration ??
+                                    Duration.zero,
+                                onSeek: (duration) =>
+                                    podcastController.player.seek(duration),
+                                buffered:
+                                    podcastController.player.bufferedPosition,
+                                barCapShape: BarCapShape.round,
+                                progressBarColor: Colors.orange,
+                                thumbRadius: 8,
+                                thumbGlowRadius: 20,
+                                timeLabelTextStyle: MyTextStyle.bottun,
+                              ),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
