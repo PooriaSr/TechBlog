@@ -18,8 +18,9 @@ class PodcastController extends GetxController {
   late ConcatenatingAudioSource playList;
   RxBool playState = F.obs;
   Rx<LoopMode> loopState = LoopMode.off.obs;
-  late Timer timer;
+  Timer? timer;
   Rx<Duration>? position = const Duration(seconds: 0).obs;
+  RxInt fileIndex = 0.obs;
 
   @override
   onInit() {
@@ -73,22 +74,31 @@ class PodcastController extends GetxController {
     playState.value == true ? player.pause() : player.play();
 
     playState.value = player.playing;
+
     progressBarSync();
   }
 
   playOnTitle(int index) async {
     await player.seek(Duration.zero, index: index);
+
     player.play();
     playState.value = player.playing;
+
     progressBarSync();
   }
 
   skipNextButton() async {
     await player.seekToNext();
+    player.play();
+    playState.value = player.playing;
+    progressBarSync();
   }
 
   skipPreviousButton() async {
     await player.seekToPrevious();
+    player.play();
+    playState.value = player.playing;
+    progressBarSync();
   }
 
   loopButton() async {
@@ -106,8 +116,12 @@ class PodcastController extends GetxController {
   }
 
   progressBarSync() {
+    if (timer != null) {
+      timer!.cancel();
+    }
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (playState.value == T) {
+        fileIndex.value = player.currentIndex!;
         int remain =
             (player.duration!.inMilliseconds - player.position.inMilliseconds);
         debugPrint('timer on');
@@ -120,5 +134,10 @@ class PodcastController extends GetxController {
         timer.cancel();
       }
     });
+  }
+
+  stopPlaying() {
+    player.stop();
+    playState.value = player.playing;
   }
 }

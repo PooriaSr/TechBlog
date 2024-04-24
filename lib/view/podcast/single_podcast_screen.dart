@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:tech_blog/constant/dims.dart';
 import 'package:tech_blog/constant/my_colors.dart';
@@ -57,7 +56,10 @@ class SinglePodcastScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           GestureDetector(
-                            onTap: () => Get.back(),
+                            onTap: () {
+                              podcastController.stopPlaying();
+                              Get.back();
+                            },
                             child: const Icon(
                               Icons.arrow_back,
                               color: Colors.white,
@@ -161,7 +163,12 @@ class SinglePodcastScreen extends StatelessWidget {
                                             child: Text(
                                               podcastController
                                                   .podcastFiles[index].title!,
-                                              style: MyTextStyle.bluePenTitles,
+                                              style: index ==
+                                                      podcastController
+                                                          .fileIndex.value
+                                                  ? MyTextStyle.bluePenTitles
+                                                  : MyTextStyle
+                                                      .articleListTitles,
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 2,
                                               textScaler:
