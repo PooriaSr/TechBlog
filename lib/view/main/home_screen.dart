@@ -10,17 +10,15 @@ import 'package:tech_blog/controller/podcast_controller.dart';
 import 'package:tech_blog/controller/single_article_screen_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
 import 'package:tech_blog/constant/my_strings.dart';
-import 'package:tech_blog/view/podcast/single_podcast_screen.dart';
+import 'package:tech_blog/route_manager/named_route.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({
     super.key,
-    required this.phoneSize,
     required this.textTheme,
     required this.bodyMargin,
   });
 
-  final Size phoneSize;
   final TextTheme textTheme;
   final double bodyMargin;
   final homeScreenController = Get.find<HomeScreenController>();
@@ -76,7 +74,7 @@ class HomeScreen extends StatelessWidget {
   Widget homePageTopPodcast() {
     return Obx(
       () => SizedBox(
-        height: phoneSize.height / 4,
+        height: Get.height / 4,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: homeScreenController.topPodcastList.length,
@@ -89,8 +87,8 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: phoneSize.height / 6,
-                        width: phoneSize.width / 2.8,
+                        height: Get.height / 6,
+                        width: Get.width / 2.8,
                         child: CachedNetworkImage(
                             imageUrl: homeScreenController
                                 .topPodcastList[index].poster!,
@@ -104,8 +102,8 @@ class HomeScreen extends StatelessWidget {
                             placeholder: (context, url) =>
                                 const SpinKitLoading(),
                             errorWidget: (context, url, error) => ErrorImage(
-                                  height: phoneSize.height / 6,
-                                  width: phoneSize.width / 2.8,
+                                  height: Get.height / 6,
+                                  width: Get.width / 2.8,
                                 )),
                       ),
                       Padding(
@@ -127,7 +125,7 @@ class HomeScreen extends StatelessWidget {
   Widget homePageTopVisied() {
     return Obx(
       () => SizedBox(
-        height: phoneSize.height / 4.2,
+        height: Get.height / 4.2,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: homeScreenController.topVisitedList.length,
@@ -143,8 +141,8 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(
-                      width: phoneSize.width / 2.4,
-                      height: phoneSize.height / 5.8,
+                      width: Get.width / 2.4,
+                      height: Get.height / 5.8,
                       child: Stack(children: [
                         CachedNetworkImage(
                             imageUrl: homeScreenController
@@ -165,8 +163,8 @@ class HomeScreen extends StatelessWidget {
                             placeholder: (context, url) =>
                                 const SpinKitLoading(),
                             errorWidget: (context, url, error) => ErrorImage(
-                                  width: phoneSize.width / 2.4,
-                                  height: phoneSize.height / 5.8,
+                                  width: Get.width / 2.4,
+                                  height: Get.height / 5.8,
                                 )),
                         Positioned(
                           bottom: 10,
@@ -205,7 +203,7 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 6),
                       child: SizedBox(
-                          width: phoneSize.width / 2.5,
+                          width: Get.width / 2.5,
                           child: Text(
                             homeScreenController.topVisitedList[index].title!,
                             softWrap: true,
@@ -247,8 +245,8 @@ class HomeScreen extends StatelessWidget {
 
   Widget homePagePoster() {
     return SizedBox(
-      width: phoneSize.width / 1.19,
-      height: phoneSize.height / 4.2,
+      width: Get.width / 1.19,
+      height: Get.height / 4.2,
       child: GestureDetector(
         onTap: () {
           singleArticleScreenController
@@ -272,8 +270,8 @@ class HomeScreen extends StatelessWidget {
                       end: Alignment.bottomCenter)),
             ),
             errorWidget: (context, url, error) => ErrorImage(
-              width: phoneSize.width / 1.19,
-              height: phoneSize.height / 4.2,
+              width: Get.width / 1.19,
+              height: Get.height / 4.2,
             ),
           ),
           Positioned(
@@ -284,7 +282,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: phoneSize.width / 1.23,
+                  width: Get.width / 1.23,
                   child: Text(
                     homeScreenController.poster.value.title!,
                     style: textTheme.titleMedium,

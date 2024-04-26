@@ -11,6 +11,7 @@ import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/controller/file_controller.dart';
 import 'package:tech_blog/controller/new_article_controller.dart';
 import 'package:tech_blog/gen/assets.gen.dart';
+import 'package:tech_blog/route_manager/named_route.dart';
 import 'package:tech_blog/services/my_file_picker.dart';
 
 class WriteArticleScreen extends StatelessWidget {

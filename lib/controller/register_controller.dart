@@ -4,8 +4,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:tech_blog/constant/api_constant.dart';
 import 'package:tech_blog/constant/commands.dart';
 import 'package:tech_blog/constant/my_colors.dart';
-import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/storage_constant.dart';
+import 'package:tech_blog/route_manager/named_route.dart';
 import 'package:tech_blog/services/dio_service.dart';
 
 class RegisterController extends GetxController {

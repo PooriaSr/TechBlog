@@ -11,9 +11,9 @@ import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/storage_constant.dart';
 import 'package:tech_blog/controller/manage_article_controller.dart';
 import 'package:tech_blog/models/tags_model.dart';
+import 'package:tech_blog/route_manager/named_route.dart';
 import 'package:tech_blog/services/dio_service.dart';
 import 'package:dio/dio.dart' as dio;
-import '../constant/my_strings.dart';
 import '../models/article_info_model.dart';
 
 class NewArticleController extends GetxController {

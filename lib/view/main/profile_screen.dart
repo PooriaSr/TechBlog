@@ -11,12 +11,10 @@ import 'package:tech_blog/constant/my_strings.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
     super.key,
-    required this.phoneSize,
     required this.textTheme,
     required this.bodyMargin,
   });
 
-  final Size phoneSize;
   final TextTheme textTheme;
   final double bodyMargin;
 
@@ -25,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        ProfileScreenPhoto(phoneSize: phoneSize),
+        const ProfileScreenPhoto(),
         const SizedBox(
           height: 5,
         ),
@@ -41,15 +39,14 @@ class ProfileScreen extends StatelessWidget {
         const SizedBox(
           height: 40,
         ),
-        GreyDividerTechBlog(phoneSize: phoneSize),
-        ProfileScreenFavoriteBlogs(phoneSize: phoneSize, textTheme: textTheme),
-        GreyDividerTechBlog(phoneSize: phoneSize),
-        ProfileScreenFavoritePodcasts(
-            phoneSize: phoneSize, textTheme: textTheme),
-        GreyDividerTechBlog(phoneSize: phoneSize),
-        ProfileScreenLogOut(phoneSize: phoneSize, textTheme: textTheme),
+        const GreyDividerTechBlog(),
+        ProfileScreenFavoriteBlogs(textTheme: textTheme),
+        const GreyDividerTechBlog(),
+        ProfileScreenFavoritePodcasts(textTheme: textTheme),
+        const GreyDividerTechBlog(),
+        ProfileScreenLogOut(textTheme: textTheme),
         SizedBox(
-          height: phoneSize.height / 6,
+          height: Get.height / 6,
         )
       ],
     );
@@ -59,11 +56,9 @@ class ProfileScreen extends StatelessWidget {
 class ProfileScreenLogOut extends StatelessWidget {
   const ProfileScreenLogOut({
     super.key,
-    required this.phoneSize,
     required this.textTheme,
   });
 
-  final Size phoneSize;
   final TextTheme textTheme;
 
   @override
@@ -73,8 +68,8 @@ class ProfileScreenLogOut extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       splashFactory: NoSplash.splashFactory,
       child: SizedBox(
-        height: phoneSize.height / 18,
-        width: phoneSize.width * 0.66,
+        height: Get.height / 18,
+        width: Get.width * 0.66,
         child: Center(
           child: Text(
             MyStrings.logOut,
@@ -89,11 +84,9 @@ class ProfileScreenLogOut extends StatelessWidget {
 class ProfileScreenFavoritePodcasts extends StatelessWidget {
   const ProfileScreenFavoritePodcasts({
     super.key,
-    required this.phoneSize,
     required this.textTheme,
   });
 
-  final Size phoneSize;
   final TextTheme textTheme;
 
   @override
@@ -103,8 +96,8 @@ class ProfileScreenFavoritePodcasts extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       splashFactory: NoSplash.splashFactory,
       child: SizedBox(
-        height: phoneSize.height / 18,
-        width: phoneSize.width * 0.66,
+        height: Get.height / 18,
+        width: Get.width * 0.66,
         child: Center(
           child: Text(
             MyStrings.myFavoritePodcasts,
@@ -119,11 +112,9 @@ class ProfileScreenFavoritePodcasts extends StatelessWidget {
 class ProfileScreenFavoriteBlogs extends StatelessWidget {
   const ProfileScreenFavoriteBlogs({
     super.key,
-    required this.phoneSize,
     required this.textTheme,
   });
 
-  final Size phoneSize;
   final TextTheme textTheme;
 
   @override
@@ -133,8 +124,8 @@ class ProfileScreenFavoriteBlogs extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       splashFactory: NoSplash.splashFactory,
       child: SizedBox(
-        height: phoneSize.height / 18,
-        width: phoneSize.width * .66,
+        height: Get.height / 18,
+        width: Get.width * .66,
         child: Center(
           child: Text(
             MyStrings.myFavoriteBlogs,
@@ -222,16 +213,13 @@ class ProfileScreenEditPhotoTitle extends StatelessWidget {
 class ProfileScreenPhoto extends StatelessWidget {
   const ProfileScreenPhoto({
     super.key,
-    required this.phoneSize,
   });
-
-  final Size phoneSize;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: phoneSize.width / 3.76,
-      height: phoneSize.height / 7.18,
+      width: Get.width / 3.76,
+      height: Get.height / 7.18,
       decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(

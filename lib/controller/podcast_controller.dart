@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:tech_blog/constant/api_constant.dart';
-import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/models/podcast_file_model.dart';
 import 'package:tech_blog/models/podcast_model.dart';
+import 'package:tech_blog/route_manager/named_route.dart';
 import 'package:tech_blog/services/dio_service.dart';
 
 class PodcastController extends GetxController {

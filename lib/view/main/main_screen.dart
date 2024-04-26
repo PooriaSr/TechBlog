@@ -9,6 +9,7 @@ import 'package:tech_blog/constant/my_decoration.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
 import 'package:tech_blog/controller/register_controller.dart';
+import 'package:tech_blog/route_manager/named_route.dart';
 import 'package:tech_blog/view/main/profile_screen.dart';
 import 'package:tech_blog/view/register/register_intro.dart';
 import '../../gen/assets.gen.dart';
@@ -20,9 +21,8 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RxInt seletedPageIndex = 0.obs;
-    var phoneSize = MediaQuery.of(context).size;
     var textTheme = Theme.of(context).textTheme;
-    double bodyMargin = phoneSize.width / 14;
+    double bodyMargin = Get.width / 14;
     final GlobalKey<ScaffoldState> key = GlobalKey();
 
     return Scaffold(
@@ -30,7 +30,7 @@ class MainScreen extends StatelessWidget {
       backgroundColor: SolidColors.backGround,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: phoneSize.height / 13,
+        toolbarHeight: Get.height / 13,
         backgroundColor: SolidColors.appBarBackGround,
         iconTheme: const IconThemeData(color: SolidColors.appBarIcons),
         elevation: 0,
@@ -51,7 +51,7 @@ class MainScreen extends StatelessWidget {
               ),
               Image(
                 image: Assets.images.logo.provider(),
-                height: phoneSize.height / 13.6,
+                height: Get.height / 13.6,
               ),
               const Icon(
                 CupertinoIcons.search,
@@ -116,14 +116,8 @@ class MainScreen extends StatelessWidget {
               () => IndexedStack(
                 index: seletedPageIndex.value,
                 children: [
-                  HomeScreen(
-                      phoneSize: phoneSize,
-                      bodyMargin: bodyMargin,
-                      textTheme: textTheme),
-                  ProfileScreen(
-                      phoneSize: phoneSize,
-                      textTheme: textTheme,
-                      bodyMargin: bodyMargin),
+                  HomeScreen(bodyMargin: bodyMargin, textTheme: textTheme),
+                  ProfileScreen(textTheme: textTheme, bodyMargin: bodyMargin),
                   const RegisterIntro()
                 ],
               ),
@@ -134,7 +128,6 @@ class MainScreen extends StatelessWidget {
             left: 0,
             right: 0,
             child: BottomNavigation(
-                phoneSize: phoneSize,
                 bodyMargin: bodyMargin,
                 chaneScreen: (value) {
                   seletedPageIndex.value = value;
@@ -148,30 +141,26 @@ class MainScreen extends StatelessWidget {
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation(
-      {super.key,
-      required this.phoneSize,
-      required this.bodyMargin,
-      required this.chaneScreen});
+      {super.key, required this.bodyMargin, required this.chaneScreen});
 
-  final Size phoneSize;
   final double bodyMargin;
   final Function(int) chaneScreen;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: phoneSize.height / 7,
+        height: Get.height / 7,
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: GradientColors.bottomNavBackground,
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter)),
         child: Padding(
-          padding: EdgeInsets.fromLTRB(
-              bodyMargin, phoneSize.height / 18, bodyMargin, 0),
+          padding:
+              EdgeInsets.fromLTRB(bodyMargin, Get.height / 18, bodyMargin, 0),
           child: Container(
-            width: phoneSize.width / 5,
-            height: phoneSize.height / 12.35,
+            width: Get.width / 5,
+            height: Get.height / 12.35,
             decoration: MyDecoration.mainGradient,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

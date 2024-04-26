@@ -64,7 +64,7 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
             padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Container(
-              height: phoneSize.height / 2.5,
+              height: Get.height / 2.5,
               decoration: const BoxDecoration(
                   color: SolidColors.modalBottomSheet,
                   borderRadius: BorderRadius.only(
@@ -127,7 +127,7 @@ class RegisterIntroLetsGoButton extends StatelessWidget {
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
-            height: phoneSize.height / 2.5,
+            height: Get.height / 2.5,
             decoration: const BoxDecoration(
                 color: SolidColors.modalBottomSheet,
                 borderRadius: BorderRadius.only(
@@ -217,7 +217,7 @@ class RegisterIntroScreenLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       Assets.images.tcbot.path,
-      height: phoneSize.height / 7,
+      height: Get.height / 7,
     );
   }
 }

@@ -1,20 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:tech_blog/binding.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/constant/my_text_style.dart';
-import 'package:tech_blog/view/article/article_content_editor.dart';
-import 'package:tech_blog/view/article/article_list_screen.dart';
-import 'package:tech_blog/view/article/manage_article_screen.dart';
-import 'package:tech_blog/view/article/write_article_screen.dart';
-import 'package:tech_blog/view/main/main_screen.dart';
-import 'package:tech_blog/view/podcast/podcast_list_screen.dart';
-import 'package:tech_blog/view/podcast/single_podcast_screen.dart';
-import 'package:tech_blog/view/register/my_cats_screen.dart';
-import 'package:tech_blog/view/article/single_article_screen.dart';
-import 'package:tech_blog/view/splash_screen.dart';
+import 'package:tech_blog/route_manager/named_route.dart';
+import 'package:tech_blog/route_manager/pages.dart';
 
 void main() async {
   await GetStorage.init();
@@ -26,61 +17,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var phoneSize = MediaQuery.of(context).size;
     return GetMaterialApp(
-        locale: const Locale('fa'),
-        theme: lightTheme(phoneSize),
-        debugShowCheckedModeBanner: false,
-        getPages: pageRoute,
-        home: SplashScreen());
+      initialRoute: NamedRoute.initalRoute,
+      locale: const Locale('fa'),
+      theme: lightTheme(),
+      debugShowCheckedModeBanner: false,
+      getPages: Pages.pages,
+    );
   }
 
-  List<GetPage<dynamic>> get pageRoute {
-    return [
-      GetPage(
-          name: NamedRoute.mainScreen,
-          page: () => const MainScreen(),
-          bindings: [MainBinding(), RegisterBinding()]),
-      GetPage(
-          name: NamedRoute.articleScreen,
-          page: () => ArticleListScreen(),
-          binding: ArticleBinding()),
-      GetPage(
-          name: NamedRoute.singleArticleScreen,
-          page: () => SingleArticleScreen()),
-      GetPage(
-          name: NamedRoute.myCatsScreen,
-          page: () => MyCatsScreen(),
-          binding: CatsBinding()),
-      GetPage(
-          name: NamedRoute.manageArticleScreen,
-          page: () => ManageArticleScreen(),
-          binding: ManageArticleBinding()),
-      GetPage(
-          name: NamedRoute.writeArticleScreen,
-          page: () => WriteArticleScreen(),
-          binding: ManageArticleBinding()),
-      GetPage(
-          name: NamedRoute.articleContentEditor,
-          page: () => const ArticleContentEditor()),
-      GetPage(
-          name: NamedRoute.podcastListScreen, page: () => PodcastListScreen()),
-      GetPage(
-          name: NamedRoute.singlePodcastScreen,
-          page: () => SinglePodcastScreen(),
-          binding: ManagePodcastBinding())
-    ];
-  }
-
-  ThemeData lightTheme(Size phoneSize) {
+  ThemeData lightTheme() {
     return ThemeData(
         brightness: Brightness.light,
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
           foregroundColor: const MaterialStatePropertyAll(Colors.white),
           textStyle: MaterialStatePropertyAll(MyTextStyle.bottun),
-          fixedSize: MaterialStateProperty.all(
-              Size(phoneSize.width / 2.5, phoneSize.height / 15.4)),
           backgroundColor:
               const MaterialStatePropertyAll(SolidColors.primaryColor),
         )),

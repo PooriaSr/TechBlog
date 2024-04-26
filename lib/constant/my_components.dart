@@ -31,18 +31,15 @@ class BluePenIconTextTitleTechBlog extends StatelessWidget {
 class GreyDividerTechBlog extends StatelessWidget {
   const GreyDividerTechBlog({
     super.key,
-    required this.phoneSize,
   });
-
-  final Size phoneSize;
 
   @override
   Widget build(BuildContext context) {
     return Divider(
       color: SolidColors.dividerColor,
       thickness: 1,
-      indent: phoneSize.width / 6,
-      endIndent: phoneSize.width / 6,
+      indent: Get.width / 6,
+      endIndent: Get.width / 6,
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:tech_blog/constant/my_colors.dart';
 import 'package:tech_blog/constant/my_strings.dart';
 import 'package:tech_blog/controller/register_controller.dart';
+import 'package:tech_blog/route_manager/named_route.dart';
 import '../gen/assets.gen.dart';
 
 class SplashScreen extends StatelessWidget {
